@@ -22,6 +22,31 @@ export const getSeries = async (dispatch) => {
     }
 };
 
+export const getOneSeries = async (id) => {
+    try {
+        return await $api.get(`/series/${id}`);
+    } catch (e) {
+        return e.response;
+    }
+};
+
+export const getSeriesRating = async (id) => {
+    try {
+        return await $api.get(`/series/rate/${id}`);
+    } catch (e) {
+        return e.response;
+    }
+};
+
+export const getUserSeriesRating = async (id) => {
+    try {
+        return await $api.get(`/series/rate/${JSON.parse(localStorage.getItem('user')).user.id}/${id}`)
+    } catch (e) {
+        return e.response;
+    }
+}
+
+
 //create
 export const createSeries = async (series, dispatch) => {
     dispatch(createSeriesStart());
@@ -43,5 +68,19 @@ export const deleteSeries = async (id, dispatch) => {
         dispatch(deleteSeriesSuccess(id));
     } catch (e) {
         dispatch(deleteSeriesFailure());
+    }
+};
+
+//put
+export const putSeriesRating = async (seriesId, rate) => {
+    try {
+        return await $api.put(`/series/rate/${seriesId}`, {
+            user: JSON.parse(localStorage.getItem('user')).user.id,
+            item: seriesId,
+            onItem: 'Series',
+            rate: rate
+        });
+    } catch (e) {
+        return e.response;
     }
 };
