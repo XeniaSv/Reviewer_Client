@@ -21,6 +21,30 @@ export const getMovies = async (dispatch) => {
     }
 };
 
+export const getMovie = async (id) => {
+    try {
+        return await $api.get(`/movies/${id}`);
+    } catch (e) {
+        return e.response;
+    }
+};
+
+export const getMovieRating = async (id) => {
+    try {
+        return await $api.get(`/movies/rate/${id}`);
+    } catch (e) {
+        return e.response;
+    }
+};
+
+export const getUserMovieRating = async (id) => {
+    try {
+        return await $api.get(`/movies/rate/${JSON.parse(localStorage.getItem('user')).user.id}/${id}`)
+    } catch (e) {
+        return e.response;
+    }
+};
+
 //create
 export const createMovie = async (movie, dispatch) => {
     dispatch(createMovieStart());
@@ -42,5 +66,19 @@ export const deleteMovie = async (id, dispatch) => {
         dispatch(deleteMovieSuccess(id));
     } catch (e) {
         dispatch(deleteMovieFailure());
+    }
+};
+
+//put
+export const putMovieRating = async (movieId, rate) => {
+    try {
+        return await $api.put(`/movies/rate/${movieId}`, {
+            user: JSON.parse(localStorage.getItem('user')).user.id,
+            item: movieId,
+            onItem: 'Movie',
+            rate: rate
+        });
+    } catch (e) {
+        return e.response;
     }
 };
