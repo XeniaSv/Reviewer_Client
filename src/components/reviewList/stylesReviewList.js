@@ -15,6 +15,14 @@ const useStyles = makeStyles({
         marginTop: '20px'
         //textShadow: '0px 0 4px #5E8D9F',
     },
+    listEmpty: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        color: 'white',
+        fontSize: '28px',
+        fontWeight: "lighter",
+    },
     wrapper: {
         position: 'relative'
     },

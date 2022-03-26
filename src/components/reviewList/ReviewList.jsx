@@ -1,12 +1,11 @@
 import './stylesReviewList'
 import {ArrowBackIosOutlined, ArrowForwardIosOutlined} from "@mui/icons-material";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import useStyles from "./stylesReviewList";
 import ReviewItem from "../reviewItem/ReviewItem";
+import {getIds} from "../../context/reviewContext/apiCalls";
 
-const categories = ['Фильмы', 'Сериалы', 'Книги'];
-
-function ReviewList({list}) {
+function ReviewList({itemId}) {
 
     const classes = useStyles();
 
@@ -14,7 +13,14 @@ function ReviewList({list}) {
     const [slideNumber, setSlideNumber] = useState(0);
     const [clickLimit, setClickLimit] = useState(window.innerWidth / 230);
 
+    const [reviews, setReviews] = useState([]);
+
     const listRef = useRef();
+
+    useEffect(async () => {
+        const reviewIds = await getIds(itemId);
+        setReviews(reviewIds.data);
+    }, [itemId]);
 
     const handleClick = (direction) => {
         setIsMoved(true)
@@ -31,26 +37,25 @@ function ReviewList({list}) {
     return (
         <div className={classes.list}>
             <div className={classes.listTitle}>Reviews</div>
-            <div className={classes.wrapper}>
-                <ArrowBackIosOutlined className={classes.sliderArrowLeft}
-                                      onClick={() => handleClick('left')}
-                                      style={{display: !isMoved && 'none'}}
-                />
-                <div className={classes.container} ref={listRef}>
-                    {/*{list.content.map((item, i) => (*/}
-                    {/*    <ReviewItem index={i} item={item}/>*/}
-                    {/*))}*/}
-                    <ReviewItem/>
-                    <ReviewItem/>
-                    <ReviewItem/>
-                    <ReviewItem/>
-                    <ReviewItem/>
-                    <ReviewItem/>
+            {reviews.length === 0 ?
+            <div className={classes.listEmpty}>
+                There is no reviews
+            </div> :
+                <div className={classes.wrapper}>
+                    <ArrowBackIosOutlined className={classes.sliderArrowLeft}
+                                          onClick={() => handleClick('left')}
+                                          style={{display: !isMoved && 'none'}}
+                    />
+                    <div className={classes.container} ref={listRef}>
+                        {reviews.map((id) => (
+                            <ReviewItem reviewId={id}/>
+                        ))}
+                    </div>
+                    <ArrowForwardIosOutlined className={classes.sliderArrowRight}
+                                             onClick={() => handleClick('right')}
+                    />
                 </div>
-                <ArrowForwardIosOutlined className={classes.sliderArrowRight}
-                                         onClick={() => handleClick('right')}
-                />
-            </div>
+            }
         </div>
     );
 }
