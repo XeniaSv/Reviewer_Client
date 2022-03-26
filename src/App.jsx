@@ -18,10 +18,6 @@ import BookList from "./pages/adminPages/bookList/BookList";
 import SeriesList from "./pages/adminPages/seriesList/SeriesList";
 
 
-function Sidebar() {
-    return null;
-}
-
 function App() {
     const {user} = useContext(AuthContext);
 
@@ -37,21 +33,7 @@ function App() {
                 <Route path="/login">
                     {!user ? <Login/> : <Redirect to="/"/>}
                 </Route>
-                <Route path="/userPage">
-                    <UserPage/>
-                </Route>
-                <Route path="/movieReviews">
-                    <MovieReviews/>
-                </Route>
-                <Route path="/seriesReviews">
-                    <SeriesReviews/>
-                </Route>
-                <Route path="/bookReviews">
-                    <BookReviews/>
-                </Route>
-                <Route path="/admin">
-                    <AdminPage/>
-                </Route>
+
                 {user && (
                     <>
                         <Route path="/movies">
@@ -63,23 +45,62 @@ function App() {
                         <Route path="/itemPage">
                             <ItemPage/>
                         </Route>
-                        <Route path="/adminUsers">
+                        <Route path="/userPage">
+                            <UserPage/>
+                        </Route>
+                        <Route path="/movieReviews">
+                            <MovieReviews/>
+                        </Route>
+                        <Route path="/seriesReviews">
+                            <SeriesReviews/>
+                        </Route>
+                        <Route path="/bookReviews">
+                            <BookReviews/>
+                        </Route>
+
+                        <Route path="/admin">
+                            <AdminPage/>
+                        </Route>
+                        <Route path="/admin/users">
                             <UserList/>
                         </Route>
-                        <Route path="/adminMovies">
+                        <Route path="/admin/movies">
                             <MovieList/>
                         </Route>
-                        <Route path="/adminBooks">
+                        <Route path="/admin/books">
                             <BookList/>
                         </Route>
-                        <Route path="/adminSeries">
+                        <Route path="/admin/series">
                             <SeriesList/>
                         </Route>
-                        <Route path='/adminNewItem'>
+                        <Route path='/admin/newItem'>
                             <NewItem/>
                         </Route>
                     </>
                 )}
+
+                {/*{user.user.isAdmin && (*/}
+                {/*    <>*/}
+                {/*        <Route path="/admin">*/}
+                {/*            <AdminPage/>*/}
+                {/*        </Route>*/}
+                {/*        <Route path="/admin/users">*/}
+                {/*            <UserList/>*/}
+                {/*        </Route>*/}
+                {/*        <Route path="/admin/movies">*/}
+                {/*            <MovieList/>*/}
+                {/*        </Route>*/}
+                {/*        <Route path="/admin/books">*/}
+                {/*            <BookList/>*/}
+                {/*        </Route>*/}
+                {/*        <Route path="/admin/series">*/}
+                {/*            <SeriesList/>*/}
+                {/*        </Route>*/}
+                {/*        <Route path='/admin/newItem'>*/}
+                {/*            <NewItem/>*/}
+                {/*        </Route>*/}
+                {/*    </>*/}
+                {/*)}*/}
             </Switch>
         </BrowserRouter>
     );
