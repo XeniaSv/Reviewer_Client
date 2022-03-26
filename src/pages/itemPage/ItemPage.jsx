@@ -274,8 +274,8 @@ function ItemPage() {
                     </Grid>
                 </Grid>
             </Grid>
-            <ReviewList/>
-            <AddReview/>
+            <ReviewList itemId={itemId}/>
+            <AddReview itemId={itemId} type={type}/>
         </div>
     )
 }
