@@ -11,7 +11,7 @@ import {useRef, useState} from "react";
 import {publishReview} from "../../context/reviewContext/apiCalls";
 // import Rating from "@mui/material/Rating";
 
-export default function AddReview({itemId, type}) {
+export default function AddReview({itemId, type, updateListReview, setUpdateListReview}) {
     const classes = useStyles();
 
     const [review, setReview] = useState({
@@ -46,6 +46,7 @@ export default function AddReview({itemId, type}) {
         const res = await publishReview(review);
         if (res.status === 201) {
             handleClose();
+            setUpdateListReview(true);
             return;
         }
         alert(res.data.message);
