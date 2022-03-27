@@ -28,6 +28,8 @@ function ItemPage() {
     const [rating, setRating] = useState(0);
     const [userRating, setUserRating] = useState(0);
 
+    const [updateListReview, setUpdateListReview] = useState(false);
+
     useEffect(async () => {
         await fillItem();
         await fillRating();
@@ -274,8 +276,9 @@ function ItemPage() {
                     </Grid>
                 </Grid>
             </Grid>
-            <ReviewList itemId={itemId}/>
-            <AddReview itemId={itemId} type={type}/>
+            <ReviewList itemId={itemId} updateListReview={updateListReview} setUpdateListReview={setUpdateListReview}/>
+            <AddReview itemId={itemId} type={type} updateListReview={updateListReview}
+                       setUpdateListReview={setUpdateListReview}/>
         </div>
     )
 }
