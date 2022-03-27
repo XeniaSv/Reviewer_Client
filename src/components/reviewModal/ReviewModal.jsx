@@ -7,13 +7,21 @@ import useStyles from "../reviewModal/stylesReviewModal";
 import Avatar from "@mui/material/Avatar";
 import {ThumbUpAltOutlined} from "@mui/icons-material";
 import {Grid} from "@mui/material";
+import {putLike} from "../../context/reviewContext/apiCalls";
 
 
-export default function ReviewModal({review}) {
+export default function ReviewModal({review, setReview}) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const handleLike = async () => {
+        const reviewData = await putLike(review.id);
+        if (reviewData.status === 201) {
+            setReview(reviewData.data);
+        }
+    };
 
     return (
         <div>
@@ -54,7 +62,7 @@ export default function ReviewModal({review}) {
                     <Typography className={classes.info} id="modal-modal-description">
                         {review.createdAt}
                     </Typography>
-                    <Button className={classes.button} variant="contained" size="small">
+                    <Button className={classes.button} onClick={handleLike} variant="contained" size="small">
                         <span className={classes.reviewRating}>{review.likes}</span>
                         <ThumbUpAltOutlined className={classes.reviewIcon}/>
                     </Button>
