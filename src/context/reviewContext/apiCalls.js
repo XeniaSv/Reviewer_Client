@@ -22,4 +22,12 @@ export const publishReview = async (review) => {
     } catch (e) {
         return e.response;
     }
-}
+};
+
+export const putLike = async (reviewId) => {
+    try {
+        return await $api.put(`/reviews/like/${reviewId}`)
+    } catch (e) {
+        return e.response;
+    }
+};
