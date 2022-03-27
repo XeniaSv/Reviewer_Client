@@ -3,7 +3,7 @@ import {makeStyles} from "@material-ui/styles";
 const useStyles = makeStyles({
     listItem: {
         width: '225px',
-        height: '120px',
+        height: '200px',
         backgroundColor: 'white',
         marginRight: '5px',
         overflow: 'hidden',
