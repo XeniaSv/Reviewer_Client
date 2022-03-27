@@ -23,42 +23,37 @@ const useStyles = makeStyles({
         fontSize: '28px',
         fontWeight: "lighter",
     },
-    wrapper: {
-        position: 'relative'
-    },
+
     sliderArrowLeft: {
+        display: "block",
         transform: 'scale(1.7)',
         color: 'white',
         borderRadius: '15%',
         backgroundColor: 'rgba(204, 228, 230, 0.7)',
-        position: 'absolute',
+        // position: 'absolute',
         zIndex: '99',
-        top: 0,
-        bottom: 0,
+        marginTop: '50px',
         margin: 'auto',
-        cursor: 'pointer',
-        left: 0,
+        cursor: 'pointer'
     },
     sliderArrowRight: {
         transform: 'scale(1.7)',
         color: 'white',
         borderRadius: '15%',
         backgroundColor: 'rgba(204, 228, 230, 0.7)',
-        position: 'absolute',
+        // position: 'absolute',
         zIndex: '99',
-        top: 0,
-        bottom: 0,
+        marginTop: '50px',
         margin: 'auto',
-        cursor: 'pointer',
-        right: 0,
+        cursor: 'pointer'
     },
     container: {
-        marginLeft: '50px',
-        display: 'flex',
-        width: 'max-content',
+        position:'relative',
+        paddingLeft: '50px',
+        // marginLeft: '50px',
+
+        // height:'200px',
         marginTop: '10px',
-        transform: 'translateX(0px)',
-        transition: 'all 1s ease'
     }
 
 });
