@@ -24,7 +24,7 @@ function Register(props) {
         await setUsername(usernameRef.current.value);
         console.log(emailRef.current.value)
         try {
-            await axios.post("auth/register", {
+            await axios.post("/auth/register", {
                 email: emailRef.current.value,
                 username: usernameRef.current.value,
                 password: passwordRef.current.value
