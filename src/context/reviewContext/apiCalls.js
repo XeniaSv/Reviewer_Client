@@ -8,6 +8,22 @@ export const getIds = async (itemId) => {
     }
 };
 
+export const getLatestIdsByType = async (type) => {
+    try {
+        return await $api.get(`/reviews/latest/${type}/ids`);
+    } catch (e) {
+        return e.response;
+    }
+}
+
+export const getPopularIdsByType = async (type) => {
+    try {
+        return await $api.get(`/reviews/popular/${type}/ids`);
+    } catch (e) {
+        return e.response;
+    }
+}
+
 export const getReviewById = async (reviewId) => {
     try {
         return await $api.get(`/reviews/${reviewId}`);
