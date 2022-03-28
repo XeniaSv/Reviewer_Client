@@ -4,26 +4,40 @@ const useStyles = makeStyles({
     itemPage:{
         marginTop:'69px',
         paddingTop: '70px',
+        "@media (max-width: 350px)": {
+            marginTop:'120px'
+        },
         background:'linear-gradient(90deg, #69cfbc 0%, #9FACE6 100%)',
     },
-    container:{
-        justifyContent:'center',
+    mainContainer:{
+        justifyContent:'space-around',
         "&.MuiGrid-root":{
             "@media (min-width: 820px)": {
                 flexDirection: 'row',
-            }
+            },
+            "@media (max-width: 520px)": {
+                padding:'0 20px'
+            },
         }
     },
     item:{
-        display: 'flex',
-        justifyContent:'center',
-        maxWidth:'500px'
+        maxWidth:'500px',
+        maxHeight:'600px',
+        "@media (max-width: 1200px)": {
+            flexDirection: 'row',
+            maxWidth:'400px',
+            maxHeight:'500px',
+        },
 
     },
     image: {
-        maxHeight:'100%',
-        maxWidth: '100%',
+        height:'100%',
+        width: '100%',
         boxShadow:' 0px 17px 33px -1px rgba(34, 60, 80, 0.9)',
+        "@media (max-width: 1200px)": {
+            marginTop:'0',
+        },
+
     },
     ratingInfo:{
         justifyItems:'center',
@@ -33,6 +47,7 @@ const useStyles = makeStyles({
         backgroundColor:'rgba(144, 156, 209)',
         borderRadius:'10%',
         boxShadow: '0px 4px 30px 8px rgba(125, 136, 186, 0.8)',
+
     },
     ratingStar:{
         "&.MuiRating-root":{
@@ -54,20 +69,71 @@ const useStyles = makeStyles({
         fontSize:'20px',
         marginLeft:'5px',
     },
-    info:{
-        color: 'white',
+    ratingContainer:{
+        direction:"row",
+        justifyContent:"flex-start",
+        alignItems:"center",
+        "@media (max-width: 1200px)": {
+            direction:"column",
+            margin:'20px 0',
+            justifyContent:"center",
+        },
+        "@media (min-width: 1200px)": {
+            margin:'20px 30%',
+
+        },
     },
-    infoItem: {
+    infoContainer:{
+        color: 'white',
+        direction: "column",
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
+        display: 'flex',
+        maxHeight:'100%',
+        maxWidth:'800px',
+        minWidth:'200px',
+        "@media (max-width: 1200px)": {
+            "&.MuiGrid-root":{
+
+                justifyContent:'center'
+            }
+        },
+    },
+
+    infoItemContainer: {
+        direction:'row',
+        justifyContent:'space-around',
         padding:'15px',
         backgroundColor:'rgba(125, 136, 186, 0.2)',
         borderRadius: '1%',
 
         "&.MuiGrid-root":{
-            maxWidth:'500px',
+           maxWidth:'1000px',
+            minWidth:'800px',
+        },
+        "@media (max-width: 1200px)": {
+            "&.MuiGrid-root":{
+                direction:'column',
+                minWidth:'500px',
+
+                justifyContent:'center'
+            }
+        },
+        "@media (max-width: 545px)": {
+            "&.MuiGrid-root":{
+                minWidth:'350px'
+            }
+        },
+    },
+    infoItem:{
+        "&.MuiGrid-root":{
+            maxWidth:'300px',
+
         }
     },
     infoTitle:{
-        textDecoration:'underline'
+        textDecoration:'underline',
+
     },
 
 

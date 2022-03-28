@@ -162,25 +162,21 @@ function ItemPage() {
     return (
         <div className={classes.itemPage}>
             <Navbar/>
-            <Grid container direction='column' className={classes.container}>
+            <Grid container direction='row' className={classes.mainContainer}>
                 <Grid className={classes.item}>
                     <img
                         className={classes.image}
                         src={item.img}
                     />
-
                 </Grid>
 
                 <Grid
                     container
-                    direction="column"
-                    justifyContent="center"
-                    alignItems="flex-start"
-                    className={classes.info}>
+                    className={classes.infoContainer}>
 
-                    <Grid container direction="row"
-                          justifyContent="flex-start"
-                          alignItems="center">
+                    <Grid container
+                          className={classes.ratingContainer}
+                    >
                         <Grid>
                             <div className={classes.ratingInfo}>
                                 <span className={classes.rating}>{rating}</span>
@@ -194,10 +190,10 @@ function ItemPage() {
                         </Grid>
                     </Grid>
 
-                    <Grid xs={5} container className={classes.infoItem}>
+                    <Grid xs={5} container direction="row" className={classes.infoItemContainer}>
                         {type === 'book' ?
                             <>
-                                <Grid>
+                                <Grid xs={6} className={classes.infoItem}>
                                     <div>
                                         <h3 className={classes.infoTitle} style={{marginTop: '0'}}>TITLE</h3>
                                         <span>{item.title}</span>
@@ -216,7 +212,7 @@ function ItemPage() {
                                     </div>
                                 </Grid>
 
-                                <Grid>
+                                <Grid xs={6}>
                                     <div>
                                         <h3 className={classes.infoTitle} style={{marginTop: '0'}}>LANGUAGE</h3>
                                         <span>{item.language}</span>
@@ -234,7 +230,7 @@ function ItemPage() {
                             </>
                             :
                             <>
-                                <Grid>
+                                <Grid className={classes.infoItem}>
                                     <div>
                                         <h3 className={classes.infoTitle} style={{marginTop: '0'}}>TITLE</h3>
                                         <span>{item.title}</span>
@@ -253,7 +249,7 @@ function ItemPage() {
                                     </div>
                                 </Grid>
 
-                                <Grid>
+                                <Grid className={classes.infoItem}>
                                     <div>
                                         <h3 className={classes.infoTitle} style={{marginTop: '0'}}>LIMIT</h3>
                                         <span>{item.limit}</span>
