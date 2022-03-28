@@ -19,44 +19,6 @@ const Item = styled(Paper)(({theme}) => ({
 
 function Admin() {
     const classes = useStyles();
-    const MONTHS = useMemo(() => [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Agu",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-        ], []
-    )
-
-    const [userStats, setUserStats] = useState([]);
-
-    // useEffect(() => {
-    //     const getStats = async () => {
-    //         try {
-    //             const res = await axios.get('/users/stats', {
-    //                 headers: {
-    //                     token: "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTlmNWYyMTg1MDk5ZTJmZmFmYmM0NyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NjMwOTQ2OCwiZXhwIjoxNjQ2NzQxNDY4fQ.o2cdNp7gPnTubkgqCbo8k2SDIYssM4ITkxIcNeCfoK0"
-    //                 }
-    //             });
-    //             const statsList = res.data.sort(function (a, b) {
-    //                 return a._id - b._id;
-    //             });
-    //             statsList.map(item => setUserStats(prev => [
-    //                 ...prev,
-    //                 {name: MONTHS[item._id - 1], 'New User': item.total}]))
-    //         } catch (e) {
-    //             console.log(e)
-    //         }
-    //     };
-    //     getStats();
-    // }, [MONTHS]);
 
     return (
         <>
