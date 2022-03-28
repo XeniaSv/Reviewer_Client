@@ -34,73 +34,62 @@ function App() {
                     {!user ? <Login/> : <Redirect to="/"/>}
                 </Route>
 
-                {user && (
+                {!user?.user.isAdmin ?
                     <>
-                        <Route path="/movies">
-                            <Home type='movie'/>
-                        </Route>
-                        <Route path="/series">
-                            <Home type='series'/>
-                        </Route>
                         <Route path="/itemPage">
-                            <ItemPage/>
+                            {user ? <ItemPage/> : <Redirect to='/register'/>}
                         </Route>
                         <Route path="/userPage">
-                            <UserPage/>
+                            {user ? <UserPage/> : <Redirect to='/register'/>}
                         </Route>
                         <Route path="/movieReviews">
-                            <MovieReviews/>
+                            {user ? <MovieReviews/> : <Redirect to='/register'/>}
                         </Route>
                         <Route path="/seriesReviews">
-                            <SeriesReviews/>
+                            {user ? <SeriesReviews/> : <Redirect to='/register'/>}
                         </Route>
                         <Route path="/bookReviews">
-                            <BookReviews/>
+                            {user ? <BookReviews/> : <Redirect to='/register'/>}
+                        </Route>
+                    </>
+                    :
+                    <>
+                        <Route path="/itemPage">
+                            {user ? <ItemPage/> : <Redirect to='/register'/>}
+                        </Route>
+                        <Route path="/userPage">
+                            {user ? <UserPage/> : <Redirect to='/register'/>}
+                        </Route>
+                        <Route path="/movieReviews">
+                            {user ? <MovieReviews/> : <Redirect to='/register'/>}
+                        </Route>
+                        <Route path="/seriesReviews">
+                            {user ? <SeriesReviews/> : <Redirect to='/register'/>}
+                        </Route>
+                        <Route path="/bookReviews">
+                            {user ? <BookReviews/> : <Redirect to='/register'/>}
                         </Route>
 
                         <Route path="/admin">
                             <AdminPage/>
                         </Route>
-                        <Route path="/admin/users">
+                        <Route path="/adminUsers">
                             <UserList/>
                         </Route>
-                        <Route path="/admin/movies">
+                        <Route path="/adminMovies">
                             <MovieList/>
                         </Route>
-                        <Route path="/admin/books">
+                        <Route path="/adminBooks">
                             <BookList/>
                         </Route>
-                        <Route path="/admin/series">
+                        <Route path="/adminSeries">
                             <SeriesList/>
                         </Route>
-                        <Route path='/admin/newItem'>
+                        <Route path='/adminNewItem'>
                             <NewItem/>
                         </Route>
                     </>
-                )}
-
-                {/*{user.user.isAdmin && (*/}
-                {/*    <>*/}
-                {/*        <Route path="/admin">*/}
-                {/*            <AdminPage/>*/}
-                {/*        </Route>*/}
-                {/*        <Route path="/admin/users">*/}
-                {/*            <UserList/>*/}
-                {/*        </Route>*/}
-                {/*        <Route path="/admin/movies">*/}
-                {/*            <MovieList/>*/}
-                {/*        </Route>*/}
-                {/*        <Route path="/admin/books">*/}
-                {/*            <BookList/>*/}
-                {/*        </Route>*/}
-                {/*        <Route path="/admin/series">*/}
-                {/*            <SeriesList/>*/}
-                {/*        </Route>*/}
-                {/*        <Route path='/admin/newItem'>*/}
-                {/*            <NewItem/>*/}
-                {/*        </Route>*/}
-                {/*    </>*/}
-                {/*)}*/}
+                }
             </Switch>
         </BrowserRouter>
     );
