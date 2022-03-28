@@ -10,6 +10,15 @@ const useStyles = makeStyles({
         height: 600,
         backgroundColor: 'white',
         boxShadow: 24,
+        "@media (max-width: 754px)": {
+            width:500
+        },
+        "@media (max-width: 534px)": {
+            width:400
+        },
+        "@media (max-width: 400px)": {
+            width:350
+        },
 
     },
     buttonOpen: {
@@ -28,17 +37,39 @@ const useStyles = makeStyles({
         maxWidth: 700,
         height: 600,
         padding: '10px',
+        direction:"column",
+        justifyContent:"space-around",
+        alignItems:"center",
 
         "&.MuiGrid-root": {
             margin: '0 auto',
+            "@media (max-width: 754px)": {
+                minWidth:500
+            },
+            "@media (max-width: 534px)": {
+                minWidth:400
+            },
+            "@media (max-width: 400px)": {
+                minWidth:350
+            },
 
         }
     },
     title: {
         caretColor: '#406170',
+        marginLeft:'-10%',
         "& .MuiOutlinedInput-root": {
             color: '#406170',
             width: '650px',
+            "@media (max-width: 754px)": {
+                width:470
+            },
+            "@media (max-width: 534px)": {
+                width:370
+            },
+            "@media (max-width: 400px)": {
+                width:300
+            },
             '& fieldset': {
                 borderColor: '#406170',
             },
@@ -81,12 +112,22 @@ const useStyles = makeStyles({
         }, '& .MuiInput-underline:after': {
             borderBottomColor: '#406170',
         },
+
     },
     text: {
         caretColor: '#406170',
         "& .MuiOutlinedInput-root": {
             color: '#406170',
             width: '650px',
+            "@media (max-width: 754px)": {
+                width:470
+            },
+            "@media (max-width: 534px)": {
+                width:370
+            },
+            "@media (max-width: 400px)": {
+                width:300
+            },
 
             '& fieldset': {
                 borderColor: '#406170',

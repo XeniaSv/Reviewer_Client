@@ -68,9 +68,7 @@ export default function AddReview({itemId, type, updateListReview, setUpdateList
 
                 <Box className={classes.modal}>
                     <Grid container
-                          direction="column"
-                          justifyContent="space-around"
-                          alignItems="center"
+
                           className={classes.container}>
 
                         <Grid>

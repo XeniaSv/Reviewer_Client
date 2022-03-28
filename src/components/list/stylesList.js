@@ -1,57 +1,64 @@
 import {makeStyles} from "@material-ui/styles";
 
 const useStyles = makeStyles({
-    list: {
-        width: '100%',
-        marginBottom: '5%',
-        backgroundColor: '#C2E1F0',
-        height: '200px',
-        boxShadow: '0px 0px 10px 10px #C2E1F0',
-    },
     listTitle: {
         color: '#7DA9BC',
-        fontSize: '20px',
+        fontSize: '25px',
         fontWeight: 'bolder',
-        marginLeft: '50px',
+        marginBottom:'20px'
         //textShadow: '0px 0 4px #5E8D9F',
     },
-    wrapper: {
-        position: 'relative'
+    listEmpty: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        color: '#7DA9BC',
+        fontSize: '28px',
+        fontWeight: "lighter",
     },
+
     sliderArrowLeft: {
         transform: 'scale(1.7)',
         color: 'white',
         borderRadius: '15%',
         backgroundColor: 'rgba(204, 228, 230, 0.7)',
-        position: 'absolute',
+        // position: 'absolute',
         zIndex: '99',
-        top: 0,
-        bottom: 0,
+        marginTop: '50px',
         margin: 'auto',
-        cursor: 'pointer',
-        left: 0,
+        cursor: 'pointer'
     },
     sliderArrowRight: {
         transform: 'scale(1.7)',
         color: 'white',
         borderRadius: '15%',
         backgroundColor: 'rgba(204, 228, 230, 0.7)',
-        position: 'absolute',
+        // position: 'absolute',
         zIndex: '99',
-        top: 0,
-        bottom: 0,
+        marginTop: '50px',
         margin: 'auto',
-        cursor: 'pointer',
-        right: 0,
+        cursor: 'pointer'
     },
     container: {
-        marginLeft: '50px',
-        display: 'flex',
-        width: 'max-content',
-        marginTop: '10px',
-        transform: 'translateX(0px)',
-        transition: 'all 1s ease'
-    }
+        position:'relative',
+        paddingLeft: '50px',
+        marginBottom: '70px',
+        backgroundColor: '#C2E1F0',
+        height: '300px',
+        boxShadow: '0px 0px 10px 10px #C2E1F0',
+        marginTop: '5px',
+        "@media (max-width: 820px)": {
+            height:'250px',
+        }
+
+
+    },
+    carusel:{
+        height:'230px',
+        "@media (max-width: 820px)": {
+            height:'150px',
+        }
+    },
 
 });
 export default useStyles;

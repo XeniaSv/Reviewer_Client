@@ -25,7 +25,6 @@ const useStyles = makeStyles({
     },
 
     sliderArrowLeft: {
-        display: "block",
         transform: 'scale(1.7)',
         color: 'white',
         borderRadius: '15%',

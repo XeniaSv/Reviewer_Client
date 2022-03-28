@@ -1,88 +1,134 @@
 import './stylesList'
 import {ArrowBackIosOutlined, ArrowForwardIosOutlined} from "@mui/icons-material";
 import ListItem from '../listItem/ListItem'
-import {useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import useStyles from "../list/stylesList";
+import {Carousel} from '@trendyol-js/react-carousel';
+import {getLatestIdsByType, getPopularIdsByType} from "../../context/reviewContext/apiCalls";
+import {Box} from "@mui/material";
 
-const categories = ['Фильмы', 'Сериалы', 'Книги'];
+const categories = ['Movies', 'Series', 'Books'];
 
-function List({list}) {
-
+function List({tabValue}) {
+    console.log(window.innerWidth)
     const classes = useStyles();
 
-    const [isMoved, setIsMoved] = useState(false);
-    const [slideNumber, setSlideNumber] = useState(0);
-    const [clickLimit, setClickLimit] = useState(window.innerWidth / 230);
+    const [movieReviewsIds, setMovieReviewsIds] = useState([]);
+    const [seriesReviewsIds, setSeriesReviewsIds] = useState([]);
+    const [bookReviewsIds, setBookReviewsIds] = useState([]);
 
-    const listRef = useRef();
+    useEffect(async () => {
+        setMovieReviewsIds([]);
+        setSeriesReviewsIds([]);
+        setBookReviewsIds([]);
 
-    const handleClick = (direction) => {
-        setIsMoved(true)
-        let distance = listRef.current.getBoundingClientRect().x - 50;
-        if (direction === 'left' && slideNumber > 0) {
-            setSlideNumber(slideNumber - 1);
-            listRef.current.style.transform = `translateX(${230 + distance}px)`;
+        switch (tabValue) {
+            case '1':
+                const movieLatestReviewIdsData = await getLatestIdsByType(categories[0].slice(0, -1));
+                if (movieLatestReviewIdsData.status === 200) {
+                    setMovieReviewsIds(movieLatestReviewIdsData.data);
+                }
+                const seriesLatestReviewIdsData = await getLatestIdsByType(categories[1]);
+                if (seriesLatestReviewIdsData.status === 200) {
+                    setSeriesReviewsIds(seriesLatestReviewIdsData.data);
+                }
+                const bookLatestReviewIdsData = await getLatestIdsByType(categories[2].slice(0, -1));
+                if (bookLatestReviewIdsData.status === 200) {
+                    setBookReviewsIds(bookLatestReviewIdsData.data);
+                }
+                break;
+            case '2':
+                const moviePopularReviewIdsData = await getPopularIdsByType(categories[0].slice(0, -1));
+                if (moviePopularReviewIdsData.status === 200) {
+                    setMovieReviewsIds(moviePopularReviewIdsData.data);
+                }
+                const seriesPopularReviewIdsData = await getPopularIdsByType(categories[1]);
+                if (seriesPopularReviewIdsData.status === 200) {
+                    setSeriesReviewsIds(seriesPopularReviewIdsData.data);
+                }
+                const bookPopularReviewIdsData = await getPopularIdsByType(categories[2].slice(0, -1));
+                if (bookPopularReviewIdsData.status === 200) {
+                    setBookReviewsIds(bookPopularReviewIdsData.data);
+                }
+                break;
         }
-        if (direction === 'right' && slideNumber < 10 - clickLimit) {
-            setSlideNumber(slideNumber + 1);
-            listRef.current.style.transform = `translateX(${-230 + distance}px)`;
-        }
-    }
+
+    }, [tabValue]);
+
     return (
         <>
-            <div className={classes.list}>
+            <div  className={classes.container}>
                 <div className={classes.listTitle}>{categories[0]}</div>
-                <div className={classes.wrapper}>
-                    <ArrowBackIosOutlined className={classes.sliderArrowLeft}
-                                          onClick={() => handleClick('left')}
-                                          style={{display: !isMoved && 'none'}}
-                    />
-                    <div className={classes.container} ref={listRef}>
-                        {list.content.map((item, i) => (
-                            <ListItem type='movie' index={i} item={item}/>
-                        ))}
+                {movieReviewsIds.length === 0 ?
+                    <div className={classes.listEmpty}>
+                        There is no reviews
                     </div>
-                    <ArrowForwardIosOutlined className={classes.sliderArrowRight}
-                                             onClick={() => handleClick('right')}
-                    />
-                </div>
+                    :
+                            <Carousel
+                                className={classes.carusel}
+                                show={4}
+                                slide={1}
+                                transition={0.5}
+                                infinite={false}
+                                dynamic={true}
+                                responsive={true}
+                                rightArrow={<ArrowForwardIosOutlined className={classes.sliderArrowRight}/>}
+                                leftArrow={<ArrowBackIosOutlined className={classes.sliderArrowLeft}/>}
+                            >
+                                {movieReviewsIds.map((id) => {
+                                    return <ListItem style={{width:'200px'}} key={id} type='movie' reviewId={id}/>
+                                })}
+                            </Carousel>
+
+                }
             </div>
-            <div className={classes.list}>
+            <Box className={classes.container}>
                 <div className={classes.listTitle}>{categories[1]}</div>
-                <div className={classes.wrapper}>
-                    <ArrowBackIosOutlined className={classes.sliderArrowLeft}
-                                          onClick={() => handleClick('left')}
-                                          style={{display: !isMoved && 'none'}}
-                    />
-                    <div className={classes.container} ref={listRef}>
-                        {list.content.map((item, i) => (
-                            <ListItem type='series' index={i} item={item}/>
-                        ))}
+                {seriesReviewsIds.length === 0 ?
+                    <div className={classes.listEmpty}>
+                        There is no reviews
                     </div>
-                    <ArrowForwardIosOutlined className={classes.sliderArrowRight}
-                                             onClick={() => handleClick('right')}
-                    />
-                </div>
-            </div>
-            <div className={classes.list}>
+                    :
+                    <Carousel
+                        className={classes.carusel}
+                        show={4}
+                        slide={1}
+                        dynamic={true}
+                        transition={0.5}
+                        infinite={false}
+                        rightArrow={<ArrowForwardIosOutlined className={classes.sliderArrowRight}/>}
+                        leftArrow={<ArrowBackIosOutlined className={classes.sliderArrowLeft}/>}
+                    >
+                        {seriesReviewsIds.map((id) => {
+                            return <ListItem key={id} type='series' reviewId={id}/>
+                        })}
+                    </Carousel>
+                }
+            </Box>
+            <div className={classes.container}>
                 <div className={classes.listTitle}>{categories[2]}</div>
-                <div className={classes.wrapper}>
-                    <ArrowBackIosOutlined className={classes.sliderArrowLeft}
-                                          onClick={() => handleClick('left')}
-                                          style={{display: !isMoved && 'none'}}
-                    />
-                    <div className={classes.container} ref={listRef}>
-                        {list.content.map((item, i) => (
-                            <ListItem type='book' index={i} item={item}/>
-                        ))}
+                {bookReviewsIds.length === 0 ?
+                    <div className={classes.listEmpty}>
+                        There is no reviews
                     </div>
-                    <ArrowForwardIosOutlined className={classes.sliderArrowRight}
-                                             onClick={() => handleClick('right')}
-                    />
-                </div>
+                    :
+                    <Carousel
+                        className={classes.carusel}
+                        show={4}
+                        slide={1}
+                        transition={0.5}
+                        infinite={false}
+                        dynamic={true}
+                        rightArrow={<ArrowForwardIosOutlined className={classes.sliderArrowRight}/>}
+                        leftArrow={<ArrowBackIosOutlined className={classes.sliderArrowLeft}/>}
+                    >
+                        {bookReviewsIds.map((id) => {
+                            return <ListItem key={id} type='book' reviewId={id}/>
+                        })}
+                    </Carousel>
+                }
             </div>
         </>
-
     );
 }
 

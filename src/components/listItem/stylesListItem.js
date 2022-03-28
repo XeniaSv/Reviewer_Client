@@ -2,38 +2,45 @@ import {makeStyles} from "@material-ui/styles";
 
 const useStyles = makeStyles({
     listItem: {
-        width: '225px',
-        height: '120px',
+        height: '200px',
+        width: '300px',
+        marginRight: '10px',
         backgroundColor: 'white',
-        marginRight: '5px',
-        overflow: 'hidden',
+        overflow:'hidden',
         cursor: 'pointer',
         color: 'black',
 
         "&:hover": {
             width: '325px',
-            height: '320px',
-            top: '-150px',
+            height: '220px',
             position: 'absolute',
             WebkitBoxShadow: '0px 0px 15px 0px rgba(255, 255, 255, 0.07)',
             boxShadow: '0px 0px 15px 0px rgba(255, 255, 255, 0.07)',
             borderRadius: '5px',
         },
 
+        "@media (max-width: 820px)": {
+            height: '150px',
+            width: '200px',
+            "&:hover": {
+                height: '170px',
+                width: '200px',
+            }
+
+        }
+
     },
     itemInfo: {
         display: 'flex',
         flexDirection: 'column',
-        padding: '5px',
-
+        padding: '0 5px',
     },
     icons: {
-        height: '46px',
+        height: '60px',
         display: 'flex',
-        marginTop: '-9px',
         marginLeft: '-9px',
         marginRight: '-9px',
-        marginBottom: '10px',
+        marginBottom: '15px',
         justifyContent: 'space-around',
         alignItems: 'center',
         background: 'linear-gradient(90deg, #69cfbc  0%, #9FACE6 100%)',
@@ -61,13 +68,13 @@ const useStyles = makeStyles({
         color: '#5a697c',
     },
     itemName: {
-        fontSize: '18px',
+        fontSize: '20px',
         margin: '0 auto',
     },
     itemQuote: {
-        fontSize: '14px',
+        fontSize: '16px',
         margin: '0 auto',
-        marginTop: '3px',
+        marginTop: '5px',
         width: '90%',
         height: '40px',
         fontStyle: 'italic',
@@ -78,7 +85,7 @@ const useStyles = makeStyles({
 
     },
     itemAuthor: {
-        fontSize: '14px',
+        fontSize: '16px',
         textAlign: 'right',
         marginRight: '15px',
         marginTop: '5px',
@@ -86,14 +93,15 @@ const useStyles = makeStyles({
     },
     img: {
         width: '100%',
-        height: '140px',
-        objectFit: 'cover',
+        height:'100%',
     },
+
     buttonContainer: {
-        width: '250px',
-        marginTop: '-3px',
+        width: '300px',
+        height:'30px',
         display: 'flex',
         flexDirection: 'row',
+        alignItems:'flex-end',
         justifyContent: 'space-around'
     },
     button: {

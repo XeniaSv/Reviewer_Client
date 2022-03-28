@@ -10,7 +10,19 @@ const useStyles = makeStyles({
         height: 510,
         backgroundColor: 'white',
         boxShadow: 24,
-        p: 4,
+        "@media (max-width: 754px)": {
+            width:600
+        },
+        "@media (max-width: 534px)": {
+            width:500
+        },
+        "@media (max-width: 630px)": {
+            width:400
+        },
+        "@media (max-width: 415px)": {
+            width:350
+        },
+
     },
     avatar: {
         '&.MuiAvatar-root': {
@@ -19,15 +31,18 @@ const useStyles = makeStyles({
             borderRadius: 50,
             float: 'left',
             margin: '20px',
-            marginLeft: '10%'
+            marginLeft: '10%',
         }
     },
     info: {
         "&.MuiTypography-root": {
             textAlign: 'center',
             width: '300px',
-            marginLeft: '28%',
-            color: '#406170'
+            marginLeft: '35%',
+            color: '#406170',
+            "@media (max-width: 754px)": {
+                width:'200px',
+            },
         }
     },
     buttonOpen: {
@@ -43,10 +58,13 @@ const useStyles = makeStyles({
         "&.MuiButton-root": {
             backgroundColor: 'rgba(144, 156, 209)',
             marginTop: '10px',
-            marginLeft: '18%',
+            marginLeft: '25%',
             "&:hover": {
                 backgroundColor: 'rgba(130, 141, 191)',
-            }
+            },
+            "@media (max-width: 740px)": {
+                marginLeft: '18%',
+            },
         }
     },
     reviewRating: {
@@ -88,7 +106,10 @@ const useStyles = makeStyles({
         marginRight: '5px',
         borderRadius: '10%',
         padding: '3px',
-        color: 'white'
+        color: 'white',
+        "@media (max-width: 600px)": {
+            marginTop: '10px',
+        },
     }
 });
 

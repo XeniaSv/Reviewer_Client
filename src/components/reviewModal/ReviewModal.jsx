@@ -27,8 +27,8 @@ export default function ReviewModal({review, setReview}) {
         <div>
             <Button
                 className={classes.buttonOpen}
-                variant="contained"
                 size="small"
+                variant="contained"
                 onClick={handleOpen}>
                 Open review
             </Button>

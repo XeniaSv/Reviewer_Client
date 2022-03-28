@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import useStyles from './stylesNavbar'
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,18 +12,13 @@ import MenuItem from '@mui/material/MenuItem';
 import {Search} from "@mui/icons-material";
 import {Link} from 'react-router-dom';
 import {Grid, TextField} from "@mui/material";
+import {AuthContext} from "../../context/authContext/AuthContext";
+import {logout} from "../../context/authContext/AuthActions";
 
 
-const pages = ['Homepage', 'Movies', 'Series'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const Navbar = () => {
-    // const [issScrolled,setIsScrolled] = useState(false);
-    // const {dispatch} = useContext(AuthContext);
+    const {user, dispatch} = useContext(AuthContext);
 
-    // window.onscroll = () => {
-    //     setIsScrolled(window.pageYOffset === 0 ? false : true);
-    //     return () => (window.onscroll == null);
-    // }
     const classes = useStyles();
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -43,6 +38,11 @@ const Navbar = () => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    const handleLogout = () => {
+        handleCloseUserMenu();
+        dispatch(logout());
+    }
 
     return (
         <AppBar className={classes.back}>
@@ -94,12 +94,15 @@ const Navbar = () => {
                                     <Typography textAlign="center">Profile</Typography>
                                 </MenuItem>
                             </Link>
-                            <Link to="/admin" className="link">
-                                <MenuItem onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">Admin</Typography>
-                                </MenuItem>
-                            </Link>
-                            <MenuItem onClick={handleCloseUserMenu}>
+                            {user?.user.isAdmin ?
+                                <Link to="/admin" className="link">
+                                    <MenuItem onClick={handleCloseUserMenu}>
+                                        <Typography textAlign="center">Admin</Typography>
+                                    </MenuItem>
+                                </Link> :
+                                <></>
+                            }
+                            <MenuItem onClick={handleLogout}>
                                 <Typography textAlign="center">Logout</Typography>
                             </MenuItem>
                         </Menu>
