@@ -108,6 +108,19 @@ const useStyles = makeStyles({
         marginRight: '2px',
         alignSelf: 'flex-end',
 
+    },
+
+    textReview:{
+        fontSize: '16px',
+        margin: '0 auto',
+        marginTop: '5px',
+        width: '90%',
+        height: '60px',
+        fontStyle: 'italic',
+        overflow: 'hidden',
+        display: '-webkit-box',
+        lineClamp: '3',
+        boxOrient: 'vertical',
     }
 });
 

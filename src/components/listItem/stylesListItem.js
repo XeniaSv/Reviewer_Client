@@ -70,6 +70,13 @@ const useStyles = makeStyles({
     itemName: {
         fontSize: '20px',
         margin: '0 auto',
+        height: '30px',
+        fontStyle: 'italic',
+        overflow: 'hidden',
+        display: '-webkit-box',
+        lineClamp: '2',
+        boxOrient: 'vertical',
+        textAlign:'center'
     },
     itemQuote: {
         fontSize: '16px',

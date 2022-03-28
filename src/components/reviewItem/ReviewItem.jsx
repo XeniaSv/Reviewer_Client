@@ -35,7 +35,7 @@ function ReviewItem({reviewId}) {
                 <Typography gutterBottom variant="h5" component="div" color='#5a697c'>
                     {review.author}
                 </Typography>
-                <Typography variant="body2" color="#5a697c">
+                <Typography className={classes.textReview} variant="body2" color="#5a697c">
                     {review.textReview}
                 </Typography>
             </CardContent>

@@ -6,15 +6,12 @@ import MenuList from '@mui/material/MenuList';
 import MenuIcon from '@mui/icons-material/Menu';
 import Popper from '@mui/material/Popper';
 import {Link} from 'react-router-dom';
-// import {AuthContext} from "../../authContext/AuthContext";
-// import {logout} from "../../authContext/AuthActions";
 import useStyles from "./stylesTopbar";
 import Grow from '@mui/material/Grow';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-const pages = ['Products', 'Pricing', 'Blog'];
+
 
 export default function Topbar() {
     const classes = useStyles();

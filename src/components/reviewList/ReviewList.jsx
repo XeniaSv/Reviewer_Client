@@ -12,7 +12,6 @@ function ReviewList({itemId, updateListReview, setUpdateListReview}) {
 
     const [reviewsIds, setReviewsIds] = useState([]);
 
-    // const listRef = useRef();
 
     useEffect(async () => {
         const reviewIds = await getIds(itemId);

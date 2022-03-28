@@ -10,7 +10,6 @@ import {Box} from "@mui/material";
 const categories = ['Movies', 'Series', 'Books'];
 
 function List({tabValue}) {
-    console.log(window.innerWidth)
     const classes = useStyles();
 
     const [movieReviewsIds, setMovieReviewsIds] = useState([]);

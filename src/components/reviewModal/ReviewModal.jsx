@@ -10,11 +10,14 @@ import {Grid} from "@mui/material";
 import {putLike} from "../../context/reviewContext/apiCalls";
 
 
-export default function ReviewModal({review, setReview}) {
+export default function ReviewModal({review, setReview, setIsHovered}) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleClose = () => {
+        setOpen(false);
+        setIsHovered(false);
+    };
 
     const handleLike = async () => {
         const reviewData = await putLike(review.id);

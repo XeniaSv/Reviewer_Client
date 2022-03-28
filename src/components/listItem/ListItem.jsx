@@ -87,7 +87,7 @@ function ListItem({type, reviewId}) {
                         <div className={classes.itemQuote}><q>{review.textReview}</q></div>
                         <span className={classes.itemAuthor}>{review.author}</span>
                         <div className={classes.buttonContainer}>
-                            <ReviewModal review={review} setReview={setReview}/>
+                            <ReviewModal review={review} setReview={setReview} setIsHovered={setIsHovered}/>
                             <Link className="link" to={{pathname: '/itemPage', search: `?type=${type}&id=${item.id}`}}>
                                 {type === 'movie' ?
                                     <Button size="small" className={classes.button} variant="contained">Open
