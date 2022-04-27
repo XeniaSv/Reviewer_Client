@@ -15,7 +15,8 @@ export const getBooks = async (dispatch) => {
     dispatch(getBooksStart());
     try {
         const res = await $api.get('/books');
-        dispatch(getBooksSuccess(res.data))
+        dispatch(getBooksSuccess(res.data));
+        return res;
     } catch (e) {
         dispatch(getBooksFailure());
     }
@@ -54,6 +55,15 @@ export const createBook = async (book, dispatch) => {
         return res;
     } catch (err) {
         dispatch(createBookFailure());
+        return err.response;
+    }
+};
+
+//update
+export const updateBook = async (book) =>{
+    try {
+        return await $api.put(`/books/${book.id}`, book);
+    } catch (err) {
         return err.response;
     }
 };

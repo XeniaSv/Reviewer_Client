@@ -18,31 +18,31 @@ const BookReducer = (state, action) => {
                 isFetching: false,
                 error: true,
             };
-        case "CREATE_BOOKS_START":
+        case "CREATE_BOOK_START":
             return {
                 ...state,
                 isFetching: true,
                 error: false,
             };
-        case "CREATE_BOOKS_SUCCESS":
+        case "CREATE_BOOK_SUCCESS":
             return {
                 books: [...state.books, action.payload],
                 isFetching: false,
                 error: false,
             };
-        case "CREATE_BOOKS_FAILURE":
+        case "CREATE_BOOK_FAILURE":
             return {
                 ...state,
                 isFetching: false,
                 error: true,
             };
-        case "UPLOAD_BOOKS_START":
+        case "UPLOAD_BOOK_START":
             return {
                 ...state,
                 isFetching: true,
                 error: false,
             };
-        case "UPLOAD_BOOKS_SUCCESS":
+        case "UPLOAD_BOOK_SUCCESS":
             return {
                 books: state.books.map(
                     (book) => book.id === action.payload.id && action.payload
@@ -50,25 +50,25 @@ const BookReducer = (state, action) => {
                 isFetching: false,
                 error: false,
             };
-        case "UPLOAD_BOOKS_FAILURE":
+        case "UPLOAD_BOOK_FAILURE":
             return {
                 ...state,
                 isFetching: false,
                 error: true,
             };
-        case "DELETE_BOOKS_START":
+        case "DELETE_BOOK_START":
             return {
                 ...state,
                 isFetching: true,
                 error: false,
             };
-        case "DELETE_BOOKS_SUCCESS":
+        case "DELETE_BOOK_SUCCESS":
             return {
                 books: state.books.filter((book) => book.id !== action.payload),
                 isFetching: false,
                 error: false,
             };
-        case "DELETE_BOOKS_FAILURE":
+        case "DELETE_BOOK_FAILURE":
             return {
                 ...state,
                 isFetching: false,

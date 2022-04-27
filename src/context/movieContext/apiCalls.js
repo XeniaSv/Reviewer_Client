@@ -16,6 +16,7 @@ export const getMovies = async (dispatch) => {
     try {
         const res = await $api.get('/movies');
         dispatch(getMoviesSuccess(res.data))
+        return res;
     } catch (e) {
         dispatch(getMoviesFailure());
     }
@@ -54,6 +55,15 @@ export const createMovie = async (movie, dispatch) => {
         return res;
     } catch (err) {
         dispatch(createMovieFailure());
+        return err.response;
+    }
+};
+
+//update
+export const updateMovie = async (movie) =>{
+    try {
+        return await $api.put(`/movies/${movie.id}`, movie);
+    } catch (err) {
         return err.response;
     }
 };

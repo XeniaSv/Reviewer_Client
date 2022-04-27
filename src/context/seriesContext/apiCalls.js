@@ -60,6 +60,15 @@ export const createSeries = async (series, dispatch) => {
     }
 };
 
+//update
+export const updateSeries = async (series) =>{
+    try {
+        return await $api.put(`/series/${series.id}`, series);
+    } catch (err) {
+        return err.response;
+    }
+};
+
 //delete
 export const deleteSeries = async (id, dispatch) => {
     dispatch(deleteSeriesStart());
