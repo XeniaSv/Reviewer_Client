@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import Navbar from "../../../components/navbar/Navbar";
 import SidebarUser from "../../../components/sidebarUser/SidebarUser";
 import {styled} from '@mui/material/styles';
@@ -8,19 +8,10 @@ import {DataGrid} from '@mui/x-data-grid';
 import useStyles from './stylesMovieReviews';
 import {Link} from "react-router-dom";
 import {DeleteOutline} from "@material-ui/icons";
+import {ReviewContext} from "../../../context/reviewContext/ReviewContext";
+import {deleteReview, getReviewByAuthorAndType} from "../../../context/reviewContext/apiCalls";
+import {AuthContext} from "../../../context/authContext/AuthContext";
 
-
-const rows = [
-    {id: 1, title: 'Snow', firstName: 'Jon', age: 35},
-    {id: 2, title: 'Lannister', firstName: 'Cersei', age: 42},
-    {id: 3, title: 'Lannister', firstName: 'Jaime', age: 45},
-    {id: 4, title: 'Stark', firstName: 'Arya', age: 16},
-    {id: 5, title: 'Targaryen', firstName: 'Daenerys', age: null},
-    {id: 6, title: 'Melisandre', firstName: null, age: 150},
-    {id: 7, title: 'Clifford', firstName: 'Ferrara', age: 44},
-    {id: 8, title: 'Frances', firstName: 'Rossini', age: 36},
-    {id: 9, title: 'Roxie', firstName: 'Harvey', age: 65},
-];
 
 const Item = styled(Paper)(({theme}) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -32,27 +23,42 @@ const Item = styled(Paper)(({theme}) => ({
 
 function MovieReviews(props) {
     const classes = useStyles();
-    const columns = [
+    const {user} = useContext(AuthContext);
+    const {reviews, dispatch} = useContext(ReviewContext);
 
+    useEffect(() => {
+        getReviewByAuthorAndType(user.user.id, 'Movie', dispatch);
+    }, [dispatch, user.user.id]);
+
+    const handleDelete = (id) => {
+        deleteReview(id, dispatch);
+    };
+
+    const columns = [
         {field: 'id', headerName: 'ID', width: 70},
-        {field: 'title', headerName: 'Title', width: 130},
-        {field: 'date', headerName: 'Date', type: 'date', width: 130},
-        {field: 'tags', headerName: 'Tags', width: 90},
-        {field: 'text', headerName: 'Text', width: 700},
+        {field: 'itemTitle', headerName: 'Фильм', width: 130},
+        {field: 'title', headerName: 'Название рецензии', width: 150},
+        {field: 'createdAt', headerName: 'Дата', type: 'date', width: 130},
+        {field: 'tags', headerName: 'Тэги', width: 200},
+        {field: 'likes', headerName: 'Лайки', width: 90},
+        {field: 'textReview', headerName: 'Текст', width: 400},
 
         {
             field: "action",
-            headerName: "Action",
+            headerName: "Действия",
             width: 150,
             renderCell: (params) => {
                 return (
                     <>
-                        <Link to={"/user/" + params.row.id}>
-                            <button className={classes.edit}>Edit</button>
+                        {/*<Link to={"/user/" + params.row.id}>*/}
+                        {/*    <button className={classes.edit}>Edit</button>*/}
+                        {/*</Link>*/}
+                        <Link to={{pathname: '/userUpdateReview', search: `?type=movie&id=${params.id}`}}>
+                            <button className={classes.edit}>Изменить</button>
                         </Link>
                         <DeleteOutline
                             className={classes.delete}
-                            //onClick={() => handleDelete(params.row.id)}
+                            onClick={() => handleDelete(params.row.id)}
                         />
                     </>
                 );
@@ -72,7 +78,7 @@ function MovieReviews(props) {
                         <div style={{height: 400, width: '100%'}}>
                             <DataGrid
                                 className={classes.table}
-                                rows={rows}
+                                rows={reviews}
                                 columns={columns}
                                 pageSize={5}
                                 rowsPerPageOptions={[5]}

@@ -5,7 +5,7 @@ import {styled} from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Profile from "../userPages/profile/Profile";
-//import {useStyles}from "../../pages/userPage/stylesUserPage";
+import useStyles from "../../pages/userPage/stylesUserPage";
 
 const Item = styled(Paper)(({theme}) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -16,12 +16,12 @@ const Item = styled(Paper)(({theme}) => ({
 }));
 
 export default function UserPage(props) {
-    //const classes = useStyles();
+    const classes = useStyles();
     return (
         <>
             <Navbar/>
-            <Grid style={{marginTop: '70px'}} container spacing={2}>
-                <Grid item xs={2}>
+            <Grid className={classes.wrapper} style={{marginTop: '70px'}} container spacing={2}>
+                <Grid className={classes.hide} item xs={2}>
                     <Item><SidebarUser/></Item>
                 </Grid>
                 <Grid item xs={10}>

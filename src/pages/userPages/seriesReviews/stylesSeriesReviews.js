@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     },
 
     delete: {
-        color: '#406170',
+        color: 'black',
         cursor: 'pointer'
     }
 
