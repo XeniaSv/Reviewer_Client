@@ -1,7 +1,5 @@
 import Topbar from "../../components/topbar/Topbar";
-import React, {useContext, useEffect, useMemo, useState} from "react";
-
-import axios from "axios";
+import React from "react";
 import useStyles from "./stylesAdminPage";
 import Grid from "@mui/material/Grid";
 
@@ -31,7 +29,7 @@ function Admin() {
                     <Item>
                         <div className={classes.home}>
                             <div className={classes.homeWidgets}>
-                                <h3>Admin Page</h3>
+                                <h3>Учетная запись администратора</h3>
                             </div>
                         </div>
                     </Item>

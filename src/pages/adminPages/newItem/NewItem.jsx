@@ -133,10 +133,9 @@ export default function NewItem() {
                 <Grid item xs={10}>
                     <Item>
                         <div className={classes.newProduct}>
-                            {type === "movie" ? <h1>New Movie</h1> : type === "series" ? <h1>New TV Series</h1> :
-                                <h1>New Book</h1>}
+                            {type === "movie" ? <h1>Новый фильм</h1> : type === "series" ? <h1>Новый сериал</h1> :
+                                <h1>Новая книга</h1>}
                             <Grid
-
                                 container
                                 direction="row"
                                 justifyContent="center"
@@ -147,20 +146,17 @@ export default function NewItem() {
                                       justifyContent="space-between"
                                       alignItems="center"
                                       className={classes.wrapperInput}
-
-
                                 >
                                     <Grid container
                                           direction="column"
                                           alignItems="center"
                                           justifyContent="center"
                                           className={classes.wrapperProduct}
-
                                     >
 
                                         <Grid className={classes.addProductItem}>
                                             <label htmlFor="icon-button-img">
-                                                <span>Upload Big size image</span>
+                                                <span>Загрузить большое изображение</span>
                                                 <Input accept="image/*" id="icon-button-img" type="file"
                                                        onChange={(e) => setImg(e.target.files[0])}/>
                                                 <IconButton className={classes.imageIcon} aria-label="upload picture"
@@ -168,17 +164,17 @@ export default function NewItem() {
                                                     <PhotoCamera/>
                                                 </IconButton>
                                                 {img === null ?
-                                                    <span className={classes.imageName}>File not choose</span>
+                                                    <span className={classes.imageName}>Файл не выбран</span>
                                                     : <span className={classes.imageName}>{img.name}</span>}
                                             </label>
                                         </Grid>
 
                                         <Grid className={classes.addProductItem}>
                                             <TextField
-                                                helperText="Please enter title"
+                                                helperText="Пожалуйста введите название"
                                                 id="demo-helper-text-misaligned"
-                                                label="Title"
-                                                placeholder="John Wick"
+                                                label="Название"
+                                                placeholder="Джон Уик"
                                                 onChange={handleChange}
                                                 type="text"
                                                 name='title'
@@ -188,10 +184,10 @@ export default function NewItem() {
                                             <>
                                                 <Grid className={classes.addProductItem}>
                                                     <TextField
-                                                        helperText="Please enter director"
+                                                        helperText="Пожалуйста введите режиссера"
                                                         id="demo-helper-text-misaligned"
-                                                        label="Director"
-                                                        placeholder="Christopher Nolan"
+                                                        label="Режиссер"
+                                                        placeholder="Кристофер Нолан"
                                                         onChange={handleChange}
                                                         type="text"
                                                         name='director'
@@ -200,10 +196,10 @@ export default function NewItem() {
 
                                                 <Grid className={classes.addProductItem}>
                                                     <TextField
-                                                        helperText="Please enter duration"
+                                                        helperText="Пожалуйста введите длительность"
                                                         id="demo-helper-text-misaligned"
-                                                        label="Duration"
-                                                        placeholder="3h"
+                                                        label="Длительность"
+                                                        placeholder="3ч"
                                                         onChange={handleChange}
                                                         type="text"
                                                         name='duration'
@@ -215,10 +211,10 @@ export default function NewItem() {
                                             <>
                                                 <Grid className={classes.addProductItem}>
                                                     <TextField
-                                                        helperText="Please enter author"
+                                                        helperText="Пожалуйста введите автора"
                                                         id="demo-helper-text-misaligned"
-                                                        label="Author"
-                                                        placeholder="Stephen King"
+                                                        label="Автор"
+                                                        placeholder="Стивен Кинг"
                                                         onChange={handleChange}
                                                         type="text"
                                                         name='author'
@@ -226,9 +222,9 @@ export default function NewItem() {
                                                 </Grid>
                                                 <Grid className={classes.addProductItem}>
                                                     <TextField
-                                                        helperText="Please enter pages"
+                                                        helperText="Пожалуйста введите кол-во страниц"
                                                         id="demo-helper-text-misaligned"
-                                                        label="Pages"
+                                                        label="Страницы"
                                                         placeholder="300"
                                                         onChange={handleChange}
                                                         type="text"
@@ -241,9 +237,9 @@ export default function NewItem() {
 
                                         <Grid className={classes.addProductItem}>
                                             <TextField
-                                                helperText="Please enter year"
+                                                helperText="Пожалуйста введите год выхода"
                                                 id="demo-helper-text-misaligned"
-                                                label="Year"
+                                                label="Год"
                                                 placeholder="2000"
                                                 onChange={handleChange}
                                                 type="text"
@@ -260,7 +256,7 @@ export default function NewItem() {
 
                                         <Grid className={classes.addProductItem}>
                                             <label htmlFor="icon-button-sm-img">
-                                                <span>Upload Small size image</span>
+                                                <span>Загрузить маленькое изображение</span>
                                                 <Input accept="image/*" id="icon-button-sm-img" type="file"
                                                        onChange={(e) => setImgSm(e.target.files[0])}/>
                                                 <IconButton className={classes.imageIcon} aria-label="upload picture"
@@ -268,7 +264,7 @@ export default function NewItem() {
                                                     <PhotoCamera/>
                                                 </IconButton>
                                                 {imgSm === null ?
-                                                    <span className={classes.imageName}>File not choose</span>
+                                                    <span className={classes.imageName}>Файл не выбран</span>
                                                     : <span className={classes.imageName}>{imgSm.name}</span>}
                                             </label>
                                         </Grid>
@@ -276,10 +272,10 @@ export default function NewItem() {
 
                                         <Grid className={classes.addProductItem}>
                                             <TextField
-                                                helperText="Please enter genre"
+                                                helperText="Пожалуйста введите жанр"
                                                 id="demo-helper-text-misaligned"
-                                                label="Genre"
-                                                placeholder="fantasy"
+                                                label="Жанр"
+                                                placeholder="фэнтези"
                                                 onChange={handleChange}
                                                 type="text"
                                                 name='genre'
@@ -289,9 +285,9 @@ export default function NewItem() {
                                             <>
                                                 <Grid className={classes.addProductItem}>
                                                     <TextField
-                                                        helperText="Please enter limit"
+                                                        helperText="Пожалуйста введите лимит"
                                                         id="demo-helper-text-misaligned"
-                                                        label="Limit"
+                                                        label="Лимит"
                                                         placeholder="16+"
                                                         onChange={handleChange}
                                                         type="text"
@@ -301,10 +297,10 @@ export default function NewItem() {
 
                                                 <Grid className={classes.addProductItem}>
                                                     <TextField
-                                                        helperText="Please enter cast"
+                                                        helperText="Пожалуйста введите актеров"
                                                         id="demo-helper-text-misaligned"
-                                                        label="Cast"
-                                                        placeholder="John Depp, Helena Bonham Carter"
+                                                        label="Актеры"
+                                                        placeholder="Джонни Депп, Хелена Бонем-Картер"
                                                         onChange={handleChange}
                                                         type="text"
                                                         name='cast'
@@ -316,10 +312,10 @@ export default function NewItem() {
 
                                             <Grid className={classes.addProductItem}>
                                                 <TextField
-                                                    helperText="Please enter language"
+                                                    helperText="Пожалуйста введите язык"
                                                     id="demo-helper-text-misaligned"
-                                                    label="Language"
-                                                    placeholder="English"
+                                                    label="Язык"
+                                                    placeholder="Русский"
                                                     onChange={handleChange}
                                                     type="text"
                                                     name='language'
@@ -330,12 +326,12 @@ export default function NewItem() {
 
                                         <Grid className={classes.addProductItem}>
                                             <TextField
-                                                helperText="Please enter description"
+                                                helperText="Пожалуйста введите аннотацию"
                                                 id="demo-helper-text-misaligned"
-                                                label="Description"
+                                                label="Аннотация"
                                                 multiline
                                                 maxRows={4}
-                                                placeholder="Some text"
+                                                placeholder="Текст"
                                                 onChange={handleChange}
                                                 type="text"
                                                 name='desc'
@@ -350,11 +346,11 @@ export default function NewItem() {
                                 <Grid>
                                     {uploaded === 2 ? (
                                         <Button className={classes.addProductButton}
-                                                onClick={handleSubmit}>Create</Button>
+                                                onClick={handleSubmit}>Создать</Button>
 
                                     ) : (
                                         <Button className={classes.addProductButton}
-                                                onClick={handleUpload}>Upload</Button>
+                                                onClick={handleUpload}>Загрузить</Button>
                                     )}
                                 </Grid>
 

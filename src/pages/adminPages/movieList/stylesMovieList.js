@@ -28,7 +28,6 @@ const useStyles = makeStyles({
         "&.MuiButton-root": {
             margin: '10px auto',
             color: 'white',
-            width: '200px',
             border: '1px solid rgba(130, 141, 191)',
             backgroundColor: 'rgba(144, 156, 209)',
             marginLeft: '10px',
@@ -49,14 +48,14 @@ const useStyles = makeStyles({
         border: 'none',
         borderRadius: '10px',
         padding: ' 5px 10px',
-        backgroundColor: '#3bb077',
+        backgroundColor: 'rgba(144, 156, 209)',
         color: 'white',
         cursor: 'pointer',
         marginRight: '20px',
     },
 
     productListDelete: {
-        color: 'red',
+        color: 'black',
         cursor: 'pointer',
     },
 

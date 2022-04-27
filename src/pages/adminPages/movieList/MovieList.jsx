@@ -10,6 +10,7 @@ import Sidebar from "../../../components/sidebarAdmin/SidebarAdmin";
 import Grid from "@mui/material/Grid";
 import {styled} from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
+import {DeleteOutline} from "@material-ui/icons";
 
 const Item = styled(Paper)(({theme}) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -33,10 +34,10 @@ export default function MovieList() {
 
 
     const columns = [
-        {field: "id", headerName: "ID", width: 90},
+        {field: "id", headerName: "ID", width: 100},
         {
             field: "title",
-            headerName: "Title",
+            headerName: "Название",
             width: 200,
             renderCell: (params) => {
                 return (
@@ -47,20 +48,38 @@ export default function MovieList() {
                 );
             },
         },
-        {field: "director", headerName: "Director", width: 120},
-        {field: "year", headerName: "Year", width: 120},
-        {field: "duration", headerName: "Duration", width: 120},
-        {field: "genre", headerName: "Genre", width: 120},
-        {field: "limit", headerName: "limit", width: 120},
-        {field: "cast", headerName: "Cast", width: 120},
-        {field: "desc", headerName: "Description", width: 200},
+        {field: "director", headerName: "Режиссер", width: 150},
+        {field: "year", headerName: "Год", width: 120},
+        {field: "duration", headerName: "Длительность", width: 170},
+        {field: "genre", headerName: "Жанр", width: 120},
+        {field: "limit", headerName: "Лимит", width: 120},
+        {field: "cast", headerName: "Актеры", width: 150},
+        {field: "desc", headerName: "Аннотация", width: 200},
+        {
+            field: "action",
+            headerName: "Действия",
+            width: 150,
+            renderCell: (params) => {
+                return (
+                    <>
+                        <Link to={{pathname: '/adminUpdateItem', search: `?type=movie&id=${params.id}`}}>
+                            <button className={classes.productListEdit}>Изменить</button>
+                        </Link>
+                        <DeleteOutline
+                            className={classes.productListDelete}
+                            onClick={() => handleDelete(params.row.id)}
+                        />
+                    </>
+                );
+            },
+        },
     ];
 
     return (
         <>
             <Topbar/>
             <Link to={{pathname: '/adminNewItem', search: '?type=movie'}} className='link'>
-                <Button className={classes.button} variant="outlined">ADD NEW MOVIE</Button>
+                <Button className={classes.button} variant="outlined">ДОБАВИТЬ НОВЫЙ ФИЛЬМ</Button>
             </Link>
             <Grid className={classes.wrapper} container spacing={2}>
                 <Grid className={classes.hide} item xs={2}>
@@ -74,7 +93,6 @@ export default function MovieList() {
                                 disableSelectionOnClick
                                 columns={columns}
                                 pageSize={8}
-                                checkboxSelection
                                 getRowId={(r) => r.id}
                                 className={classes.table}
                             />

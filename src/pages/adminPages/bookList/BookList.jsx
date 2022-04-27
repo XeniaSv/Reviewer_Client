@@ -10,6 +10,7 @@ import Sidebar from "../../../components/sidebarAdmin/SidebarAdmin";
 import Grid from "@mui/material/Grid";
 import {styled} from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
+import {DeleteOutline} from "@material-ui/icons";
 
 const Item = styled(Paper)(({theme}) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -33,10 +34,10 @@ export default function BookList() {
 
 
     const columns = [
-        {field: "id", headerName: "ID", width: 90},
+        {field: "id", headerName: "ID", width: 100},
         {
             field: "title",
-            headerName: "Title",
+            headerName: "Название",
             width: 200,
             renderCell: (params) => {
                 return (
@@ -47,39 +48,40 @@ export default function BookList() {
                 );
             },
         },
-        {field: "author", headerName: "Author", width: 120},
-        {field: "year", headerName: "Year", width: 120},
-        {field: "pages", headerName: "Pages", width: 120},
-        {field: "genre", headerName: "Genre", width: 120},
-        {field: "language", headerName: "Language", width: 120},
-        {field: "desc", headerName: "Description", width: 200},
+        {field: "author", headerName: "Автор", width: 120},
+        {field: "year", headerName: "Год", width: 120},
+        {field: "pages", headerName: "Страниц", width: 140},
+        {field: "genre", headerName: "Жанр", width: 120},
+        {field: "language", headerName: "Язык", width: 120},
+        {field: "desc", headerName: "Аннотация", width: 200},
 
-        // {
-        //     field: "action",
-        //     headerName: "Action",
-        //     width: 150,
-        //     renderCell: (params) => {
-        //
-        //         return (
-        //             <>
-        //                 <Link to={{pathname: "/movie/" + params.row._id, movie:params.row}}>
-        //                     <button className={classes.productListEdit}>Edit</button>
-        //                 </Link>
-        //                 <DeleteOutline
-        //                     className={classes.productListDelete}
-        //                     onClick={() => handleDelete(params.row._id)}
-        //                 />
-        //             </>
-        //         );
-        //     },
-        // },
+        {
+            field: "action",
+            headerName: "Действия",
+            width: 150,
+            renderCell: (params) => {
+
+                return (
+                    <>
+                        {/*<Link to={{pathname: "/movie/" + params.row._id, movie:params.row}}>*/}
+                        <Link to={{pathname: '/adminUpdateItem', search: `?type=book&id=${params.id}`}}>
+                            <button className={classes.productListEdit}>Изменить</button>
+                        </Link>
+                        <DeleteOutline
+                            className={classes.productListDelete}
+                            onClick={() => handleDelete(params.row.id)}
+                        />
+                    </>
+                );
+            },
+        },
     ];
 
     return (
         <>
             <Topbar/>
             <Link to={{pathname: '/adminNewItem', search: '?type=book'}} className='link'>
-                <Button className={classes.button} variant="outlined">ADD NEW BOOK</Button>
+                <Button className={classes.button} variant="outlined">ДОБАВИТЬ НОВУЮ КНИГУ</Button>
             </Link>
             <Grid className={classes.wrapper} container spacing={2}>
                 <Grid className={classes.hide} item xs={2}>
@@ -94,7 +96,6 @@ export default function BookList() {
                                 disableSelectionOnClick
                                 columns={columns}
                                 pageSize={8}
-                                checkboxSelection
                                 getRowId={(r) => r.id}
                                 className={classes.table}
                             />
