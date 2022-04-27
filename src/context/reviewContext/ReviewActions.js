@@ -2,9 +2,9 @@
 export const getReviewsStart = () => ({
     type: "GET_REVIEWS_START",
 });
-export const getReviewsSuccess = (movies) => ({
+export const getReviewsSuccess = (reviews) => ({
     type: "GET_REVIEWS_SUCCESS",
-    payload: movies,
+    payload: reviews,
 });
 export const getReviewsFailure = () => ({
     type: "GET_REVIEWS_FAILURE",
@@ -16,9 +16,9 @@ export const createReviewStart = () => ({
     type: "CREATE_REVIEW_START",
 });
 
-export const createReviewSuccess = (movie) => ({
+export const createReviewSuccess = (review) => ({
     type: "CREATE_REVIEW_SUCCESS",
-    payload: movie,
+    payload: review,
 });
 
 export const createReviewFailure = () => ({
@@ -31,9 +31,9 @@ export const updateReviewStart = () => ({
     type: "UPDATE_REVIEW_START",
 });
 
-export const updateReviewSuccess = (movie) => ({
+export const updateReviewSuccess = (review) => ({
     type: "UPDATE_REVIEW_SUCCESS",
-    payload: movie,
+    payload: review,
 });
 
 export const updateReviewFailure = () => ({
