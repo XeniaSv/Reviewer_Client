@@ -7,6 +7,8 @@ import {AuthContextProvider} from "./context/authContext/AuthContext";
 import {MovieContextProvider} from "./context/movieContext/MovieContext";
 import {SeriesContextProvider} from "./context/seriesContext/SeriesContext";
 import {BookContextProvider} from "./context/bookContext/BookContext";
+import {ReviewContextProvider} from "./context/reviewContext/ReviewContext";
+import {UserContextProvider} from "./context/userContext/UserContext";
 
 ReactDOM.render(
     <React.StrictMode>
@@ -14,7 +16,11 @@ ReactDOM.render(
             <MovieContextProvider>
                 <SeriesContextProvider>
                     <BookContextProvider>
-                        <App/>
+                        <ReviewContextProvider>
+                            <UserContextProvider>
+                                <App/>
+                            </UserContextProvider>
+                        </ReviewContextProvider>
                     </BookContextProvider>
                 </SeriesContextProvider>
             </MovieContextProvider>
