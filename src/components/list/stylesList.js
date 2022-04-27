@@ -5,8 +5,7 @@ const useStyles = makeStyles({
         color: '#7DA9BC',
         fontSize: '25px',
         fontWeight: 'bolder',
-        marginBottom:'20px'
-        //textShadow: '0px 0 4px #5E8D9F',
+        marginBottom: '20px'
     },
     listEmpty: {
         display: "flex",
@@ -22,7 +21,6 @@ const useStyles = makeStyles({
         color: 'white',
         borderRadius: '15%',
         backgroundColor: 'rgba(204, 228, 230, 0.7)',
-        // position: 'absolute',
         zIndex: '99',
         marginTop: '50px',
         margin: 'auto',
@@ -40,7 +38,7 @@ const useStyles = makeStyles({
         cursor: 'pointer'
     },
     container: {
-        position:'relative',
+        position: 'relative',
         paddingLeft: '50px',
         marginBottom: '70px',
         backgroundColor: '#C2E1F0',
@@ -48,16 +46,13 @@ const useStyles = makeStyles({
         boxShadow: '0px 0px 10px 10px #C2E1F0',
         marginTop: '5px',
         "@media (max-width: 820px)": {
-            height:'250px',
+            height: '250px',
         }
 
 
     },
-    carusel:{
-        height:'230px',
-        "@media (max-width: 820px)": {
-            height:'150px',
-        }
+    carusel: {
+        height: '230px',
     },
 
 });

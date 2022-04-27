@@ -11,8 +11,6 @@ import Grow from '@mui/material/Grow';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 
 
-
-
 export default function Topbar() {
     const classes = useStyles();
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -105,31 +103,31 @@ export default function Topbar() {
                           >
                               <MenuItem onClick={handleClose}>
                                   <Link to="/admin" className="link">
-                                      Start
+                                      Стартовая
                                   </Link>
                               </MenuItem>
                               <MenuItem onClick={handleClose}>
                                   <Link to="/adminUsers" className="link">
-                                      Users List
+                                      Список пользователей
                                   </Link></MenuItem>
                               <MenuItem onClick={handleClose}>
                                   <Link to="/adminMovies" className="link">
-                                      Movies List
+                                      Список фильмов
                                   </Link>
                               </MenuItem>
                               <MenuItem onClick={handleClose}>
                                   <Link to="/adminSeries" className="link">
-                                      Series List
+                                      Список сериалов
                                   </Link>
                               </MenuItem>
                               <MenuItem onClick={handleClose}>
                                   <Link to="/adminBooks" className="link">
-                                      Books List
+                                      Список книг
                                   </Link>
                               </MenuItem>
                               <MenuItem onClick={handleClose}>
                                   <Link to="/" className="link">
-                                      Homepage
+                                      Главная
                                   </Link>
                               </MenuItem>
                           </MenuList>
@@ -139,8 +137,6 @@ export default function Topbar() {
           )}
         </Popper>
                     </span>
-
-
                     <span className={classes.logo}>Reviewer admin</span>
                 </div>
             </div>

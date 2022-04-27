@@ -12,8 +12,10 @@ const useStyles = makeStyles({
         fontSize: '28px',
         fontWeight: 'bolder',
         marginLeft: '50px',
-        marginTop: '20px'
-        //textShadow: '0px 0 4px #5E8D9F',
+        marginTop: '20px',
+        "@media (max-width: 545px)": {
+            marginLeft: '20px',
+        },
     },
     listEmpty: {
         display: "flex",
@@ -47,8 +49,11 @@ const useStyles = makeStyles({
         cursor: 'pointer'
     },
     container: {
-        position:'relative',
+        position: 'relative',
         paddingLeft: '50px',
+        "@media (max-width: 545px)": {
+            paddingLeft: '20px',
+        },
         // marginLeft: '50px',
 
         // height:'200px',

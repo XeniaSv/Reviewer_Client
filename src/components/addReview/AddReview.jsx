@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useRef, useState} from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
@@ -6,9 +7,9 @@ import useStyles from "../addReview/stylesAddReview";
 import AddIcon from "@mui/icons-material/Add";
 import {Grid, TextField} from "@mui/material";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import {tags} from "../../tags";
-import {useRef, useState} from "react";
+import {bookTags, tags} from "../../tags";
 import {publishReview} from "../../context/reviewContext/apiCalls";
+import {Rating} from "@mui/lab";
 // import Rating from "@mui/material/Rating";
 
 export default function AddReview({itemId, type, updateListReview, setUpdateListReview}) {
@@ -57,7 +58,7 @@ export default function AddReview({itemId, type, updateListReview, setUpdateList
         <div>
             <Box sx={{transform: 'translateZ(0px)', flexGrow: 1}}>
                 <Button className={classes.buttonOpen} variant="outlined" onClick={handleOpen} startIcon={<AddIcon/>}>
-                    Add review
+                    ДОБАВИТЬ РЕЦЕНЗИЮ
                 </Button>
             </Box>
             <Modal
@@ -68,13 +69,12 @@ export default function AddReview({itemId, type, updateListReview, setUpdateList
 
                 <Box className={classes.modal}>
                     <Grid container
-
                           className={classes.container}>
 
                         <Grid>
                             <TextField
                                 id="outlined-multiline-static"
-                                label="Review title"
+                                label="Заголовок рецензии"
                                 multiline
                                 rows={1}
                                 onChange={handleChange}
@@ -87,17 +87,19 @@ export default function AddReview({itemId, type, updateListReview, setUpdateList
                                 multiple
                                 ref={ref0}
                                 id="tags-standard"
-                                options={tags}
+                                options={type == 'book' ? bookTags : tags}
                                 name="tags"
                                 onChange={handleTagsChanged}
+                                className={classes.tags}
                                 getOptionLabel={option => option.title}
                                 renderInput={params => (
                                     <TextField
                                         {...params}
                                         fullWidth={true}
                                         variant="standard"
-                                        label="Tags"
+                                        label="Тэги"
                                         placeholder="horror, comedy..."
+
                                     />
                                 )}
                             />
@@ -109,20 +111,20 @@ export default function AddReview({itemId, type, updateListReview, setUpdateList
                                 rows={10}
                                 variant="outlined"
                                 onChange={handleChange}
-                                placeholder="Review text...."
+                                placeholder="Текст рецензии...."
                                 name="textReview"
                                 className={classes.text}/>
                         </Grid>
 
-                        {/*<Grid className={classes.rating}>*/}
-                        {/*    <Rating className={classes.ratingStar} name="size-large" defaultValue={0} size="large"/>*/}
-                        {/*</Grid>*/}
+                        <Grid className={classes.rating}>
+                            <Rating className={classes.ratingStar} name="size-large" defaultValue={0} size="large"/>
+                        </Grid>
 
                         <Grid>
                             <Button disabled={Object.keys(review).length !== 6} className={classes.button}
                                     variant="contained"
                                     onClick={handlePublish}>
-                                PUBLISH REVIEW
+                                ОПУБЛИКОВАТЬ
                             </Button>
                         </Grid>
                     </Grid>

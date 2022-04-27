@@ -1,11 +1,11 @@
-import useStyles from './stylesFeatured'
+import useStyles from './stylesFeaturedSearch'
 import * as React from "react";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import {Box} from "@mui/material";
 import {TabContext} from "@mui/lab";
 
-function Featured({tabValue, setTabValue}) {
+function FeaturedSearch({tabValue, setTabValue}) {
     const classes = useStyles();
 
     const handleChange = (event, newValue) => {
@@ -16,8 +16,9 @@ function Featured({tabValue, setTabValue}) {
         <Box className={classes.nav}>
             <TabContext value={tabValue}>
                 <Tabs className={classes.tab} value={tabValue} onChange={handleChange} centered>
-                    <Tab value="1" label="Недавние"/>
-                    <Tab value="2" label="Высокий рейтинг"/>
+                    <Tab value="1" label="Фильмы"/>
+                    <Tab value="2" label="Сериалы"/>
+                    <Tab value="3" label="Книги"/>
                 </Tabs>
             </TabContext>
         </Box>
@@ -25,4 +26,4 @@ function Featured({tabValue, setTabValue}) {
     );
 }
 
-export default Featured;
+export default FeaturedSearch;

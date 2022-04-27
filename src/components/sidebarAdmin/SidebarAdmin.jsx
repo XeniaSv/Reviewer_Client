@@ -14,47 +14,53 @@ export default function SidebarAdmin() {
                         <Link to="/admin" className="link">
                             <li className={classes.sidebarListItem} active>
                                 <LineStyle className={classes.sidebarIcon}/>
-                                Start
+                                Стартовая
                             </li>
                         </Link>
                         <Link to="/adminUsers" className="link">
                             <li className={classes.sidebarListItem}>
                                 <PermIdentity className={classes.sidebarIcon}/>
-                                Users
+                                Пользователи
                             </li>
                         </Link>
                     </ul>
                 </div>
                 <div className={classes.sidebarMenu}>
-                    <h3 className={classes.sidebarTitle}>Menu</h3>
+                    <h3 className={classes.sidebarTitle}>Меню</h3>
                     <ul className={classes.sidebarList}>
                         <Link to="/adminMovies" className="link">
                             <li className={classes.sidebarListItem}>
                                 <LocalMovies className={classes.sidebarIcon}/>
-                                Movies
+                                Фильмы
                             </li>
                         </Link>
                         <Link to="/adminSeries" className="link">
                             <li className={classes.sidebarListItem}>
                                 <LiveTv className={classes.sidebarIcon}/>
-                                Series
+                                Сериалы
                             </li>
                         </Link>
                         <Link to="/adminBooks" className="link">
                             <li className={classes.sidebarListItem}>
                                 <MenuBook className={classes.sidebarIcon}/>
-                                Books
+                                Книги
                             </li>
                         </Link>
                     </ul>
                 </div>
                 <div className={classes.sidebarMenu}>
-                    <h3 className={classes.sidebarTitle}>Return</h3>
+                    <h3 className={classes.sidebarTitle}>Вернуться</h3>
                     <ul className={classes.sidebarList}>
                         <Link to="/" className="link">
                             <li className={classes.sidebarListItem}>
                                 <LineStyle className={classes.sidebarIcon}/>
-                                Homepage
+                                Главная
+                            </li>
+                        </Link>
+                        <Link to="/userPage" className="link">
+                            <li className={classes.sidebarListItem}>
+                                <LineStyle className={classes.sidebarIcon}/>
+                                Профиль
                             </li>
                         </Link>
                     </ul>

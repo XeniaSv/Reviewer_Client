@@ -1,4 +1,3 @@
-import './stylesListItem';
 import {Star, ThumbUpAltOutlined} from "@mui/icons-material";
 import * as React from "react";
 import {useEffect, useState} from "react";
@@ -66,7 +65,7 @@ function ListItem({type, reviewId}) {
              onMouseEnter={() => setIsHovered(true)}
              onMouseLeave={() => setIsHovered(false)}>
             {isHovered === false &&
-                <img className={classes.img} src={item.imgSm} alt=""/>
+            <img className={classes.img} src={item.imgSm} alt=""/>
             }
 
             {isHovered && (
@@ -90,14 +89,14 @@ function ListItem({type, reviewId}) {
                             <ReviewModal review={review} setReview={setReview} setIsHovered={setIsHovered}/>
                             <Link className="link" to={{pathname: '/itemPage', search: `?type=${type}&id=${item.id}`}}>
                                 {type === 'movie' ?
-                                    <Button size="small" className={classes.button} variant="contained">Open
-                                        movie</Button>
+                                    <Button size="small" className={classes.button} variant="contained">Перейти к
+                                        фильму</Button>
                                     : type === 'series' ?
-                                        <Button size="small" className={classes.button} variant="contained">Open
-                                            series</Button>
+                                        <Button size="small" className={classes.button} variant="contained">Перейти к
+                                            сериалу</Button>
                                         :
-                                        <Button size="small" className={classes.button} variant="contained">Open
-                                            book</Button>
+                                        <Button size="small" className={classes.button} variant="contained">Перейти к
+                                            книге</Button>
                                 }
                             </Link>
                         </div>

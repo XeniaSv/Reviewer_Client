@@ -33,7 +33,7 @@ export default function ReviewModal({review, setReview, setIsHovered}) {
                 size="small"
                 variant="contained"
                 onClick={handleOpen}>
-                Open review
+                Рецензия
             </Button>
             <Modal
                 open={open}
@@ -82,7 +82,6 @@ export default function ReviewModal({review, setReview, setIsHovered}) {
                                 </div>
                             </Grid>
                         ))}
-
                     </Grid>
                     <Typography className={classes.text} variant="body2" gutterBottom>
                         {review.textReview}

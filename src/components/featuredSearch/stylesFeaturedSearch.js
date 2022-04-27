@@ -2,13 +2,11 @@ import {makeStyles} from "@material-ui/styles";
 
 const useStyles = makeStyles({
     nav: {
-        marginTop: '80px',
-        marginBottom: '80px',
-        width: '100%',
+        paddingTop: '80px',
     },
     tab: {
         "& .MuiTab-root": {
-            fontSize: '25px',
+            fontSize: '18px',
             fontWeight: 'bold',
             color: 'lightgrey',
             "@media (max-width: 820px)": {

@@ -3,15 +3,14 @@ import {makeStyles} from "@material-ui/styles";
 const useStyles = makeStyles({
     listItem: {
         height: '200px',
-        width: '300px',
         marginRight: '10px',
         backgroundColor: 'white',
-        overflow:'hidden',
+        overflow: 'hidden',
         cursor: 'pointer',
         color: 'black',
 
         "&:hover": {
-            width: '325px',
+            width: '300px',
             height: '220px',
             position: 'absolute',
             WebkitBoxShadow: '0px 0px 15px 0px rgba(255, 255, 255, 0.07)',
@@ -21,13 +20,18 @@ const useStyles = makeStyles({
 
         "@media (max-width: 820px)": {
             height: '150px',
-            width: '200px',
+            width: '250px',
             "&:hover": {
                 height: '170px',
                 width: '200px',
             }
 
-        }
+        },
+
+        "@media (max-width: 520px)": {},
+        "@media (max-width: 300px)": {
+            width: '200px',
+        },
 
     },
     itemInfo: {
@@ -68,7 +72,7 @@ const useStyles = makeStyles({
         color: '#5a697c',
     },
     itemName: {
-        fontSize: '20px',
+        fontSize: '18px',
         margin: '0 auto',
         height: '30px',
         fontStyle: 'italic',
@@ -76,7 +80,7 @@ const useStyles = makeStyles({
         display: '-webkit-box',
         lineClamp: '2',
         boxOrient: 'vertical',
-        textAlign:'center'
+        textAlign: 'center'
     },
     itemQuote: {
         fontSize: '16px',
@@ -100,15 +104,15 @@ const useStyles = makeStyles({
     },
     img: {
         width: '100%',
-        height:'100%',
+        height: '100%',
     },
 
     buttonContainer: {
         width: '300px',
-        height:'30px',
+        height: '30px',
         display: 'flex',
         flexDirection: 'row',
-        alignItems:'flex-end',
+        alignItems: 'flex-end',
         justifyContent: 'space-around'
     },
     button: {

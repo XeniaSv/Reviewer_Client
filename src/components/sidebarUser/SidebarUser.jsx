@@ -1,47 +1,42 @@
-import "./sidebar.css";
-import {List, LiveTv, LocalMovies, MenuBook, PermIdentity} from "@mui/icons-material";
+import {LiveTv, LocalMovies, MenuBook, PermIdentity} from "@mui/icons-material";
 import {Link} from "react-router-dom";
+import useStyles from './stylesSidebarUser'
 
 
 export default function SidebarUser() {
+    const classes = useStyles();
     return (
-        <div className="sidebar">
-            <div className="sidebarWrapper">
-                <div className="sidebarMenu">
-                    <ul className="sidebarList">
+        <div className={classes.sidebar}>
+            <div className={classes.sidebarWrapper}>
+                <div className={classes.sidebarMenu}>
+                    <ul className={classes.sidebarList}>
                         <Link to="/userPage" className="link">
-                            <li className="sidebarListItem">
-                                <PermIdentity className="sidebarIcon"/>
-                                Profile
+                            <li className={classes.sidebarListItem} active>
+                                <PermIdentity className={classes.sidebarIcon}/>
+                                Профиль
                             </li>
                         </Link>
                     </ul>
                 </div>
-                <div className="sidebarMenu">
-                    <h3 className="sidebarTitle">Reviews</h3>
-                    <ul className="sidebarList">
+                <div className={classes.sidebarMenu}>
+                    <h3 className={classes.sidebarTitle}>Обзоры</h3>
+                    <ul className={classes.sidebarList}>
                         <Link to="/movieReviews" className="link">
-                            <li className="sidebarListItem">
-                                <LocalMovies className="sidebarIcon"/>
-                                Movies
+                            <li className={classes.sidebarListItem}>
+                                <LocalMovies className={classes.sidebarIcon}/>
+                                Фильмы
                             </li>
                         </Link>
                         <Link to="/seriesReviews" className="link">
-                            <li className="sidebarListItem">
-                                <LiveTv className="sidebarIcon"/>
-                                Series
+                            <li className={classes.sidebarListItem}>
+                                <LiveTv className={classes.sidebarIcon}/>
+                                Сериалы
                             </li>
                         </Link>
                         <Link to="/bookReviews" className="link">
-                            <li className="sidebarListItem">
-                                <MenuBook className="sidebarIcon"/>
-                                Books
-                            </li>
-                        </Link>
-                        <Link to="/lists" className="link">
-                            <li className="sidebarListItem">
-                                <List className="sidebarIcon"/>
-                                Lists
+                            <li className={classes.sidebarListItem}>
+                                <MenuBook className={classes.sidebarIcon}/>
+                                Книги
                             </li>
                         </Link>
                     </ul>

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useEffect, useState} from 'react';
 import useStyles from "./stylesReviewItem";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -7,7 +8,6 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {ThumbUpAltOutlined} from "@mui/icons-material";
 import ReviewModal from "../reviewModal/ReviewModal";
-import {useEffect, useState} from "react";
 import {getReviewById, putLike} from "../../context/reviewContext/apiCalls";
 
 
@@ -20,7 +20,7 @@ function ReviewItem({reviewId}) {
         if (reviewData.status === 200) {
             setReview(reviewData.data);
         }
-    }, reviewId);
+    }, [reviewId]);
 
     const handleLike = async () => {
         const reviewData = await putLike(reviewId);

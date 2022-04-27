@@ -48,7 +48,6 @@ const useStyles = makeStyles({
     buttonOpen: {
         "&.MuiButton-root": {
             backgroundColor: 'rgba(144, 156, 209)',
-            marginLeft: '10px',
             "&:hover": {
                 backgroundColor: 'rgba(130, 141, 191)',
             }
@@ -79,7 +78,8 @@ const useStyles = makeStyles({
         "&.MuiTypography-root": {
             textAlign: 'center',
             color: 'white',
-            margin: '0 auto',
+            padding: '5px',
+            fontSize:'20px',
             background: 'linear-gradient(90deg, #69cfbc  0%, #9FACE6 100%)',
             //backgroundColor: 'rgba(125, 136, 186, 0.3)',
             boxShadow: '0px 4px 30px 4px rgba(125, 136, 186, 0.6)',
@@ -92,7 +92,7 @@ const useStyles = makeStyles({
             color: '#406170',
             margin: '0 auto',
             marginTop: '10px',
-            height: '300px',
+            height: '280px',
             overflow: 'scroll',
             overflowX: 'hidden',
             paddingRight: '15px',

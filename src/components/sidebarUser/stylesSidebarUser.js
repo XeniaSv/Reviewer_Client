@@ -6,7 +6,8 @@ const useStyles = makeStyles({
         height: 'calc(100vh - 50px)',
         backgroundColor: 'rgba(235, 242, 245, 0.3)',
         position: 'sticky',
-        top: '50px',
+
+        padding: 0,
         "@media (max-width: 820px)": {
             display: 'none',
         }
@@ -15,13 +16,14 @@ const useStyles = makeStyles({
 
     sidebarWrapper: {
         padding: '20px',
+        //padding: 0 20px;
         "@media (max-width: 1100px)": {
             padding: "5px",
         }
     },
 
     sidebarMenu: {
-        marginBottom: ' 10px',
+        marginBottom: '10px',
         color: '#555',
     },
 
@@ -35,7 +37,7 @@ const useStyles = makeStyles({
         padding: '5px',
     },
     sidebarListItem: {
-        color: 'rgba(0, 0, 0, 0.7)!important',
+        color: '#729db0!important',
         padding: '5px',
         cursor: 'pointer',
         display: 'flex',

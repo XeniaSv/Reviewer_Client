@@ -11,13 +11,16 @@ const useStyles = makeStyles({
         backgroundColor: 'white',
         boxShadow: 24,
         "@media (max-width: 754px)": {
-            width:500
+            width: 600
+        },
+        "@media (max-width: 630px)": {
+            width: 500
         },
         "@media (max-width: 534px)": {
-            width:400
+            width: 400
         },
-        "@media (max-width: 400px)": {
-            width:350
+        "@media (max-width: 448px)": {
+            width: 330
         },
 
     },
@@ -37,38 +40,44 @@ const useStyles = makeStyles({
         maxWidth: 700,
         height: 600,
         padding: '10px',
-        direction:"column",
-        justifyContent:"space-around",
-        alignItems:"center",
+        direction: "column",
+        justifyContent: "space-around",
+        alignItems: "center",
 
         "&.MuiGrid-root": {
             margin: '0 auto',
             "@media (max-width: 754px)": {
-                minWidth:500
+                width: 600
+            },
+            "@media (max-width: 630px)": {
+                width: 500
             },
             "@media (max-width: 534px)": {
-                minWidth:400
+                width: 400
             },
-            "@media (max-width: 400px)": {
-                minWidth:350
+            "@media (max-width: 448px)": {
+                width: 330
             },
 
         }
     },
     title: {
         caretColor: '#406170',
-        marginLeft:'-10%',
+        marginLeft: '-10%',
         "& .MuiOutlinedInput-root": {
             color: '#406170',
             width: '650px',
             "@media (max-width: 754px)": {
-                width:470
+                width: 580
+            },
+            "@media (max-width: 630px)": {
+                width: 480
             },
             "@media (max-width: 534px)": {
-                width:370
+                width: 380
             },
-            "@media (max-width: 400px)": {
-                width:300
+            "@media (max-width: 448px)": {
+                width: 310
             },
             '& fieldset': {
                 borderColor: '#406170',
@@ -91,42 +100,45 @@ const useStyles = makeStyles({
     },
     tags: {
         caretColor: '#406170',
-        "& .MuiOutlinedInput-root": {
-            color: '#406170',
-            width: '650px',
-            '& fieldset': {
-                borderColor: '#406170',
-            },
-            '&:hover fieldset': {
-                borderColor: '#406170',
-            },
-            '&.Mui-focused fieldset': {
-                borderColor: '#406170',
-            }
+        color: '#406170',
+        width: '400px',
+
+        "@media (max-width: 534px)": {
+            width: 380
+        },
+        "@media (max-width: 448px)": {
+            width: 310
         },
         '& label': {
             color: '#406170',
         },
-        '& label.Mui-focused': {
+        '& label:focused': {
             color: '#406170',
-        }, '& .MuiInput-underline:after': {
-            borderBottomColor: '#406170',
+        },
+
+        '& .MuiInput-root:after': {
+            borderBottom: '2px solid #406170!important',
         },
 
     },
+
+
     text: {
         caretColor: '#406170',
         "& .MuiOutlinedInput-root": {
             color: '#406170',
             width: '650px',
             "@media (max-width: 754px)": {
-                width:470
+                width: 580
+            },
+            "@media (max-width: 630px)": {
+                width: 480
             },
             "@media (max-width: 534px)": {
-                width:370
+                width: 380
             },
-            "@media (max-width: 400px)": {
-                width:300
+            "@media (max-width: 448px)": {
+                width: 310
             },
 
             '& fieldset': {
@@ -153,13 +165,37 @@ const useStyles = makeStyles({
             color: 'white',
             fontSize: '40px',
             margin: '0 225px',
-        }
+            "@media (max-width: 754px)": {
+                margin: '0 200px',
+            },
+            "@media (max-width: 630px)": {
+                margin: '0 150px',
+            },
+            "@media (max-width: 534px)": {
+                margin: '0 100px',
+            },
+            "@media (max-width: 448px)": {
+                margin: '0 50px',
+            },
+        },
     },
     rating: {
 
         "&.MuiGrid-root": {
             background: 'linear-gradient(90deg, #69cfbc  0%, #9FACE6 100%)',
             width: 650,
+            "@media (max-width: 754px)": {
+                width: 600
+            },
+            "@media (max-width: 630px)": {
+                width: 500
+            },
+            "@media (max-width: 534px)": {
+                width: 400
+            },
+            "@media (max-width: 448px)": {
+                width: 370
+            },
         }
     },
     button: {
