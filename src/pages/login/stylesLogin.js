@@ -40,6 +40,19 @@ const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-around',
+        "@media (max-width: 1500px)": {
+            marginTop: '10px',
+            marginBottom: '20px',
+            width: '300px',
+            height: '300px',
+        },
+        "@media (max-width: 520px)": {
+            padding: '50px 20px',
+        },
+        "@media (max-width: 300px)": {
+            padding: '50px 10px',
+            width: '200px',
+        },
     },
     input: {
         caretColor: 'white',

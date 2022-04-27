@@ -195,35 +195,35 @@ function ItemPage() {
                             <>
                                 <Grid xs={6} className={classes.infoItem}>
                                     <div>
-                                        <h3 className={classes.infoTitle} style={{marginTop: '0'}}>TITLE</h3>
+                                        <h3 className={classes.infoTitle} style={{marginTop: '0'}}>НАЗВАНИЕ</h3>
                                         <span>{item.title}</span>
                                     </div>
                                     <div>
-                                        <h3 className={classes.infoTitle}>AUTHOR</h3>
+                                        <h3 className={classes.infoTitle}>АВТОР</h3>
                                         <span>{item.author}</span>
                                     </div>
                                     <div>
-                                        <h3 className={classes.infoTitle}>THE YEAR OF PUBLISHING</h3>
+                                        <h3 className={classes.infoTitle}>ГОД ПУБЛИКАЦИИ</h3>
                                         <span>{item.year}</span>
                                     </div>
                                     <div>
-                                        <h3 className={classes.infoTitle}>NUMBER OF PAGES</h3>
+                                        <h3 className={classes.infoTitle}>КОЛ-ВО СТРАНИЦ</h3>
                                         <span>{item.pages}</span>
                                     </div>
                                 </Grid>
 
                                 <Grid xs={6}>
                                     <div>
-                                        <h3 className={classes.infoTitle} style={{marginTop: '0'}}>LANGUAGE</h3>
+                                        <h3 className={classes.infoTitle} style={{marginTop: '0'}}>ЯЗЫК</h3>
                                         <span>{item.language}</span>
                                     </div>
 
                                     <div>
-                                        <h3 className={classes.infoTitle}>GENRE</h3>
+                                        <h3 className={classes.infoTitle}>ЖАНР</h3>
                                         <span>{item.genre !== undefined ? item.genre.join(", ") : ""}</span>
                                     </div>
                                     <div>
-                                        <h3 className={classes.infoTitle}>DESCRIPTION</h3>
+                                        <h3 className={classes.infoTitle}>АННОТАЦИЯ</h3>
                                         <span>{item.desc}</span>
                                     </div>
                                 </Grid>
@@ -232,38 +232,38 @@ function ItemPage() {
                             <>
                                 <Grid className={classes.infoItem}>
                                     <div>
-                                        <h3 className={classes.infoTitle} style={{marginTop: '0'}}>TITLE</h3>
+                                        <h3 className={classes.infoTitle} style={{marginTop: '0'}}>НАЗВАНИЕ</h3>
                                         <span>{item.title}</span>
                                     </div>
                                     <div>
-                                        <h3 className={classes.infoTitle}>DIRECTOR</h3>
+                                        <h3 className={classes.infoTitle}>РЕЖИССЕР</h3>
                                         <span>{item.director}</span>
                                     </div>
                                     <div>
-                                        <h3 className={classes.infoTitle}>YEAR</h3>
+                                        <h3 className={classes.infoTitle}>ГОД</h3>
                                         <span>{item.year}</span>
                                     </div>
                                     <div>
-                                        <h3 className={classes.infoTitle}>DURATION</h3>
+                                        <h3 className={classes.infoTitle}>ДЛИТЕЛЬНОСТЬ</h3>
                                         <span>{item.duration}</span>
                                     </div>
                                 </Grid>
 
                                 <Grid className={classes.infoItem}>
                                     <div>
-                                        <h3 className={classes.infoTitle} style={{marginTop: '0'}}>LIMIT</h3>
+                                        <h3 className={classes.infoTitle} style={{marginTop: '0'}}>ЛИМИТ</h3>
                                         <span>{item.limit}</span>
                                     </div>
                                     <div>
-                                        <h3 className={classes.infoTitle}>MAIN ACTORS</h3>
+                                        <h3 className={classes.infoTitle}>ГЛАВНЫЕ АКТЕРЫ</h3>
                                         <span>{item.cast !== undefined ? item.cast.join(", ") : ""}</span>
                                     </div>
                                     <div>
-                                        <h3 className={classes.infoTitle}>GENRE</h3>
+                                        <h3 className={classes.infoTitle}>ЖАНР</h3>
                                         <span>{item.genre !== undefined ? item.genre.join(", ") : ""}</span>
                                     </div>
                                     <div>
-                                        <h3 className={classes.infoTitle}>DESCRIPTION</h3>
+                                        <h3 className={classes.infoTitle}>АННОТАЦИЯ</h3>
                                         <span>{item.desc}</span>
                                     </div>
                                 </Grid>

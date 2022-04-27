@@ -6,6 +6,10 @@ const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
+        "@media (max-width: 300px)": {
+            flexDirection: 'column'
+        },
+
     },
     logo: {
         color: '#869CD1',
@@ -18,9 +22,13 @@ const useStyles = makeStyles({
         alignItems: 'center',
         justifyContent: 'center',
         color: 'white',
+
     },
     header: {
-        margin: '0 auto'
+        margin: '0 auto',
+        "@media (max-width: 1500px)": {
+            marginBottom: '10px'
+        },
     },
     form: {
         marginTop: '100px',
@@ -32,6 +40,20 @@ const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-around',
+        "@media (max-width: 1500px)": {
+            marginTop: '10px',
+            marginBottom: '20px',
+            width: '300px',
+            height: '300px',
+        },
+        "@media (max-width: 520px)": {
+            padding: '50px 20px',
+        },
+        "@media (max-width: 300px)": {
+            padding: '50px 10px',
+            width: '200px',
+        },
+
     },
     input: {
         caretColor: 'white',
@@ -44,6 +66,10 @@ const useStyles = makeStyles({
             borderBottomColor: 'white',
         },
         '& .MuiOutlinedInput-root': {
+            "@media (max-width: 1500px)": {
+                height: '50px',
+                marginBottom: '10px'
+            },
             '& fieldset': {
                 borderColor: 'white',
             },
@@ -79,7 +105,13 @@ const useStyles = makeStyles({
             color: 'white',
             border: "1px white solid",
             height: '40px',
-            width: '300px'
+            width: '300px',
+            "@media (max-width: 1500px)": {
+                marginBottom: '10px'
+            },
+            "@media (max-width: 300px)": {
+                width: '200px',
+            },
         },
 
         "&.MuiButton-root:hover": {

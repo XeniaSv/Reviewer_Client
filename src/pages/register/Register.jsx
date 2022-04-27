@@ -13,6 +13,12 @@ function Register(props) {
     const [username, setUsername] = useState("");
     const history = useHistory();
 
+    const [loginData, setLoginData] = useState(
+        localStorage.getItem('loginData')
+            ? JSON.parse(localStorage.getItem('loginData'))
+            : null
+    );
+
     const emailRef = useRef();
     const passwordRef = useRef();
     const usernameRef = useRef();
@@ -34,22 +40,28 @@ function Register(props) {
         }
     };
 
+
+    const handleFailureGoogle = (result) => {
+        alert(result);
+    };
+
+
     return (
         <div>
             <div className={classes.wrapper}>
                 <h2 className={classes.logo}>REVIEWER</h2>
                 <Button className={classes.buttonLogIn}
-                        onClick={() => history.push("/login")}>Log In</Button>
+                        onClick={() => history.push("/login")}>Войти</Button>
             </div>
             <div className={classes.container}>
                 <div className={classes.form}>
-                    <h1 className={classes.header}>Sign up</h1>
+                    <h1 className={classes.header}>Регистрация</h1>
                     <TextField
                         sx={{input: {color: 'white'}}}
                         className={classes.input}
                         type="email"
                         id="outlined-basic"
-                        label="Email address"
+                        label="Почта"
                         variant="outlined"
                         inputRef={emailRef}/>
                     <TextField
@@ -57,7 +69,7 @@ function Register(props) {
                         className={classes.input}
                         type="username"
                         id="outlined-basic"
-                        label="Username"
+                        label="Имя"
                         variant="outlined"
                         inputRef={usernameRef}/>
                     <TextField
@@ -65,12 +77,13 @@ function Register(props) {
                         className={classes.input}
                         type="password"
                         id="outlined-basic"
-                        label="Password"
+                        label="Пароль"
                         variant="outlined"
                         inputRef={passwordRef}/>
                     <Button className={classes.button} onClick={handleStart}>
-                        Start
+                        Начать
                     </Button>
+
                 </div>
             </div>
         </div>
