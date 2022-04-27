@@ -16,6 +16,9 @@ import MovieList from "./pages/adminPages/movieList/MovieList";
 import NewItem from "./pages/adminPages/newItem/NewItem";
 import BookList from "./pages/adminPages/bookList/BookList";
 import SeriesList from "./pages/adminPages/seriesList/SeriesList";
+import UpdateItem from "./pages/adminPages/updateItem/UpdateItem";
+import UpdateReview from "./pages/userPages/updateReview/UpdateReview";
+import SearchPage from "./pages/searchPage/SearchPage";
 
 
 function App() {
@@ -34,6 +37,7 @@ function App() {
                     {!user ? <Login/> : <Redirect to="/"/>}
                 </Route>
 
+
                 {!user?.user.isAdmin ?
                     <>
                         <Route path="/itemPage">
@@ -51,6 +55,13 @@ function App() {
                         <Route path="/bookReviews">
                             {user ? <BookReviews/> : <Redirect to='/register'/>}
                         </Route>
+                        <Route path='/userUpdateReview'>
+                            <UpdateReview/>
+                        </Route>
+                        <Route path='/search'>
+                            <SearchPage/>
+                        </Route>
+
                     </>
                     :
                     <>
@@ -69,6 +80,14 @@ function App() {
                         <Route path="/bookReviews">
                             {user ? <BookReviews/> : <Redirect to='/register'/>}
                         </Route>
+                        <Route path='/userUpdateReview'>
+                            <UpdateReview/>
+                        </Route>
+
+                        <Route path='/search'>
+                            <SearchPage/>
+                        </Route>
+
 
                         <Route path="/admin">
                             <AdminPage/>
@@ -88,6 +107,11 @@ function App() {
                         <Route path='/adminNewItem'>
                             <NewItem/>
                         </Route>
+                        <Route path='/adminUpdateItem'>
+                            <UpdateItem/>
+                        </Route>
+
+
                     </>
                 }
             </Switch>
