@@ -16,6 +16,14 @@ export const getIds = async (itemId) => {
     }
 };
 
+export const getIdsByTag = async (tag, type) => {
+    try {
+        return await $api.get(`/reviews/type/${type}/tag/${tag}/ids`);
+    } catch (e) {
+        return e.response;
+    }
+}
+
 export const getLatestIdsByType = async (type) => {
     try {
         return await $api.get(`/reviews/latest/${type}/ids`);
