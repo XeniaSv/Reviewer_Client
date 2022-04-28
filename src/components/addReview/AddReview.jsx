@@ -87,7 +87,7 @@ export default function AddReview({itemId, type, updateListReview, setUpdateList
                                 multiple
                                 ref={ref0}
                                 id="tags-standard"
-                                options={type == 'book' ? bookTags : tags}
+                                options={type === 'book' ? bookTags : tags}
                                 name="tags"
                                 onChange={handleTagsChanged}
                                 className={classes.tags}

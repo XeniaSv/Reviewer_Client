@@ -9,6 +9,8 @@ import {getReviewById} from "../../context/reviewContext/apiCalls";
 import {getMovie, getMovieRating} from "../../context/movieContext/apiCalls";
 import {getOneSeries, getSeriesRating} from "../../context/seriesContext/apiCalls";
 import {getBook, getBookRating} from "../../context/bookContext/apiCalls";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 
 function ListItem({type, reviewId}) {
@@ -18,10 +20,12 @@ function ListItem({type, reviewId}) {
     const [item, setItem] = useState({});
 
     const [rating, setRating] = useState(0);
+    const [loading, setLoading] = useState(true);
 
     const classes = useStyles();
 
     useEffect(async () => {
+        setLoading(true);
         const reviewData = await getReviewById(reviewId);
         if (reviewData.status === 200) {
             setReview(reviewData.data);
@@ -58,52 +62,65 @@ function ListItem({type, reviewId}) {
                 }
                 break;
         }
+        setLoading(false);
     }, [reviewId]);
 
     return (
-        <div className={classes.listItem}
-             onMouseEnter={() => setIsHovered(true)}
-             onMouseLeave={() => setIsHovered(false)}>
-            {isHovered === false &&
-            <img className={classes.img} src={item.imgSm} alt=""/>
-            }
+        <>
+            {loading ?
+                <Box sx={{display: 'flex'}}>
+                    <CircularProgress/>
+                </Box> :
 
-            {isHovered && (
-                <div className={classes.itemInfo}>
-                    <div className={classes.icons}>
-                        <div>
-                            <span className={classes.rating}>{rating}</span>
-                            <Star className={classes.icon}/>
-                        </div>
-                        <div>
-                            <span className={classes.rating}>{review.likes}</span>
-                            <ThumbUpAltOutlined className={classes.icon}/>
-                        </div>
+                <div className={classes.listItem}
+                     onMouseEnter={() => setIsHovered(true)}
+                     onMouseLeave={() => setIsHovered(false)}>
+                    {isHovered === false &&
+                    <img className={classes.img} src={item.imgSm} alt=""/>
+                    }
 
-                    </div>
-                    <div className={classes.itemInfoTop}>
-                        <div className={classes.itemName}>{item.title}</div>
-                        <div className={classes.itemQuote}><q>{review.textReview}</q></div>
-                        <span className={classes.itemAuthor}>{review.author}</span>
-                        <div className={classes.buttonContainer}>
-                            <ReviewModal review={review} setReview={setReview} setIsHovered={setIsHovered}/>
-                            <Link className="link" to={{pathname: '/itemPage', search: `?type=${type}&id=${item.id}`}}>
-                                {type === 'movie' ?
-                                    <Button size="small" className={classes.button} variant="contained">Перейти к
-                                        фильму</Button>
-                                    : type === 'series' ?
-                                        <Button size="small" className={classes.button} variant="contained">Перейти к
-                                            сериалу</Button>
-                                        :
-                                        <Button size="small" className={classes.button} variant="contained">Перейти к
-                                            книге</Button>
-                                }
-                            </Link>
+                    {isHovered && (
+                        <div className={classes.itemInfo}>
+                            <div className={classes.icons}>
+                                <div>
+                                    <span className={classes.rating}>{rating}</span>
+                                    <Star className={classes.icon}/>
+                                </div>
+                                <div>
+                                    <span className={classes.rating}>{review.likes}</span>
+                                    <ThumbUpAltOutlined className={classes.icon}/>
+                                </div>
+
+                            </div>
+                            <div className={classes.itemInfoTop}>
+                                <div className={classes.itemName}>{item.title}</div>
+                                <div className={classes.itemQuote}><q>{review.textReview}</q></div>
+                                <span className={classes.itemAuthor}>{review.author}</span>
+                                <div className={classes.buttonContainer}>
+                                    <ReviewModal review={review} setReview={setReview} setIsHovered={setIsHovered}/>
+                                    <Link className="link"
+                                          to={{pathname: '/itemPage', search: `?type=${type}&id=${item.id}`}}>
+                                        {type === 'movie' ?
+                                            <Button size="small" className={classes.button} variant="contained">Перейти
+                                                к
+                                                фильму</Button>
+                                            : type === 'series' ?
+                                                <Button size="small" className={classes.button} variant="contained">Перейти
+                                                    к
+                                                    сериалу</Button>
+                                                :
+                                                <Button size="small" className={classes.button} variant="contained">Перейти
+                                                    к
+                                                    книге</Button>
+                                        }
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </div>
-            )}
-        </div>
+            }
+        </>
     );
 }
 
