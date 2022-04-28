@@ -16,7 +16,8 @@ export default function ReviewModal({review, setReview, setIsHovered}) {
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
         setOpen(false);
-        setIsHovered(false);
+        if (setIsHovered !== undefined)
+            setIsHovered(false);
     };
 
     const handleLike = async () => {
