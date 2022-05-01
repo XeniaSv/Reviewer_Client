@@ -35,6 +35,7 @@ function UpdateReview() {
     const ref0 = useRef();
     const type = new URLSearchParams(search).get('type');
     const reviewId = new URLSearchParams(search).get('id');
+    const reviewTags = type === 'book' ? bookTags: tags;
 
     const {user} = useContext(AuthContext);
 
@@ -197,12 +198,12 @@ function UpdateReview() {
                                         multiple
                                         ref={ref0}
                                         id="tags-standard"
-                                        options={type === 'book' ? bookTags : tags}
+                                        options={reviewTags}
                                         name="tags"
                                         onChange={handleTagsChanged}
                                         className={classes.tags}
                                         getOptionLabel={option => option.title}
-                                        value={review.tags?.map(element => tags[tags.findIndex(x => x.title === element)]) || []}
+                                        value={review.tags?.map(element => reviewTags[reviewTags.findIndex(x => x.title === element)]) || []}
                                         renderInput={params => (
                                             <TextField
                                                 {...params}
