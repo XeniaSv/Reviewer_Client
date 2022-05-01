@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const API_URL = process.env.API_URL;
+export const API_URL = 'https://morning-badlands-79922.herokuapp.com/api';
 
 const $api = axios.create({
     withCredentials: true,
