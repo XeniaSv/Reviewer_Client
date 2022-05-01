@@ -8,10 +8,13 @@ import Avatar from "@mui/material/Avatar";
 import {ThumbUpAltOutlined} from "@mui/icons-material";
 import {Grid} from "@mui/material";
 import {putLike} from "../../context/reviewContext/apiCalls";
+import {useContext} from "react";
+import {AuthContext} from "../../context/authContext/AuthContext";
 
 
 export default function ReviewModal({review, setReview, setIsHovered}) {
     const classes = useStyles();
+    const {user} = useContext(AuthContext);
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
@@ -66,7 +69,7 @@ export default function ReviewModal({review, setReview, setIsHovered}) {
                     <Typography className={classes.info} id="modal-modal-description">
                         {review.createdAt}
                     </Typography>
-                    <Button className={classes.button} onClick={handleLike} variant="contained" size="small">
+                    <Button disabled={!user} className={classes.button} onClick={handleLike} variant="contained" size="small">
                         <span className={classes.reviewRating}>{review.likes}</span>
                         <ThumbUpAltOutlined className={classes.reviewIcon}/>
                     </Button>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import useStyles from "./stylesReviewSearchItem";
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -13,9 +13,11 @@ import {getBook} from "../../context/bookContext/apiCalls";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import {Link} from 'react-router-dom';
+import {AuthContext} from "../../context/authContext/AuthContext";
 
 function ReviewSearchItem({reviewId, tabValue}) {
     const classes = useStyles();
+    const {user} = useContext(AuthContext);
     const [review, setReview] = useState({});
     const [item, setItem] = useState({});
     const [loading, setLoading] = useState(true);
@@ -88,7 +90,7 @@ function ReviewSearchItem({reviewId, tabValue}) {
                             <Typography gutterBottom variant="body2" component="div" color='#5a697c'>
                                 {item.title}
                             </Typography>
-                            <Button className={classes.buttonLikes} onClick={handleLike} variant="contained"
+                            <Button disabled={!user} className={classes.buttonLikes} onClick={handleLike} variant="contained"
                                     size="small">
                                 <span className={classes.reviewRating}>{review.likes}</span>
                                 <ThumbUpAltOutlined className={classes.reviewIcon}> </ThumbUpAltOutlined>

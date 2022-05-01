@@ -6,9 +6,9 @@ import useStyles from "../listItem/stylesListItem";
 import ReviewModal from "../reviewModal/ReviewModal";
 import Button from "@mui/material/Button";
 import {getReviewById} from "../../context/reviewContext/apiCalls";
-import {getMovie, getMovieRating} from "../../context/movieContext/apiCalls";
-import {getOneSeries, getSeriesRating} from "../../context/seriesContext/apiCalls";
-import {getBook, getBookRating} from "../../context/bookContext/apiCalls";
+import {getMovie, getUserMovieRating} from "../../context/movieContext/apiCalls";
+import {getOneSeries, getUserSeriesRating} from "../../context/seriesContext/apiCalls";
+import {getBook, getUserBookRating} from "../../context/bookContext/apiCalls";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 
@@ -36,7 +36,7 @@ function ListItem({type, reviewId}) {
                 if (movieData.status === 200) {
                     setItem(movieData.data);
                 }
-                const movieRatingRes = await getMovieRating(reviewData.data.itemId);
+                const movieRatingRes = await getUserMovieRating(reviewData.data.itemId, reviewData.data.authorId);
                 if (movieRatingRes.status === 200) {
                     setRating(movieRatingRes.data.rate);
                 }
@@ -46,7 +46,7 @@ function ListItem({type, reviewId}) {
                 if (seriesData.status === 200) {
                     setItem(seriesData.data);
                 }
-                const seriesRatingRes = await getSeriesRating(reviewData.data.itemId);
+                const seriesRatingRes = await getUserSeriesRating(reviewData.data.itemId, reviewData.data.authorId);
                 if (seriesRatingRes.status === 200) {
                     setRating(seriesRatingRes.data.rate);
                 }
@@ -56,7 +56,7 @@ function ListItem({type, reviewId}) {
                 if (bookData.status === 200) {
                     setItem(bookData.data);
                 }
-                const bookRatingRes = await getBookRating(reviewData.data.itemId);
+                const bookRatingRes = await getUserBookRating(reviewData.data.itemId, reviewData.data.authorId);
                 if (bookRatingRes.status === 200) {
                     setRating(bookRatingRes.data.rate);
                 }

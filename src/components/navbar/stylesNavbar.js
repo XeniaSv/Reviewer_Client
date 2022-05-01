@@ -23,7 +23,10 @@ const useStyles = makeStyles({
 
     searchIcon: {
         margin: '10px 5px',
-        color: 'white'
+        color: 'white',
+        "@media (max-width: 300px)": {
+            marginLeft:'-6px!important'
+        },
     },
 
     search: {
@@ -33,6 +36,9 @@ const useStyles = makeStyles({
         marginTop: '10px',
         "@media (max-width: 820px)": {
             marginLeft:'12px!important'
+        },
+        "@media (max-width: 300px)": {
+            marginLeft:'0px!important'
         },
         '& label': {
             color: 'white',
@@ -90,9 +96,10 @@ const useStyles = makeStyles({
                padding:0,
                 fontSize:'12px'
             },
-            "@media (max-width: 300px)": {
+            "@media (max-width: 350px)": {
                 padding:0,
-                fontSize:'10px'
+                fontSize:'9px',
+                width:'80px'
             },
         },
 
@@ -101,6 +108,12 @@ const useStyles = makeStyles({
         "@media (max-width: 689px)": {
             "&.MuiSvgIcon-root":{
                 marginRight: "4px",
+                marginLeft: '-8px'
+            }
+        },
+        "@media (max-width: 300px)": {
+            "&.MuiSvgIcon-root":{
+                marginRight: "0px",
                 marginLeft: '-8px'
             }
         },

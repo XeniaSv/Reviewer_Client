@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useRef, useState} from 'react';
+import {useContext, useRef, useState} from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
@@ -9,14 +9,15 @@ import {Grid, TextField} from "@mui/material";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import {bookTags, tags} from "../../tags";
 import {publishReview} from "../../context/reviewContext/apiCalls";
-import {Rating} from "@mui/lab";
+import {AuthContext} from "../../context/authContext/AuthContext";
 // import Rating from "@mui/material/Rating";
 
 export default function AddReview({itemId, type, updateListReview, setUpdateListReview}) {
     const classes = useStyles();
+    const {user} = useContext(AuthContext);
 
     const [review, setReview] = useState({
-        author: JSON.parse(localStorage.getItem('user')).user.id,
+        author: user ? user.user.id : null,
         item: itemId,
         onItem: type.charAt(0).toUpperCase() + type.slice(1)
     });
@@ -57,7 +58,7 @@ export default function AddReview({itemId, type, updateListReview, setUpdateList
     return (
         <div>
             <Box sx={{transform: 'translateZ(0px)', flexGrow: 1}}>
-                <Button className={classes.buttonOpen} variant="outlined" onClick={handleOpen} startIcon={<AddIcon/>}>
+                <Button disabled={!user} className={classes.buttonOpen} variant="outlined" onClick={handleOpen} startIcon={<AddIcon/>}>
                     ДОБАВИТЬ РЕЦЕНЗИЮ
                 </Button>
             </Box>
@@ -116,9 +117,9 @@ export default function AddReview({itemId, type, updateListReview, setUpdateList
                                 className={classes.text}/>
                         </Grid>
 
-                        <Grid className={classes.rating}>
-                            <Rating className={classes.ratingStar} name="size-large" defaultValue={0} size="large"/>
-                        </Grid>
+                        {/*<Grid className={classes.rating}>*/}
+                        {/*    <Rating className={classes.ratingStar} name="size-large" defaultValue={0} size="large"/>*/}
+                        {/*</Grid>*/}
 
                         <Grid>
                             <Button disabled={Object.keys(review).length !== 6} className={classes.button}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import useStyles from "./stylesReviewItem";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -11,12 +11,14 @@ import ReviewModal from "../reviewModal/ReviewModal";
 import {getReviewById, putLike} from "../../context/reviewContext/apiCalls";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
+import {AuthContext} from "../../context/authContext/AuthContext";
 
 
 function ReviewItem({reviewId}) {
     const classes = useStyles();
     const [review, setReview] = useState({});
     const [loading, setLoading] = useState(true);
+    const {user} = useContext(AuthContext);
 
     useEffect(async () => {
         setLoading(true);
@@ -51,7 +53,7 @@ function ReviewItem({reviewId}) {
                         </Typography>
                     </CardContent>
                     <CardActions className={classes.buttonWrapper}>
-                        <Button className={classes.button} onClick={handleLike} variant="contained" size="small">
+                        <Button disabled={!user} className={classes.button} onClick={handleLike} variant="contained" size="small">
                             <span className={classes.reviewRating}>{review.likes}</span>
                             <ThumbUpAltOutlined className={classes.reviewIcon}> </ThumbUpAltOutlined>
                         </Button>

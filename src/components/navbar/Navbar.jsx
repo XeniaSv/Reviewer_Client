@@ -238,56 +238,64 @@ const Navbar = () => {
                         </Grid>
                     </Grid>
 
-                    <Grid>
-                        <Tooltip title="Open settings">
-                            <IconButton className={classes.avatar} onClick={handleOpenUserMenu}>
-                                <Avatar className={classes.avatarIcon} alt="Remy Sharp"
-                                        src="https://avatars.mds.yandex.net/get-pdb/1996600/d1725ec1-41d3-4b2c-ab24-91ec603557bf/s375"/>
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{mt: '45px'}}
+                    {user ?
+                        <Grid>
+                            <Tooltip title="Open settings">
+                                <IconButton className={classes.avatar} onClick={handleOpenUserMenu}>
+                                    <Avatar className={classes.avatarIcon} alt="Remy Sharp"
+                                            src="https://avatars.mds.yandex.net/get-pdb/1996600/d1725ec1-41d3-4b2c-ab24-91ec603557bf/s375"/>
+                                </IconButton>
+                            </Tooltip>
+                            <Menu
+                                sx={{mt: '45px'}}
 
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            <Link to="/userPage" className="link">
-                                <MenuItem className={classes.menuItem} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">Профиль</Typography>
-                                </MenuItem>
-                            </Link>
-                            {user?.user.isAdmin ?
-                                <Link to="/admin" className="link">
+                                id="menu-appbar"
+                                anchorEl={anchorElUser}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={Boolean(anchorElUser)}
+                                onClose={handleCloseUserMenu}
+                            >
+                                <Link to="/userPage" className="link">
                                     <MenuItem className={classes.menuItem} onClick={handleCloseUserMenu}>
-                                        <Typography textAlign="center">Администратор</Typography>
+                                        <Typography textAlign="center">Профиль</Typography>
                                     </MenuItem>
-                                </Link> :
-                                <></>
-                            }
+                                </Link>
+                                {user?.user.isAdmin ?
+                                    <Link to="/admin" className="link">
+                                        <MenuItem className={classes.menuItem} onClick={handleCloseUserMenu}>
+                                            <Typography textAlign="center">Администратор</Typography>
+                                        </MenuItem>
+                                    </Link> :
+                                    <></>
+                                }
 
-                            {(innerWidth <= 689) &&
-                            <Link to="/" className="link">
-                                <MenuItem className={classes.menuItem} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">Главная</Typography>
+                                {(innerWidth <= 689) &&
+                                <Link to="/" className="link">
+                                    <MenuItem className={classes.menuItem} onClick={handleCloseUserMenu}>
+                                        <Typography textAlign="center">Главная</Typography>
+                                    </MenuItem>
+                                </Link>
+                                }
+                                <MenuItem className={classes.menuItem} onClick={handleLogout}>
+                                    <Typography textAlign="center">Выйти</Typography>
                                 </MenuItem>
-                            </Link>
-                            }
-                            <MenuItem className={classes.menuItem} onClick={handleLogout}>
-                                <Typography textAlign="center">Выйти</Typography>
-                            </MenuItem>
-                        </Menu>
-                    </Grid>
+                            </Menu>
+                        </Grid>
+                        :
+                        <>
+                            <Button className={classes.buttonLogIn}
+                                    onClick={() => history.push("/login")}>Войти</Button>
+                        </>
+                    }
+
                 </Grid>
             </Toolbar>
         </AppBar>

@@ -37,7 +37,6 @@ const useStyles = makeStyles({
     },
     menuList: {
         ".MuiList-root": {
-            margin: '10px'
         }
     }
 
