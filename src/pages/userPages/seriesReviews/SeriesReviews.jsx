@@ -21,7 +21,7 @@ const Item = styled(Paper)(({theme}) => ({
     color: theme.palette.text.secondary,
 }));
 
-function SeriesReviews(props) {
+function SeriesReviews() {
     const classes = useStyles();
     const {user} = useContext(AuthContext);
     const {reviews, dispatch} = useContext(ReviewContext);
@@ -67,13 +67,13 @@ function SeriesReviews(props) {
     return (
         <>
             <Navbar/>
-            <Grid style={{marginTop: '70px'}} container spacing={2}>
-                <Grid item xs={2}>
+            <Grid className={classes.wrapper} style={{marginTop: '70px'}} container spacing={2}>
+                <Grid className={classes.hide} item xs={2}>
                     <Item><SidebarUser/></Item>
                 </Grid>
                 <Grid item xs={10}>
                     <Item>
-                        <div style={{height: 400, width: '100%'}}>
+                        <div className={classes.productList} style={{height: 400, width: '100%'}}>
                             <DataGrid
                                 rows={reviews}
                                 columns={columns}

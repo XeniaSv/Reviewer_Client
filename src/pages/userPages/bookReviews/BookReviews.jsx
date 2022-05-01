@@ -21,13 +21,12 @@ const Item = styled(Paper)(({theme}) => ({
     color: theme.palette.text.secondary,
 }));
 
-function BookReviews(props) {
+function BookReviews() {
     const classes = useStyles();
     const {user} = useContext(AuthContext);
     const {reviews, dispatch} = useContext(ReviewContext);
 
     useEffect(() => {
-        console.log(reviews)
         getReviewByAuthorAndType(user.user.id, 'Book', dispatch);
     }, [dispatch, user.user.id]);
 
@@ -67,13 +66,13 @@ function BookReviews(props) {
     return (
         <>
             <Navbar/>
-            <Grid style={{marginTop: '70px'}} container spacing={2}>
-                <Grid item xs={2}>
+            <Grid className={classes.wrapper} style={{marginTop: '70px'}} container spacing={2}>
+                <Grid className={classes.hide} item xs={2}>
                     <Item><SidebarUser/></Item>
                 </Grid>
                 <Grid item xs={10}>
                     <Item>
-                        <div style={{height: 400, width: '100%'}}>
+                        <div className={classes.productList} style={{height: 400, width: '100%'}}>
                             <DataGrid
                                 rows={reviews}
                                 columns={columns}

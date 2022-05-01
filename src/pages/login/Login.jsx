@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField';
 import Button from "@mui/material/Button";
 import {Link} from "react-router-dom";
 
-function Login(props) {
+function Login() {
     const classes = useStyles();
 
     const [email, setEmail] = useState("");
@@ -15,8 +15,10 @@ function Login(props) {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        console.log({email, password})
-        login({email, password}, dispatch)
+        const loginRes = await login({email, password}, dispatch);
+        if (loginRes.status !== 200) {
+            alert(loginRes.data.message)
+        }
     };
     return (
         <div className={classes.login}>

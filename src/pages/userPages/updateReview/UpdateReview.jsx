@@ -5,13 +5,18 @@ import Paper from "@mui/material/Paper";
 import useStyles from './stylesUpdateReview';
 import {TextField} from "@mui/material";
 import Button from "@material-ui/core/Button";
-import {useLocation} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import Navbar from "../../../components/navbar/Navbar";
 import SidebarUser from "../../../components/sidebarUser/SidebarUser";
 import {getReviewById, updateReview} from "../../../context/reviewContext/apiCalls";
 import {bookTags, tags} from "../../../tags";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import {AuthContext} from "../../../context/authContext/AuthContext";
+import Popper from "@mui/material/Popper";
+import Grow from "@mui/material/Grow";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import MenuList from "@mui/material/MenuList";
+import MenuItem from "@mui/material/MenuItem";
 
 const Item = styled(Paper)(({theme}) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff', ...theme.typography.body2,
@@ -63,17 +68,112 @@ function UpdateReview() {
         alert('Review has been updated');
     };
 
+    const [open, setOpen] = React.useState(false);
+    const anchorRef = React.useRef(null);
+
+    const handleToggle = () => {
+        setOpen((prevOpen) => !prevOpen);
+    };
+
+    const handleClose = (event) => {
+        if (anchorRef.current && anchorRef.current.contains(event.target)) {
+            return;
+        }
+
+        setOpen(false);
+    };
+
+    function handleListKeyDown(event) {
+        if (event.key === 'Tab') {
+            event.preventDefault();
+            setOpen(false);
+        } else if (event.key === 'Escape') {
+            setOpen(false);
+        }
+    }
+
     return (
         <>
             <Navbar/>
-            <Grid style={{marginTop: '70px'}} container spacing={2}>
-                <Grid item xs={2}>
+            <div className={classes.menu}>
+                <Button
+                    size="small"
+                    variant="contained"
+                    edge="start"
+                    aria-label="menu"
+                    onClick={handleToggle}
+                    ref={anchorRef}
+                    aria-controls={open ? 'composition-menu' : undefined}
+                    aria-expanded={open ? 'true' : undefined}
+                    aria-haspopup="true"
+                    className={classes.menuButton}
+                >
+                    Меню
+                </Button>
+                <Popper
+                    open={open}
+                    anchorEl={anchorRef.current}
+                    role={undefined}
+                    placement="bottom-start"
+                    transition
+                    disablePortal
+                    style={{zIndex: 999}}
+                    className={classes.menuItemContainer}
+
+
+                >
+                    {({TransitionProps, placement}) => (
+                        <Grow
+                            {...TransitionProps}
+                            style={{
+                                transformOrigin:
+                                    placement === 'bottom-start' ? 'left top' : 'left bottom',
+
+                            }}
+                        >
+                            <Paper>
+                                <ClickAwayListener onClickAway={handleClose}>
+                                    <MenuList
+                                        className={classes.menuList}
+                                        autoFocusItem={open}
+                                        id="composition-menu"
+                                        aria-labelledby="composition-button"
+                                        onKeyDown={handleListKeyDown}
+                                    >
+                                        <MenuItem className={classes.menuItem} onClick={handleClose}>
+                                            <Link to="/userPage" className="link">
+                                                Профиль
+                                            </Link>
+                                        </MenuItem>
+                                        <MenuItem className={classes.menuItem} onClick={handleClose}>
+                                            <Link to="/movieReviews" className="link">
+                                                Рецензии на фильмы
+                                            </Link></MenuItem>
+                                        <MenuItem className={classes.menuItem} onClick={handleClose}>
+                                            <Link to="/seriesReviews" className="link">
+                                                Рецензии на сериалы
+                                            </Link>
+                                        </MenuItem>
+                                        <MenuItem className={classes.menuItem} onClick={handleClose}>
+                                            <Link to="/bookReviews" className="link">
+                                                Рецензии на книги
+                                            </Link>
+                                        </MenuItem>
+                                    </MenuList>
+                                </ClickAwayListener>
+                            </Paper>
+                        </Grow>
+                    )}
+                </Popper>
+            </div>
+            <Grid className={classes.wrapper}  container spacing={2}>
+                <Grid className={classes.hide} item xs={2}>
                     <Item><SidebarUser/></Item>
                 </Grid>
                 <Grid item xs={10}>
                     <Item>
                         <div className={classes.newProduct}>
-                            <h1>Изменить рецензию</h1>
+                            <h1 >Изменить рецензию</h1>
                             <Grid
                                 container
                                 direction="column"
@@ -97,7 +197,7 @@ function UpdateReview() {
                                         multiple
                                         ref={ref0}
                                         id="tags-standard"
-                                        options={type == 'book' ? bookTags : tags}
+                                        options={type === 'book' ? bookTags : tags}
                                         name="tags"
                                         onChange={handleTagsChanged}
                                         className={classes.tags}

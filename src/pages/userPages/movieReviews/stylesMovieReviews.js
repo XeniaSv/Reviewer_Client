@@ -18,7 +18,24 @@ const useStyles = makeStyles({
     delete: {
         color: 'black',
         cursor: 'pointer'
-    }
+    },
+    wrapper: {
+        "&.MuiGrid-root": {
+            justifyContent: 'space-between',
+            "@media (max-width: 820px)": {
+                justifyContent: 'center',
+            }
+        }
+    },
+    hide: {
+        "@media (max-width: 820px)": {
+            display: 'none',
+        }
+    },
+    productList: {
+        flex: 4,
+        height: 'calc(100vh - 50px)',
+    },
 
 });
 

@@ -21,7 +21,7 @@ const Item = styled(Paper)(({theme}) => ({
     color: theme.palette.text.secondary,
 }));
 
-function MovieReviews(props) {
+function MovieReviews() {
     const classes = useStyles();
     const {user} = useContext(AuthContext);
     const {reviews, dispatch} = useContext(ReviewContext);
@@ -50,9 +50,6 @@ function MovieReviews(props) {
             renderCell: (params) => {
                 return (
                     <>
-                        {/*<Link to={"/user/" + params.row.id}>*/}
-                        {/*    <button className={classes.edit}>Edit</button>*/}
-                        {/*</Link>*/}
                         <Link to={{pathname: '/userUpdateReview', search: `?type=movie&id=${params.id}`}}>
                             <button className={classes.edit}>Изменить</button>
                         </Link>
@@ -69,13 +66,13 @@ function MovieReviews(props) {
     return (
         <>
             <Navbar/>
-            <Grid style={{marginTop: '70px'}} container spacing={2}>
-                <Grid item xs={2}>
+            <Grid className={classes.wrapper} style={{marginTop: '70px'}} container spacing={2}>
+                <Grid className={classes.hide} item xs={2}>
                     <Item><SidebarUser/></Item>
                 </Grid>
                 <Grid item xs={10}>
                     <Item>
-                        <div style={{height: 400, width: '100%'}}>
+                        <div className={classes.productList} style={{height: 400, width: '100%'}}>
                             <DataGrid
                                 className={classes.table}
                                 rows={reviews}

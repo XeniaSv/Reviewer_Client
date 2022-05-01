@@ -1,12 +1,12 @@
-import axios from "axios";
 import {useRef, useState} from "react";
 import {useHistory} from "react-router-dom";
 import "./stylesRegister";
 import Button from "@mui/material/Button";
 import useStyles from "../register/stylesRegister";
 import TextField from "@mui/material/TextField";
+import {register} from "../../context/authContext/apiCalls";
 
-function Register(props) {
+function Register() {
     const classes = useStyles();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -28,16 +28,12 @@ function Register(props) {
         await setEmail(emailRef.current.value);
         await setPassword(passwordRef.current.value);
         await setUsername(usernameRef.current.value);
-        console.log(emailRef.current.value)
-        try {
-            await axios.post("/auth/register", {
-                email: emailRef.current.value,
-                username: usernameRef.current.value,
-                password: passwordRef.current.value
-            });
+        const registerRes = await register(emailRef.current.value, usernameRef.current.value, passwordRef.current.value);
+        if (registerRes.status === 201) {
             history.push("/login");
-        } catch (err) {
+            return;
         }
+        alert(registerRes.data.message)
     };
 
 

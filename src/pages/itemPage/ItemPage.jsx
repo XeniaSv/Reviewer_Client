@@ -3,7 +3,7 @@ import {Star} from "@mui/icons-material";
 import {useLocation} from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
 import {Grid} from "@mui/material";
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import useStyles from "../itemPage/stylesItemPage";
 import ReviewList from "../../components/reviewList/ReviewList";
 import Rating from '@mui/material/Rating';
@@ -17,9 +17,11 @@ import {
     getUserSeriesRating,
     putSeriesRating
 } from "../../context/seriesContext/apiCalls";
+import {AuthContext} from "../../context/authContext/AuthContext";
 
 function ItemPage() {
     const {search} = useLocation();
+    const {user} = useContext(AuthContext);
 
     const type = new URLSearchParams(search).get('type');
     const itemId = new URLSearchParams(search).get('id');
@@ -33,7 +35,8 @@ function ItemPage() {
     useEffect(async () => {
         await fillItem();
         await fillRating();
-        await fillUserRating();
+        if (user)
+            await fillUserRating();
     }, [type, itemId, userRating]);
 
     const fillItem = async () => {
@@ -103,21 +106,21 @@ function ItemPage() {
     const fillUserRating = async () => {
         switch (type) {
             case "movie":
-                const movieUserRatingRes = await getUserMovieRating(itemId);
+                const movieUserRatingRes = await getUserMovieRating(itemId, user.user.id);
                 if (movieUserRatingRes.status === 200) {
                     setUserRating(movieUserRatingRes.data.rate);
                     return
                 }
                 break;
             case "series":
-                const seriesUserRatingRes = await getUserSeriesRating(itemId);
+                const seriesUserRatingRes = await getUserSeriesRating(itemId, user.user.id);
                 if (seriesUserRatingRes.status === 200) {
                     setUserRating(seriesUserRatingRes.data.rate);
                     return
                 }
                 break;
             case "book":
-                const bookUserRatingRes = await getUserBookRating(itemId);
+                const bookUserRatingRes = await getUserBookRating(itemId, user.user.id);
                 if (bookUserRatingRes.status === 200) {
                     setUserRating(bookUserRatingRes.data.rate);
                     return
@@ -132,21 +135,21 @@ function ItemPage() {
     const handleUserRating = async (e, value) => {
         switch (type) {
             case "movie":
-                const movieUserRatingRes = await putMovieRating(itemId, value);
+                const movieUserRatingRes = await putMovieRating(itemId, value, user.user.id);
                 if (movieUserRatingRes.status === 201) {
                     setUserRating(movieUserRatingRes.data.rate);
                     return
                 }
                 break;
             case "series":
-                const seriesUserRatingRes = await putSeriesRating(itemId, value);
+                const seriesUserRatingRes = await putSeriesRating(itemId, value, user.user.id);
                 if (seriesUserRatingRes.status === 201) {
                     setUserRating(seriesUserRatingRes.data.rate);
                     return
                 }
                 break;
             case "book":
-                const bookUserRatingRes = await putBookRating(itemId, value);
+                const bookUserRatingRes = await putBookRating(itemId, value, user.user.id);
                 if (bookUserRatingRes.status === 201) {
                     setUserRating(bookUserRatingRes.data.rate);
                     return
@@ -184,7 +187,7 @@ function ItemPage() {
                             </div>
                         </Grid>
                         <Grid>
-                            <Rating className={classes.ratingStar} value={userRating}
+                            <Rating disabled={!user} className={classes.ratingStar} value={userRating}
                                     onChange={handleUserRating}
                                     name="size-large" defaultValue={0} size="large"/>
                         </Grid>
