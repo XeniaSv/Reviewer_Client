@@ -38,9 +38,9 @@ export const getMovieRating = async (id) => {
     }
 };
 
-export const getUserMovieRating = async (id) => {
+export const getUserMovieRating = async (id, userId) => {
     try {
-        return await $api.get(`/movies/rate/${JSON.parse(localStorage.getItem('user')).user.id}/${id}`)
+        return await $api.get(`/movies/rate/${userId}/${id}`)
     } catch (e) {
         return e.response;
     }
@@ -80,10 +80,10 @@ export const deleteMovie = async (id, dispatch) => {
 };
 
 //put
-export const putMovieRating = async (movieId, rate) => {
+export const putMovieRating = async (movieId, rate, userId) => {
     try {
         return await $api.put(`/movies/rate/${movieId}`, {
-            user: JSON.parse(localStorage.getItem('user')).user.id,
+            user: userId,
             item: movieId,
             onItem: 'Movie',
             rate: rate

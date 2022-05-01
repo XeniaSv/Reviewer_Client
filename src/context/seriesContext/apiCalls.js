@@ -38,9 +38,9 @@ export const getSeriesRating = async (id) => {
     }
 };
 
-export const getUserSeriesRating = async (id) => {
+export const getUserSeriesRating = async (id, userId) => {
     try {
-        return await $api.get(`/series/rate/${JSON.parse(localStorage.getItem('user')).user.id}/${id}`)
+        return await $api.get(`/series/rate/${userId}/${id}`)
     } catch (e) {
         return e.response;
     }
@@ -81,10 +81,10 @@ export const deleteSeries = async (id, dispatch) => {
 };
 
 //put
-export const putSeriesRating = async (seriesId, rate) => {
+export const putSeriesRating = async (seriesId, rate, userId) => {
     try {
         return await $api.put(`/series/rate/${seriesId}`, {
-            user: JSON.parse(localStorage.getItem('user')).user.id,
+            user: userId,
             item: seriesId,
             onItem: 'Series',
             rate: rate

@@ -38,9 +38,9 @@ export const getBookRating = async (id) => {
     }
 };
 
-export const getUserBookRating = async (id) => {
+export const getUserBookRating = async (id, userId) => {
     try {
-        return await $api.get(`/books/rate/${JSON.parse(localStorage.getItem('user')).user.id}/${id}`)
+        return await $api.get(`/books/rate/${userId}/${id}`)
     } catch (e) {
         return e.response;
     }
@@ -80,10 +80,10 @@ export const deleteBook = async (id, dispatch) => {
 };
 
 //put
-export const putBookRating = async (bookId, rate) => {
+export const putBookRating = async (bookId, rate, userId) => {
     try {
         return await $api.put(`/books/rate/${bookId}`, {
-            user: JSON.parse(localStorage.getItem('user')).user.id,
+            user: userId,
             item: bookId,
             onItem: 'Book',
             rate: rate
