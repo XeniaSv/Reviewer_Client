@@ -1,24 +1,24 @@
 import './App.scss';
-import Home from "./pages/home/Home";
-import ItemPage from "./pages/itemPage/ItemPage";
-import Register from "./pages/register/Register";
-import Login from "./pages/login/Login";
+import Home from "./pages/general-pages/home/Home";
+import ItemPage from "./pages/general-pages/itemPage/ItemPage";
+import Register from "./pages/general-pages/register/Register";
+import Login from "./pages/general-pages/login/Login";
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import {useContext} from "react";
 import {AuthContext} from "./context/authContext/AuthContext";
-import UserPage from "./pages/userPage/UserPage";
-import MovieReviews from "./pages/userPages/movieReviews/MovieReviews";
-import SeriesReviews from "./pages/userPages/seriesReviews/SeriesReviews";
-import BookReviews from "./pages/userPages/bookReviews/BookReviews";
-import AdminPage from "./pages/adminPage/AdminPage";
-import UserList from "./pages/adminPages/userList/UserList";
-import MovieList from "./pages/adminPages/movieList/MovieList";
-import NewItem from "./pages/adminPages/newItem/NewItem";
-import BookList from "./pages/adminPages/bookList/BookList";
-import SeriesList from "./pages/adminPages/seriesList/SeriesList";
-import UpdateItem from "./pages/adminPages/updateItem/UpdateItem";
-import UpdateReview from "./pages/userPages/updateReview/UpdateReview";
-import SearchPage from "./pages/searchPage/SearchPage";
+import UserPage from "./pages/user-pages/userPage/UserPage";
+import MovieReviews from "./pages/user-pages/movieReviews/MovieReviews";
+import SeriesReviews from "./pages/user-pages/seriesReviews/SeriesReviews";
+import BookReviews from "./pages/user-pages/bookReviews/BookReviews";
+import AdminPage from "./pages/admin-pages/adminPage/AdminPage";
+import UserList from "./pages/admin-pages/userList/UserList";
+import MovieList from "./pages/admin-pages/movieList/MovieList";
+import NewItem from "./pages/admin-pages/newItem/NewItem";
+import BookList from "./pages/admin-pages/bookList/BookList";
+import SeriesList from "./pages/admin-pages/seriesList/SeriesList";
+import UpdateItem from "./pages/admin-pages/updateItem/UpdateItem";
+import UpdateReview from "./pages/user-pages/updateReview/UpdateReview";
+import SearchPage from "./pages/general-pages/searchPage/SearchPage";
 
 
 function App() {
