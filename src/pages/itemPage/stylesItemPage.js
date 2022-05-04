@@ -11,7 +11,12 @@ const useStyles = makeStyles({
             marginTop: '0',
             paddingTop: '90px',
         },
+        "@media (min-width: 1480px)": {
+            minHeight:'95vh'
+        },
         background: 'linear-gradient(90deg, #69cfbc 0%, #9FACE6 100%)',
+
+
     },
     mainContainer: {
         justifyContent: 'space-around',
@@ -38,8 +43,7 @@ const useStyles = makeStyles({
     },
     image: {
         height: '100%',
-        width: '100%',
-        marginTop: '100px',
+        width: '90%',
         boxShadow: ' 0px 17px 33px -1px rgba(34, 60, 80, 0.9)',
         "@media (max-width: 1200px)": {
             marginTop: '0',

@@ -275,7 +275,7 @@ function ItemPage() {
                     </Grid>
                 </Grid>
             </Grid>
-            <ReviewList itemId={itemId} updateListReview={updateListReview} setUpdateListReview={setUpdateListReview}/>
+            <ReviewList type={type} itemId={itemId} updateListReview={updateListReview} setUpdateListReview={setUpdateListReview}/>
             <AddReview itemId={itemId} type={type} updateListReview={updateListReview}
                        setUpdateListReview={setUpdateListReview}/>
         </div>

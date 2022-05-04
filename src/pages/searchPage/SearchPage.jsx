@@ -19,8 +19,8 @@ function SearchPage() {
             <Navbar/>
             <div className={classes.searchPage}>
                 <div className={classes.container}>
-                    <FeaturedSearch tabValue={tabValue} setTabValue={setTabValue}/>
-                    <ReviewSearchList tabValue={tabValue} tag={tag}/>
+                    <FeaturedSearch  tabValue={tabValue} setTabValue={setTabValue}/>
+                    <ReviewSearchList  tabValue={tabValue} tag={tag}/>
                 </div>
             </div>
         </>
