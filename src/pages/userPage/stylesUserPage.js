@@ -6,6 +6,8 @@ const useStyles = makeStyles({
     },
     wrapper: {
         "&.MuiGrid-root": {
+            maxWidth:'3000px',
+            margin:'0 auto',
             justifyContent: 'space-between',
             "@media (max-width: 820px)": {
                 justifyContent: 'center',
