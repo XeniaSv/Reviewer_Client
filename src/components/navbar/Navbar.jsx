@@ -15,7 +15,7 @@ import {Autocomplete, Grid, TextField} from "@mui/material";
 import {AuthContext} from "../../context/authContext/AuthContext";
 import {logout} from "../../context/authContext/AuthActions";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-
+import ClearIcon from '@mui/icons-material/Clear';
 import {alpha, styled} from '@mui/material/styles';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -220,6 +220,7 @@ const Navbar = () => {
                                 className={classes.search}
                                 options={search}
                                 getOptionLabel={option => option.title}
+                                clearIcon={<ClearIcon fontSize='small' className={classes.clearSearch}/>}
                                 popupIcon={<ArrowDropDownIcon className={classes.arrowDownSearch}/>}
                                 renderInput={(params) =>
                                     <TextField {...params}

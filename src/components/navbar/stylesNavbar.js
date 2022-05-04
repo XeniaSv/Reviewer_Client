@@ -13,11 +13,15 @@ const useStyles = makeStyles({
         background: 'linear-gradient(90deg, #69cfbc  0%, #9FACE6 100%)',
         paddingRight:'0!important',
 
+
+
     },
     container: {
         direction: 'row',
         justifyContent: "space-between",
         alignItems: "center",
+        margin:'0 auto',
+        maxWidth:'3000px',
 
     },
 
@@ -59,9 +63,7 @@ const useStyles = makeStyles({
                 borderColor: 'white',
             },
         },
-        '&.MuiAutocomplete-popupIndicator':{
-            color:'white!important'
-        }
+
     },
     menuItem:{
         '&.MuiMenuItem-root':{
@@ -88,6 +90,9 @@ const useStyles = makeStyles({
 
     },
     arrowDownSearch: {
+        color: "white"
+    },
+    clearSearch:{
         color: "white"
     },
     optionSearch:{

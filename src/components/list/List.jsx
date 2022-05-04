@@ -63,42 +63,45 @@ function List({tabValue}) {
                         Нет рецензий
                     </div>
                     :
-                    // eslint-disable-next-line no-restricted-globals
-                    ((innerWidth <= 500) ?
-
-                            <Carousel
-                                className={classes.carusel}
-                                slide={1}
-                                dynamic={true}
-                                transition={0.5}
-                                infinite={false}
-                                show={1}
-                                rightArrow={<ArrowForwardIosOutlined className={classes.sliderArrowRight}/>}
-                                leftArrow={<ArrowBackIosOutlined className={classes.sliderArrowLeft}/>}
-                            >
-                                {movieReviewsIds.map((id) => {
-                                    return <ListItem style={{width: '200px'}} key={id} type='movie' reviewId={id}/>
-                                })}
-                            </Carousel>
-
-                            :
-
-                            <Carousel
-                                className={classes.carusel}
-                                slide={1}
-                                dynamic={true}
-                                transition={0.5}
-                                infinite={false}
-                                show={4}
-                                rightArrow={<ArrowForwardIosOutlined className={classes.sliderArrowRight}/>}
-                                leftArrow={<ArrowBackIosOutlined className={classes.sliderArrowLeft}/>}
-                            >
-                                {movieReviewsIds.map((id) => {
-                                    return <ListItem style={{width: '200px'}} key={id} type='movie' reviewId={id}/>
-                                })}
-                            </Carousel>
-                    )
-
+                    <Carousel
+                        className={classes.carusel}
+                        slide={1}
+                        dynamic={true}
+                        transition={0.5}
+                        infinite={false}
+                        show={
+                            (innerWidth < 440) ? 1 :
+                                ((innerWidth >= 440 && innerWidth < 500) ? 1.2 :
+                                    ((innerWidth >= 500 && innerWidth < 620) ? 1.5 :
+                                        ((innerWidth >= 620 && innerWidth < 700) ? 1.7 :
+                                            ((innerWidth >= 700 && innerWidth < 800) ? 2 :
+                                                    ((innerWidth >= 800 && innerWidth < 930) ? 2.5 :
+                                                            ((innerWidth >= 930 && innerWidth < 1000) ? 3 :
+                                                                    ((innerWidth >= 1000 && innerWidth < 1100) ? 3.5 :
+                                                                            ((innerWidth >= 1300 && innerWidth < 1600) ? 5 :
+                                                                                    ((innerWidth >= 1600 && innerWidth < 1800) ? 5.5 :
+                                                                                            ((innerWidth >= 1800 && innerWidth < 2200) ? 6 :
+                                                                                                    ((innerWidth >= 2200 && innerWidth < 2800) ? 8 :
+                                                                                                            ((innerWidth >= 2800) ? 9 : 4)
+                                                                                                    )
+                                                                                            )
+                                                                                    )
+                                                                            )
+                                                                    )
+                                                            )
+                                                    )
+                                            )
+                                        )
+                                    )
+                                )
+                        }
+                        rightArrow={<ArrowForwardIosOutlined className={classes.sliderArrowRight}/>}
+                        leftArrow={<ArrowBackIosOutlined className={classes.sliderArrowLeft}/>}
+                    >
+                        {movieReviewsIds.map((id) => {
+                            return <ListItem style={{width: '200px'}} key={id} type='movie' reviewId={id}/>
+                        })}
+                    </Carousel>
 
                 }
             </div>
@@ -109,15 +112,38 @@ function List({tabValue}) {
                         Нет рецензий
                     </div>
                     :
-                    // eslint-disable-next-line no-restricted-globals
-                    ((innerWidth <= 500) ?
                             <Carousel
                                 className={classes.carusel}
                                 slide={1}
                                 dynamic={true}
                                 transition={0.5}
                                 infinite={false}
-                                show={1}
+                                show={
+                                    (innerWidth < 440) ? 1 :
+                                        ((innerWidth >= 440 && innerWidth < 500) ? 1.2 :
+                                                ((innerWidth >= 500 && innerWidth < 620) ? 1.5 :
+                                                        ((innerWidth >= 620 && innerWidth < 700) ? 1.7 :
+                                                                ((innerWidth >= 700 && innerWidth < 800) ? 2 :
+                                                                        ((innerWidth >= 800 && innerWidth < 930) ? 2.5 :
+                                                                                ((innerWidth >= 930 && innerWidth < 1000) ? 3 :
+                                                                                        ((innerWidth >= 1000 && innerWidth < 1100) ? 3.5 :
+                                                                                                ((innerWidth >= 1300 && innerWidth < 1600) ? 5 :
+                                                                                                        ((innerWidth >= 1600 && innerWidth < 1800) ? 5.5 :
+                                                                                                                ((innerWidth >= 1800 && innerWidth < 2200) ? 6 :
+                                                                                                                        ((innerWidth >= 2200 && innerWidth < 2800) ? 8 :
+                                                                                                                                ((innerWidth >= 2800) ? 9 : 4)
+                                                                                                                        )
+                                                                                                                )
+                                                                                                        )
+                                                                                                )
+                                                                                        )
+                                                                                )
+                                                                        )
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                }
                                 rightArrow={<ArrowForwardIosOutlined className={classes.sliderArrowRight}/>}
                                 leftArrow={<ArrowBackIosOutlined className={classes.sliderArrowLeft}/>}
                             >
@@ -125,22 +151,6 @@ function List({tabValue}) {
                                     return <ListItem key={id} type='series' reviewId={id}/>
                                 })}
                             </Carousel>
-                            :
-                            <Carousel
-                                className={classes.carusel}
-                                slide={1}
-                                dynamic={true}
-                                transition={0.5}
-                                infinite={false}
-                                show={4}
-                                rightArrow={<ArrowForwardIosOutlined className={classes.sliderArrowRight}/>}
-                                leftArrow={<ArrowBackIosOutlined className={classes.sliderArrowLeft}/>}
-                            >
-                                {seriesReviewsIds.map((id) => {
-                                    return <ListItem key={id} type='series' reviewId={id}/>
-                                })}
-                            </Carousel>
-                    )
 
                 }
             </Box>
@@ -151,15 +161,38 @@ function List({tabValue}) {
                         Нет рецензий
                     </div>
                     :
-                    // eslint-disable-next-line no-restricted-globals
-                    ((innerWidth <= 500) ?
                             <Carousel
                                 className={classes.carusel}
                                 slide={1}
                                 transition={0.5}
                                 infinite={false}
                                 dynamic={true}
-                                show={1}
+                                show={
+                                    (innerWidth < 440) ? 1 :
+                                        ((innerWidth >= 440 && innerWidth < 500) ? 1.2 :
+                                                ((innerWidth >= 500 && innerWidth < 620) ? 1.5 :
+                                                        ((innerWidth >= 620 && innerWidth < 700) ? 1.7 :
+                                                                ((innerWidth >= 700 && innerWidth < 800) ? 2 :
+                                                                        ((innerWidth >= 800 && innerWidth < 930) ? 2.5 :
+                                                                                ((innerWidth >= 930 && innerWidth < 1000) ? 3 :
+                                                                                        ((innerWidth >= 1000 && innerWidth < 1100) ? 3.5 :
+                                                                                                ((innerWidth >= 1300 && innerWidth < 1600) ? 5 :
+                                                                                                        ((innerWidth >= 1600 && innerWidth < 1800) ? 5.5 :
+                                                                                                                ((innerWidth >= 1800 && innerWidth < 2200) ? 6 :
+                                                                                                                        ((innerWidth >= 2200 && innerWidth < 2800) ? 8 :
+                                                                                                                                ((innerWidth >= 2800) ? 9 : 4)
+                                                                                                                        )
+                                                                                                                )
+                                                                                                        )
+                                                                                                )
+                                                                                        )
+                                                                                )
+                                                                        )
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                }
                                 rightArrow={<ArrowForwardIosOutlined className={classes.sliderArrowRight}/>}
                                 leftArrow={<ArrowBackIosOutlined className={classes.sliderArrowLeft}/>}
                             >
@@ -167,24 +200,6 @@ function List({tabValue}) {
                                     return <ListItem key={id} type='book' reviewId={id}/>
                                 })}
                             </Carousel>
-                            :
-                            <Carousel
-                                className={classes.carusel}
-                                slide={1}
-                                transition={0.5}
-                                infinite={false}
-                                dynamic={true}
-                                show={4}
-                                rightArrow={<ArrowForwardIosOutlined className={classes.sliderArrowRight}/>}
-                                leftArrow={<ArrowBackIosOutlined className={classes.sliderArrowLeft}/>}
-                            >
-                                {bookReviewsIds.map((id) => {
-                                    return <ListItem key={id} type='book' reviewId={id}/>
-                                })}
-                            </Carousel>
-                    )
-
-
                 }
             </div>
         </>

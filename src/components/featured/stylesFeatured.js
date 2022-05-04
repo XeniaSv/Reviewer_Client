@@ -12,8 +12,9 @@ const useStyles = makeStyles({
             fontWeight: 'bold',
             color: 'lightgrey',
             "@media (max-width: 820px)": {
-                fontSize: '18px',
-            }
+                fontSize: '14px',
+            },
+
         },
         "& .MuiTabs-indicator": {
             backgroundColor: "#a9c8d6",

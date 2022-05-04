@@ -35,7 +35,7 @@ function ReviewSearchList({tabValue, tag}) {
     return (
         <div className={classes.list}>
             {reviewsIds.length === 0 ?
-                <div>
+                <div className={classes.listEmpty}>
                     Нет рецензий
                 </div>
                 :

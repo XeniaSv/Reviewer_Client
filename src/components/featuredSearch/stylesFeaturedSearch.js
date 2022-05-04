@@ -3,6 +3,7 @@ import {makeStyles} from "@material-ui/styles";
 const useStyles = makeStyles({
     nav: {
         paddingTop: '80px',
+
     },
     tab: {
         "& .MuiTab-root": {
@@ -10,7 +11,13 @@ const useStyles = makeStyles({
             fontWeight: 'bold',
             color: 'lightgrey',
             "@media (max-width: 820px)": {
-                fontSize: '18px',
+                fontSize: '14px',
+                padding: 0,
+                minWidth: '100px'
+            },
+            "@media (max-width: 350px)": {
+                fontSize: '10px',
+                minWidth: '70px'
             }
         },
         "& .MuiTabs-indicator": {

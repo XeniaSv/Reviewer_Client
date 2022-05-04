@@ -3,7 +3,6 @@ import {makeStyles} from "@material-ui/styles";
 const useStyles = makeStyles({
     list: {
         width: '100%',
-        height: '370px',
         marginTop: '50px',
     },
     listTitle: {
@@ -18,7 +17,7 @@ const useStyles = makeStyles({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        color: 'white',
+        color: '#a9c8d6',
         fontSize: '28px',
         fontWeight: "lighter",
     },

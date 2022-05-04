@@ -43,13 +43,10 @@ const useStyles = makeStyles({
         marginBottom: '70px',
         backgroundColor: '#C2E1F0',
         height: '300px',
+        maxWidth:'3000px',
         boxShadow: '0px 0px 10px 10px #C2E1F0',
+        margin: '0 auto',
         marginTop: '5px',
-        "@media (max-width: 820px)": {
-            height: '250px',
-        }
-
-
     },
     carusel: {
         height: '230px',

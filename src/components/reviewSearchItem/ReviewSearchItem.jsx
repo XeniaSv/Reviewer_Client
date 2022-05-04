@@ -7,13 +7,14 @@ import {ThumbUpAltOutlined} from "@mui/icons-material";
 import ReviewModal from "../reviewModal/ReviewModal";
 import {getReviewById, putLike} from "../../context/reviewContext/apiCalls";
 import {Grid} from '@mui/material';
-import {getMovie} from "../../context/movieContext/apiCalls";
-import {getOneSeries} from "../../context/seriesContext/apiCalls";
-import {getBook} from "../../context/bookContext/apiCalls";
+import {getMovie, getUserMovieRating} from "../../context/movieContext/apiCalls";
+import {getOneSeries, getUserSeriesRating} from "../../context/seriesContext/apiCalls";
+import {getBook, getUserBookRating} from "../../context/bookContext/apiCalls";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import {Link} from 'react-router-dom';
 import {AuthContext} from "../../context/authContext/AuthContext";
+import StarIcon from '@mui/icons-material/Star';
 
 function ReviewSearchItem({reviewId, tabValue}) {
     const classes = useStyles();
@@ -22,6 +23,7 @@ function ReviewSearchItem({reviewId, tabValue}) {
     const [item, setItem] = useState({});
     const [loading, setLoading] = useState(true);
     const [type, setType] = useState('');
+    const [rating, setRating] = useState(0);
 
     useEffect(async () => {
         setLoading(true);
@@ -36,6 +38,10 @@ function ReviewSearchItem({reviewId, tabValue}) {
                     setItem(movieData.data);
                     setType('movie');
                 }
+                const movieRatingRes = await getUserMovieRating(reviewData.data.itemId, reviewData.data.authorId);
+                if (movieRatingRes.status === 200) {
+                    setRating(movieRatingRes.data.rate);
+                }
                 break;
             case '2':
                 const seriesData = await getOneSeries(reviewData.data.itemId);
@@ -43,12 +49,20 @@ function ReviewSearchItem({reviewId, tabValue}) {
                     setItem(seriesData.data);
                     setType('series');
                 }
+                const seriesRatingRes = await getUserSeriesRating(reviewData.data.itemId, reviewData.data.authorId);
+                if (seriesRatingRes.status === 200) {
+                    setRating(seriesRatingRes.data.rate);
+                }
                 break;
             case '3':
                 const bookData = await getBook(reviewData.data.itemId);
                 if (bookData.status === 200) {
                     setItem(bookData.data);
                     setType('book');
+                }
+                const bookRatingRes = await getUserBookRating(reviewData.data.itemId, reviewData.data.authorId);
+                if (bookRatingRes.status === 200) {
+                    setRating(bookRatingRes.data.rate);
                 }
                 break;
         }
@@ -74,7 +88,7 @@ function ReviewSearchItem({reviewId, tabValue}) {
             >
                 {loading ?
                     <Box sx={{display: 'flex'}}>
-                        <CircularProgress/>
+                        <CircularProgress className={classes.load}/>
                     </Box>
                     :
                     <>
@@ -87,15 +101,20 @@ function ReviewSearchItem({reviewId, tabValue}) {
                             <Typography gutterBottom variant="h6" component="div" color='#5a697c'>
                                 {review.title}
                             </Typography>
+
                             <Typography gutterBottom variant="body2" component="div" color='#5a697c'>
                                 {item.title}
                             </Typography>
                             <Button disabled={!user} className={classes.buttonLikes} onClick={handleLike} variant="contained"
                                     size="small">
-                                <span className={classes.reviewRating}>{review.likes}</span>
+                                <span className={classes.reviewLikes}>{review.likes}</span>
                                 <ThumbUpAltOutlined className={classes.reviewIcon}> </ThumbUpAltOutlined>
                             </Button>
-                            <Typography variant="body2" color="#5a697c">
+                            <Box className={classes.buttonRating} variant="contained">
+                                <span className={classes.reviewRating}>{rating}</span>
+                                <StarIcon className={classes.reviewStar}> </StarIcon>
+                            </Box>
+                            <Typography className={classes.author} variant="body2" color="#5a697c">
                                 {review.author}
                             </Typography>
                             <Typography className={classes.textReview} variant="body2" color="#5a697c">

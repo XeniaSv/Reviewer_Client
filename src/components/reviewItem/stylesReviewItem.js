@@ -86,6 +86,11 @@ const useStyles = makeStyles({
         height: '140px',
         objectFit: 'cover',
     },
+    load:{
+        "&.MuiCircularProgress-root":{
+            color: 'rgba(144, 156, 209)'
+        }
+    },
     button: {
 
         "&.MuiButton-root": {
@@ -100,16 +105,33 @@ const useStyles = makeStyles({
             justifyContent: 'space-between'
         }
     },
+    ratingBox: {
+        marginLeft:'-30px',
+        width:'40px',
+        height:'30px',
+        padding:'2px',
+        border:'1px solid rgba(144, 156, 209)',
+        borderRadius:'3px',
+        display: 'inline',
+    },
     reviewIcon: {
         color: 'white',
     },
+    reviewStar: {
+        marginBottom:'-5px',
+        color: 'rgba(144, 156, 209)',
+    },
     reviewRating: {
+        fontSize: '14px',
+        fontWeight:'500',
+        paddingLeft:'5px',
+        color:'rgba(144, 156, 209)'
+    },
+    reviewLikes: {
         fontSize: '12px',
         marginRight: '2px',
         alignSelf: 'flex-end',
-
     },
-
     textReview:{
         fontSize: '16px',
         margin: '0 auto',

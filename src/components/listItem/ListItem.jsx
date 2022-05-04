@@ -69,12 +69,18 @@ function ListItem({type, reviewId}) {
         <>
             {loading ?
                 <Box sx={{display: 'flex'}}>
-                    <CircularProgress/>
-                </Box> :
-
+                    <CircularProgress className={classes.load}/>
+                </Box>
+                :
                 <div className={classes.listItem}
-                     onMouseEnter={() => setIsHovered(true)}
-                     onMouseLeave={() => setIsHovered(false)}>
+                     onMouseEnter={(e) => {
+                         e.preventDefault();
+                         setIsHovered(true)
+                     }}
+                     onMouseLeave={(e) => {
+                         e.preventDefault();
+                         setIsHovered(false)
+                     }}>
                     {isHovered === false &&
                     <img className={classes.img} src={item.imgSm} alt=""/>
                     }

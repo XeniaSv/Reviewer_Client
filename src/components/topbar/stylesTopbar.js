@@ -9,6 +9,7 @@ const useStyles = makeStyles({
         zIndex: '999',
         background: 'linear-gradient(90deg, #69cfbc  0%, #9FACE6 100%)',
 
+
     },
 
     topbarWrapper: {
@@ -17,6 +18,8 @@ const useStyles = makeStyles({
         display: ' flex',
         alignItems: 'center',
         justifyContent: 'space-between',
+        maxWidth:'3000px',
+        margin:'0 auto'
     },
 
     logo: {

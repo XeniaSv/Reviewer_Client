@@ -18,21 +18,11 @@ const useStyles = makeStyles({
             borderRadius: '5px',
         },
 
-        "@media (max-width: 820px)": {
-            height: '150px',
-            width: '250px',
-            "&:hover": {
-                height: '170px',
-                width: '200px',
-            }
-
-        },
-
-        "@media (max-width: 520px)": {},
-        "@media (max-width: 300px)": {
-            width: '200px',
-        },
-
+    },
+    load:{
+        "&.MuiCircularProgress-root":{
+            color: 'rgba(144, 156, 209)'
+        }
     },
     itemInfo: {
         display: 'flex',
