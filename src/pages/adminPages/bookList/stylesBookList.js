@@ -3,6 +3,8 @@ import {makeStyles} from "@material-ui/styles";
 const useStyles = makeStyles({
     wrapper: {
         "&.MuiGrid-root": {
+            maxWidth:'3000px',
+            margin:'0 auto',
             "@media (max-width: 820px)": {
                 justifyContent: 'center',
             }
@@ -29,7 +31,7 @@ const useStyles = makeStyles({
             color: 'white',
             border: '1px solid rgba(130, 141, 191)',
             backgroundColor: 'rgba(144, 156, 209)',
-            marginLeft: '10px',
+            marginLeft: '45%',
             "&:hover": {
                 backgroundColor: 'rgba(130, 141, 191)',
             }
