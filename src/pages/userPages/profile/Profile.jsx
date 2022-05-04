@@ -1,4 +1,4 @@
-import React from 'react';
+import {useContext, useState, useRef} from 'react';
 import Avatar from "@mui/material/Avatar";
 import {Box} from "@mui/material";
 import TextField from '@mui/material/TextField';
@@ -11,12 +11,14 @@ import MenuList from "@mui/material/MenuList";
 import MenuItem from "@mui/material/MenuItem";
 import {Link} from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import {AuthContext} from "../../../context/authContext/AuthContext";
 
 function Profile() {
     const classes = useStyles();
+    const {user} = useContext(AuthContext);
 
-    const [open, setOpen] = React.useState(false);
-    const anchorRef = React.useRef(null);
+    const [open, setOpen] = useState(false);
+    const anchorRef = useRef(null);
 
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
@@ -123,14 +125,14 @@ function Profile() {
                     disabled
                     id="standard-disabled"
                     label="Имя"
-                    defaultValue="Иван Иванов"
+                    value={user.user.username}
                     variant="standard"
                 />
                 <TextField
                     disabled
                     id="standard-disabled"
                     label="Почта"
-                    defaultValue="ivanov@mail.ru"
+                    value={user.user.email}
                     variant="standard"
                 />
             </Box>
