@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useContext, useRef, useState} from 'react';
+import {useContext, useEffect, useRef, useState} from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
@@ -10,39 +10,39 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import {bookTags, tags} from "../../../tags";
 import {publishReview} from "../../../context/reviewContext/apiCalls";
 import {AuthContext} from "../../../context/authContext/AuthContext";
-// import Rating from "@mui/material/Rating";
 
-export default function AddReview({itemId, type, updateListReview, setUpdateListReview}) {
-    const reviewTags = type === 'book' ? bookTags: tags;
+export default function AddReview({itemId, type, setUpdateListReview}) {
+    const reviewTags = type === 'book' ? bookTags : tags;
     const classes = useStyles();
     const {user} = useContext(AuthContext);
 
-    const [review, setReview] = useState({
-        author: user ? user.user.id : null,
-        item: itemId,
-        onItem: type.charAt(0).toUpperCase() + type.slice(1)
-    });
+    const [review, setReview] = useState({});
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const ref0 = useRef();
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
         setOpen(false);
-        setReview({
-            author: JSON.parse(localStorage.getItem('user')).user.id,
-            item: itemId,
-            onItem: type.charAt(0).toUpperCase() + type.slice(1)
-        });
     };
 
     const handleChange = (e) => {
         const value = e.target.value;
-        setReview({...review, [e.target.name]: value});
+        if (value !== "")
+            setReview({...review, [e.target.name]: value});
+        else {
+            delete review[e.target.name];
+            setReview({...review});
+        }
     };
 
     const handleTagsChanged = (e, values) => {
-        setReview({...review, [ref0.current.getAttribute('name')]: values.map((value) => value.title)});
+        if (values.length !== 0)
+            setReview({...review, [ref0.current.getAttribute('name')]: values.map((value) => value.title)});
+        else {
+            delete review[ref0.current.getAttribute('name')];
+            setReview({...review});
+        }
     };
 
     const handlePublish = async () => {
@@ -56,10 +56,19 @@ export default function AddReview({itemId, type, updateListReview, setUpdateList
         handleClose();
     };
 
+    useEffect(() => {
+        setReview({
+            author: user ? user.user.id : null,
+            item: itemId,
+            onItem: type.charAt(0).toUpperCase() + type.slice(1)
+        });
+    }, [itemId, type])
+
     return (
         <div>
             <Box sx={{transform: 'translateZ(0px)', flexGrow: 1}}>
-                <Button disabled={!user} className={classes.buttonOpen} variant="outlined" onClick={handleOpen} startIcon={<AddIcon/>}>
+                <Button disabled={!user} className={classes.buttonOpen} variant="outlined" onClick={handleOpen}
+                        startIcon={<AddIcon/>}>
                     ДОБАВИТЬ РЕЦЕНЗИЮ
                 </Button>
             </Box>
@@ -100,7 +109,7 @@ export default function AddReview({itemId, type, updateListReview, setUpdateList
                                         fullWidth={true}
                                         variant="standard"
                                         label="Тэги"
-                                        placeholder="horror, comedy..."
+                                        placeholder="ужасы, комедия..."
 
                                     />
                                 )}
@@ -117,10 +126,6 @@ export default function AddReview({itemId, type, updateListReview, setUpdateList
                                 name="textReview"
                                 className={classes.text}/>
                         </Grid>
-
-                        {/*<Grid className={classes.rating}>*/}
-                        {/*    <Rating className={classes.ratingStar} name="size-large" defaultValue={0} size="large"/>*/}
-                        {/*</Grid>*/}
 
                         <Grid>
                             <Button disabled={Object.keys(review).length !== 6} className={classes.button}

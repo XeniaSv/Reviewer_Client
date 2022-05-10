@@ -3,18 +3,17 @@ import {ArrowBackIosOutlined, ArrowForwardIosOutlined} from "@mui/icons-material
 import {useEffect, useState} from "react";
 import useStyles from "./stylesReviewList";
 import ReviewItem from "../reviewItem/ReviewItem";
-import {getIds} from "../../../context/reviewContext/apiCalls";
+import {getIdsByItemId} from "../../../context/reviewContext/apiCalls";
 import {Carousel} from '@trendyol-js/react-carousel';
 
-function ReviewList({type, itemId, updateListReview, setUpdateListReview}) {
+function ReviewList({ itemId, updateListReview, setUpdateListReview}) {
 
     const classes = useStyles();
 
     const [reviewsIds, setReviewsIds] = useState([]);
 
-
     useEffect(async () => {
-        const reviewIds = await getIds(itemId);
+        const reviewIds = await getIdsByItemId(itemId);
         setReviewsIds(reviewIds.data);
         setUpdateListReview(false);
     }, [itemId, updateListReview]);
