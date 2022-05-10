@@ -8,7 +8,7 @@ import {
     getReviewsSuccess
 } from "./ReviewActions";
 
-export const getIds = async (itemId) => {
+export const getIdsByItemId = async (itemId) => {
     try {
         return await $api.get(`/reviews/item/${itemId}/ids`);
     } catch (e) {

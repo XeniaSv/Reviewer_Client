@@ -13,13 +13,9 @@ export const login = async (user, dispatch) => {
     }
 }
 
-export const register = async (email, username, password) => {
+export const register = async (user) => {
     try {
-        return await $api.post("/auth/register", {
-            email: email,
-            username: username,
-            password: password
-        });
+        return await $api.post("/auth/register", user);
     } catch (e) {
         return e.response;
     }
