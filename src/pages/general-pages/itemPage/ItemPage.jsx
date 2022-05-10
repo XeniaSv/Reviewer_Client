@@ -1,7 +1,6 @@
 import './stylesItemPage'
 import {Star} from "@mui/icons-material";
 import {useLocation} from "react-router-dom";
-import Navbar from "../../../components/general-components/navbar/Navbar";
 import {Grid} from "@mui/material";
 import React, {useContext, useEffect, useState} from "react";
 import useStyles from "../itemPage/stylesItemPage";
@@ -37,7 +36,7 @@ function ItemPage() {
         await fillRating();
         if (user)
             await fillUserRating();
-    }, [type, itemId, userRating]);
+    }, [search, userRating]);
 
     const fillItem = async () => {
         switch (type) {
@@ -164,7 +163,6 @@ function ItemPage() {
     const classes = useStyles();
     return (
         <div className={classes.itemPage}>
-            <Navbar/>
             <Grid container direction='row' className={classes.mainContainer}>
                 <Grid className={classes.item}>
                     <img
@@ -275,9 +273,9 @@ function ItemPage() {
                     </Grid>
                 </Grid>
             </Grid>
-            <ReviewList type={type} itemId={itemId} updateListReview={updateListReview}
+            <ReviewList itemId={itemId} updateListReview={updateListReview}
                         setUpdateListReview={setUpdateListReview}/>
-            <AddReview itemId={itemId} type={type} updateListReview={updateListReview}
+            <AddReview itemId={itemId} type={type}
                        setUpdateListReview={setUpdateListReview}/>
         </div>
     )

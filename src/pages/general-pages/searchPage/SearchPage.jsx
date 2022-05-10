@@ -1,5 +1,4 @@
 import {useState} from 'react';
-import Navbar from "../../../components/general-components/navbar/Navbar";
 import useStyles from "../searchPage/stylesSearchPage";
 import FeaturedSearch from "../../../components/general-components/featuredSearch/FeaturedSearch";
 import ReviewSearchList from "../../../components/general-components/reviewSearchList/ReviewSearchList";
@@ -15,16 +14,13 @@ function SearchPage() {
     const [tabValue, setTabValue] = useState('1');
 
     return (
-        <>
-            <Navbar/>
-            <div className={classes.searchPage}>
-                <div className={classes.container}>
-                    <FeaturedSearch  tabValue={tabValue} setTabValue={setTabValue}/>
-                    <ReviewSearchList  tabValue={tabValue} tag={tag}/>
-                </div>
+        <div className={classes.searchPage}>
+            <div className={classes.container}>
+                <FeaturedSearch tabValue={tabValue} setTabValue={setTabValue}/>
+                <ReviewSearchList tabValue={tabValue} tag={tag}/>
             </div>
-        </>
-    );
+        </div>
+    )
 }
 
 export default SearchPage;

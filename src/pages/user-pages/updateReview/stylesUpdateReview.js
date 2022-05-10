@@ -126,6 +126,9 @@ const useStyles = makeStyles({
             },
             "&:hover": {
                 backgroundColor: 'rgba(130, 141, 191)',
+            },
+            "&:disabled": {
+                backgroundColor: 'rgba(130, 141, 191)'
             }
         }
     },

@@ -1,4 +1,4 @@
-import {useRef, useState} from "react";
+import {useState} from "react";
 import {useHistory} from "react-router-dom";
 import "./stylesRegister";
 import Button from "@mui/material/Button";
@@ -8,39 +8,28 @@ import {register} from "../../../context/authContext/apiCalls";
 
 function Register() {
     const classes = useStyles();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [username, setUsername] = useState("");
+    const [registerData, setRegisterData] = useState({});
     const history = useHistory();
 
-    const [loginData, setLoginData] = useState(
-        localStorage.getItem('loginData')
-            ? JSON.parse(localStorage.getItem('loginData'))
-            : null
-    );
-
-    const emailRef = useRef();
-    const passwordRef = useRef();
-    const usernameRef = useRef();
+    const handleChange = (e) => {
+        const value = e.target.value;
+        if (value !== "")
+            setRegisterData({...registerData, [e.target.name]: value});
+        else {
+            delete registerData[e.target.name];
+            setRegisterData({...registerData});
+        }
+    };
 
     const handleStart = async (e) => {
         e.preventDefault();
-        await setEmail(emailRef.current.value);
-        await setPassword(passwordRef.current.value);
-        await setUsername(usernameRef.current.value);
-        const registerRes = await register(emailRef.current.value, usernameRef.current.value, passwordRef.current.value);
+        const registerRes = await register(registerData);
         if (registerRes.status === 201) {
             history.push("/login");
             return;
         }
         alert(registerRes.data.message)
     };
-
-
-    const handleFailureGoogle = (result) => {
-        alert(result);
-    };
-
 
     return (
         <div>
@@ -53,33 +42,36 @@ function Register() {
                 <div className={classes.form}>
                     <h1 className={classes.header}>Регистрация</h1>
                     <TextField
+                        onChange={handleChange}
                         sx={{input: {color: 'white'}}}
                         className={classes.input}
-                        type="email"
+                        name="email"
                         id="outlined-basic"
                         label="Почта"
-                        variant="outlined"
-                        inputRef={emailRef}/>
+                        variant="outlined"/>
                     <TextField
+                        onChange={handleChange}
                         sx={{input: {color: 'white'}}}
                         className={classes.input}
-                        type="username"
+                        name="username"
                         id="outlined-basic"
                         label="Имя"
-                        variant="outlined"
-                        inputRef={usernameRef}/>
+                        variant="outlined"/>
                     <TextField
+                        onChange={handleChange}
                         sx={{input: {color: 'white'}}}
                         className={classes.input}
-                        type="password"
+                        name="password"
                         id="outlined-basic"
                         label="Пароль"
-                        variant="outlined"
-                        inputRef={passwordRef}/>
-                    <Button className={classes.button} onClick={handleStart}>
-                        Начать
+                        variant="outlined"/>
+                    <Button
+                        className={classes.button}
+                        onClick={handleStart}
+                        disabled={Object.keys(registerData).length !== 3}
+                    >
+                        Зарегестрироваться
                     </Button>
-
                 </div>
             </div>
         </div>

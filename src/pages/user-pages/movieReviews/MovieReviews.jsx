@@ -1,5 +1,4 @@
 import React, {useContext, useEffect} from 'react';
-import Navbar from "../../../components/general-components/navbar/Navbar";
 import SidebarUser from "../../../components/user-components/sidebarUser/SidebarUser";
 import {styled} from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
@@ -50,7 +49,7 @@ function MovieReviews() {
             renderCell: (params) => {
                 return (
                     <>
-                        <Link to={{pathname: '/userUpdateReview', search: `?type=movie&id=${params.id}`}}>
+                        <Link to={{pathname: '/updateReview', search: `?type=movie&id=${params.id}`}}>
                             <button className={classes.edit}>Изменить</button>
                         </Link>
                         <DeleteOutline
@@ -64,28 +63,24 @@ function MovieReviews() {
     ];
 
     return (
-        <>
-            <Navbar/>
-            <Grid className={classes.wrapper} style={{marginTop: '70px'}} container spacing={2}>
-                <Grid className={classes.hide} item xs={2}>
-                    <Item><SidebarUser/></Item>
-                </Grid>
-                <Grid item xs={10}>
-                    <Item>
-                        <div className={classes.productList} style={{height: 400, width: '100%'}}>
-                            <DataGrid
-                                className={classes.table}
-                                rows={reviews}
-                                columns={columns}
-                                pageSize={5}
-                                rowsPerPageOptions={[5]}
-                            />
-                        </div>
-                    </Item>
-                </Grid>
+        <Grid className={classes.wrapper} style={{marginTop: '70px'}} container spacing={2}>
+            <Grid className={classes.hide} item xs={2}>
+                <Item><SidebarUser/></Item>
             </Grid>
-
-        </>
+            <Grid item xs={10}>
+                <Item>
+                    <div className={classes.productList} style={{height: 400, width: '100%'}}>
+                        <DataGrid
+                            className={classes.table}
+                            rows={reviews}
+                            columns={columns}
+                            pageSize={5}
+                            rowsPerPageOptions={[5]}
+                        />
+                    </div>
+                </Item>
+            </Grid>
+        </Grid>
     );
 }
 

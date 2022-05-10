@@ -9,17 +9,27 @@ import {Link} from "react-router-dom";
 function Login() {
     const classes = useStyles();
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [loginData, setLoginData] = useState({});
     const {dispatch} = useContext(AuthContext);
+
+    const handleChange = (e) => {
+        const value = e.target.value;
+        if (value !== "")
+            setLoginData({...loginData, [e.target.name]: value});
+        else {
+            delete loginData[e.target.name];
+            setLoginData({...loginData});
+        }
+    };
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        const loginRes = await login({email, password}, dispatch);
+        const loginRes = await login(loginData, dispatch);
         if (loginRes.status !== 200) {
             alert(loginRes.data.message)
         }
     };
+
     return (
         <div className={classes.login}>
             <div>
@@ -31,23 +41,30 @@ function Login() {
                 <form className={classes.form}>
                     <h1 className={classes.header}>Войти</h1>
                     <TextField
+                        onChange={handleChange}
                         sx={{input: {color: 'white'}}}
                         className={classes.input}
-                        type="email"
+                        name="email"
                         id="outlined-basic"
                         label="Почта"
                         variant="outlined"
-                        onChange={(e) => setEmail(e.target.value)}/>
+                    />
                     <TextField
+                        onChange={handleChange}
                         sx={{input: {color: 'white'}}}
                         className={classes.input}
                         id="outlined-password-input"
                         label="Пароль"
-                        type="password"
+                        name="password"
                         autoComplete="current-password"
-                        onChange={(e) => setPassword(e.target.value)}
                     />
-                    <Button className={classes.button} onClick={handleLogin}>Войти</Button>
+                    <Button
+                        disabled={Object.keys(loginData).length !== 2}
+                        className={classes.button}
+                        onClick={handleLogin}
+                    >
+                        Войти
+                    </Button>
                     <span>
              Нет аккаунта в Reviewer? <Link to={'/register'}>
                         <b>Зарегистрируйся сейчас.</b>

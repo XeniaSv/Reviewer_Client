@@ -1,10 +1,9 @@
 import React from 'react';
-import Navbar from "../../../components/general-components/navbar/Navbar";
 import SidebarUser from "../../../components/user-components/sidebarUser/SidebarUser";
 import {styled} from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import Profile from "../../user-pages/profile/Profile";
+import Profile from "../../../components/user-components/profile/Profile";
 import useStyles from "../../user-pages/userPage/stylesUserPage";
 
 const Item = styled(Paper)(({theme}) => ({
@@ -15,20 +14,16 @@ const Item = styled(Paper)(({theme}) => ({
     color: theme.palette.text.secondary,
 }));
 
-export default function UserPage(props) {
+export default function UserPage() {
     const classes = useStyles();
     return (
-        <>
-            <Navbar/>
-            <Grid className={classes.wrapper} style={{marginTop: '70px'}} container spacing={2}>
-                <Grid className={classes.hide} item xs={2}>
-                    <Item><SidebarUser/></Item>
-                </Grid>
-                <Grid item xs={10}>
-                    <Item><Profile/></Item>
-                </Grid>
+        <Grid className={classes.wrapper} style={{marginTop: '70px'}} container spacing={2}>
+            <Grid className={classes.hide} item xs={2}>
+                <Item><SidebarUser/></Item>
             </Grid>
-
-        </>
+            <Grid item xs={10}>
+                <Item><Profile/></Item>
+            </Grid>
+        </Grid>
     );
 }

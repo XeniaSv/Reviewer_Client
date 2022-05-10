@@ -1,12 +1,11 @@
-import React, {useContext, useEffect, useRef, useState} from 'react';
+import {useContext, useEffect, useRef, useState} from 'react';
 import Grid from "@mui/material/Grid";
 import {styled} from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import useStyles from './stylesUpdateReview';
 import {TextField} from "@mui/material";
 import Button from "@material-ui/core/Button";
-import {Link, useLocation} from "react-router-dom";
-import Navbar from "../../../components/general-components/navbar/Navbar";
+import {Link, useHistory, useLocation} from "react-router-dom";
 import SidebarUser from "../../../components/user-components/sidebarUser/SidebarUser";
 import {getReviewById, updateReview} from "../../../context/reviewContext/apiCalls";
 import {bookTags, tags} from "../../../tags";
@@ -24,18 +23,19 @@ const Item = styled(Paper)(({theme}) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
 }));
-
-const Input = styled('input')({
+styled('input')({
     display: 'none',
 });
 
+
 function UpdateReview() {
+    const history = useHistory();
     const classes = useStyles();
     const {search} = useLocation();
     const ref0 = useRef();
     const type = new URLSearchParams(search).get('type');
     const reviewId = new URLSearchParams(search).get('id');
-    const reviewTags = type === 'book' ? bookTags: tags;
+    const reviewTags = type === 'book' ? bookTags : tags;
 
     const {user} = useContext(AuthContext);
 
@@ -50,10 +50,20 @@ function UpdateReview() {
 
     const handleChange = (e) => {
         const value = e.target.value;
-        setReview({...review, [e.target.name]: value});
+        if (value !== "")
+            setReview({...review, [e.target.name]: value});
+        else {
+            delete review[e.target.name];
+            setReview({...review});
+        }
     };
     const handleTagsChanged = (e, values) => {
-        setReview({...review, [ref0.current.getAttribute('name')]: values.map((value) => value.title)});
+        if (values.length !== 0)
+            setReview({...review, [ref0.current.getAttribute('name')]: values.map((value) => value.title)});
+        else {
+            delete review[ref0.current.getAttribute('name')];
+            setReview({...review});
+        }
     };
 
     const handleUpdate = async (e) => {
@@ -66,11 +76,11 @@ function UpdateReview() {
             alert(res.data.message);
             return;
         }
-        alert('Review has been updated');
+        history.goBack();
     };
 
-    const [open, setOpen] = React.useState(false);
-    const anchorRef = React.useRef(null);
+    const [open, setOpen] = useState(false);
+    const anchorRef = useRef(null);
 
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
@@ -95,7 +105,6 @@ function UpdateReview() {
 
     return (
         <>
-            <Navbar/>
             <div className={classes.menu}>
                 <Button
                     size="small"
@@ -120,8 +129,6 @@ function UpdateReview() {
                     disablePortal
                     style={{zIndex: 999}}
                     className={classes.menuItemContainer}
-
-
                 >
                     {({TransitionProps, placement}) => (
                         <Grow
@@ -167,14 +174,14 @@ function UpdateReview() {
                     )}
                 </Popper>
             </div>
-            <Grid className={classes.wrapper}  container spacing={2}>
+            <Grid className={classes.wrapper} container spacing={2}>
                 <Grid className={classes.hide} item xs={2}>
                     <Item><SidebarUser/></Item>
                 </Grid>
                 <Grid item xs={10}>
                     <Item>
                         <div className={classes.newProduct}>
-                            <h1 >Изменить рецензию</h1>
+                            <h1>Изменить рецензию</h1>
                             <Grid
                                 container
                                 direction="column"
@@ -233,7 +240,12 @@ function UpdateReview() {
                             </Grid>
 
                             <Grid>
-                                <Button className={classes.updateProductButton} onClick={handleUpdate}>Изменить</Button>
+                                <Button
+                                    disabled={Object.keys(review).length !== 11}
+                                    className={classes.updateProductButton}
+                                    onClick={handleUpdate}>
+                                    Изменить
+                                </Button>
                             </Grid>
 
                         </div>
