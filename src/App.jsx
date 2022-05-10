@@ -19,6 +19,8 @@ import SeriesList from "./pages/admin-pages/seriesList/SeriesList";
 import UpdateItem from "./pages/admin-pages/updateItem/UpdateItem";
 import UpdateReview from "./pages/user-pages/updateReview/UpdateReview";
 import SearchPage from "./pages/general-pages/searchPage/SearchPage";
+import Navbar from "./components/general-components/navbar/Navbar";
+import * as React from "react";
 
 
 function App() {
@@ -28,158 +30,103 @@ function App() {
         <BrowserRouter>
             <Switch>
                 <Route exact path="/">
-                    <Home/>
+                    <>
+                        <Navbar/>
+                        <Home/>
+                    </>
                 </Route>
                 <Route path="/register">
-                    {!user ? <Register/> : <Redirect to={"/userPage"}/>}
+                    {!user ? <Register/> : <Redirect to="/userPage"/>}
                 </Route>
                 <Route path="/login">
-                    {!user ? <Login/> : <Redirect to={"/userPage"}/>}
+                    {!user ? <Login/> : <Redirect to="/userPage"/>}
                 </Route>
                 <Route path='/search'>
-                    <SearchPage/>
+                    <>
+                        <Navbar/>
+                        <SearchPage/>
+                    </>
                 </Route>
                 <Route path="/itemPage">
-                    <ItemPage/>
+                    <>
+                        <Navbar/>
+                        <ItemPage/>
+                    </>
                 </Route>
 
-                {!user?.user.isAdmin ?
-                    <>
-                        <Route path="/userPage">
-                            {user ? <UserPage/> : <Redirect to='/register'/>}
-                        </Route>
-                        <Route path="/movieReviews">
-                            {user ? <MovieReviews/> : <Redirect to='/register'/>}
-                        </Route>
-                        <Route path="/seriesReviews">
-                            {user ? <SeriesReviews/> : <Redirect to='/register'/>}
-                        </Route>
-                        <Route path="/bookReviews">
-                            {user ? <BookReviews/> : <Redirect to='/register'/>}
-                        </Route>
-                        <Route path='/userUpdateReview'>
-                            {user ? <UpdateReview/> : <Redirect to={'/register'}/>}
-                        </Route>
-                    </>
-                    :
-                    <>
-                        <Route path="/userPage">
-                            {user ? <UserPage/> : <Redirect to='/register'/>}
-                        </Route>
-                        <Route path="/movieReviews">
-                            {user ? <MovieReviews/> : <Redirect to='/register'/>}
-                        </Route>
-                        <Route path="/seriesReviews">
-                            {user ? <SeriesReviews/> : <Redirect to='/register'/>}
-                        </Route>
-                        <Route path="/bookReviews">
-                            {user ? <BookReviews/> : <Redirect to='/register'/>}
-                        </Route>
-                        <Route path='/userUpdateReview'>
-                            {user ? <UpdateReview/> : <Redirect to='/register'/>}
-                        </Route>
 
-                        <Route path="/admin">
-                            <AdminPage/>
-                        </Route>
-                        <Route path="/adminUsers">
-                            <UserList/>
-                        </Route>
-                        <Route path="/adminMovies">
-                            <MovieList/>
-                        </Route>
-                        <Route path="/adminBooks">
-                            <BookList/>
-                        </Route>
-                        <Route path="/adminSeries">
-                            <SeriesList/>
-                        </Route>
-                        <Route path='/adminNewItem'>
-                            <NewItem/>
-                        </Route>
-                        <Route path='/adminUpdateItem'>
-                            <UpdateItem/>
-                        </Route>
-                    </>
-                }
+                <Route path="/userPage">
+                    {user ?
+                        <>
+                            <Navbar/>
+                            <UserPage/>
+                        </>
+                        :
+                        <Redirect to='/register'/>
+                    }
+                </Route>
+                <Route path="/movieReviews">
+                    {user ?
+                        <>
+                            <Navbar/>
+                            <MovieReviews/>
+                        </>
+                        :
+                        <Redirect to='/register'/>
+                    }
+                </Route>
+                <Route path="/seriesReviews">
+                    {user ?
+                        <>
+                            <Navbar/>
+                            <SeriesReviews/>
+                        </>
+                        :
+                        <Redirect to='/register'/>
+                    }
+                </Route>
+                <Route path="/bookReviews">
+                    {user ?
+                        <>
+                            <Navbar/>
+                            <BookReviews/>
+                        </>
+                        :
+                        <Redirect to='/register'/>
+                    }
+                </Route>
+                <Route path='/updateReview'>
+                    {user ?
+                        <>
+                            <Navbar/>
+                            <UpdateReview/>
+                        </>
+                        :
+                        <Redirect to='/register'/>
+                    }
+                </Route>
 
-
-                {/*{!user?.user.isAdmin ?*/}
-                {/*    <>*/}
-                {/*        <Route path="/itemPage">*/}
-                {/*            {user ? <ItemPage/> : <Redirect to='/register'/>}*/}
-                {/*        </Route>*/}
-                {/*        <Route path="/userPage">*/}
-                {/*            {user ? <UserPage/> : <Redirect to='/register'/>}*/}
-                {/*        </Route>*/}
-                {/*        <Route path="/movieReviews">*/}
-                {/*            {user ? <MovieReviews/> : <Redirect to='/register'/>}*/}
-                {/*        </Route>*/}
-                {/*        <Route path="/seriesReviews">*/}
-                {/*            {user ? <SeriesReviews/> : <Redirect to='/register'/>}*/}
-                {/*        </Route>*/}
-                {/*        <Route path="/bookReviews">*/}
-                {/*            {user ? <BookReviews/> : <Redirect to='/register'/>}*/}
-                {/*        </Route>*/}
-                {/*        <Route path='/userUpdateReview'>*/}
-                {/*            <UpdateReview/>*/}
-                {/*        </Route>*/}
-                {/*        <Route path='/search'>*/}
-                {/*            <SearchPage/>*/}
-                {/*        </Route>*/}
-
-                {/*    </>*/}
-                {/*    :*/}
-                {/*    <>*/}
-                {/*        <Route path="/itemPage">*/}
-                {/*            {user ? <ItemPage/> : <Redirect to='/register'/>}*/}
-                {/*        </Route>*/}
-                {/*        <Route path="/userPage">*/}
-                {/*            {user ? <UserPage/> : <Redirect to='/register'/>}*/}
-                {/*        </Route>*/}
-                {/*        <Route path="/movieReviews">*/}
-                {/*            {user ? <MovieReviews/> : <Redirect to='/register'/>}*/}
-                {/*        </Route>*/}
-                {/*        <Route path="/seriesReviews">*/}
-                {/*            {user ? <SeriesReviews/> : <Redirect to='/register'/>}*/}
-                {/*        </Route>*/}
-                {/*        <Route path="/bookReviews">*/}
-                {/*            {user ? <BookReviews/> : <Redirect to='/register'/>}*/}
-                {/*        </Route>*/}
-                {/*        <Route path='/userUpdateReview'>*/}
-                {/*            <UpdateReview/>*/}
-                {/*        </Route>*/}
-
-                {/*        <Route path='/search'>*/}
-                {/*            <SearchPage/>*/}
-                {/*        </Route>*/}
-
-
-                {/*        <Route path="/admin">*/}
-                {/*            <AdminPage/>*/}
-                {/*        </Route>*/}
-                {/*        <Route path="/adminUsers">*/}
-                {/*            <UserList/>*/}
-                {/*        </Route>*/}
-                {/*        <Route path="/adminMovies">*/}
-                {/*            <MovieList/>*/}
-                {/*        </Route>*/}
-                {/*        <Route path="/adminBooks">*/}
-                {/*            <BookList/>*/}
-                {/*        </Route>*/}
-                {/*        <Route path="/adminSeries">*/}
-                {/*            <SeriesList/>*/}
-                {/*        </Route>*/}
-                {/*        <Route path='/adminNewItem'>*/}
-                {/*            <NewItem/>*/}
-                {/*        </Route>*/}
-                {/*        <Route path='/adminUpdateItem'>*/}
-                {/*            <UpdateItem/>*/}
-                {/*        </Route>*/}
-
-
-                {/*    </>*/}
-                {/*}*/}
+                <Route path="/admin">
+                    {user?.user.isAdmin ? <AdminPage/> : <Redirect to='/register'/>}
+                </Route>
+                <Route path="/adminUsers">
+                    {user?.user.isAdmin ? <UserList/> : <Redirect to='/register'/>}
+                </Route>
+                <Route path="/adminMovies">
+                    {user?.user.isAdmin ? <MovieList/> : <Redirect to='/register'/>}
+                </Route>
+                <Route path="/adminBooks">
+                    {user?.user.isAdmin ? <BookList/> : <Redirect to='/register'/>}
+                </Route>
+                <Route path="/adminSeries">
+                    {user?.user.isAdmin ? <SeriesList/> : <Redirect to='/register'/>}
+                </Route>
+                <Route path='/adminNewItem'>
+                    {user?.user.isAdmin ? <NewItem/> : <Redirect to='/register'/>}
+                </Route>
+                <Route path='/adminUpdateItem'>
+                    {user?.user.isAdmin ? <UpdateItem/> : <Redirect to='/register'/>}
+                </Route>
             </Switch>
         </BrowserRouter>
     );
