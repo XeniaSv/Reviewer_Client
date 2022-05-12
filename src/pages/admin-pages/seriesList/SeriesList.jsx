@@ -11,6 +11,7 @@ import Grid from "@mui/material/Grid";
 import {styled} from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import {DeleteOutline} from "@material-ui/icons";
+import storage from "../adminPage/firebase";
 
 const Item = styled(Paper)(({theme}) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -28,8 +29,11 @@ export default function SeriesList() {
         getSeries(dispatch);
     }, [dispatch])
 
-    const handleDelete = (id) => {
-        deleteSeries(id, dispatch);
+    const handleDelete = (params) => {
+        storage.refFromURL(params.row.img).delete();
+        storage.refFromURL(params.row.imgSm).delete();
+
+        deleteSeries(params.row.id, dispatch);
     };
 
 
@@ -69,7 +73,7 @@ export default function SeriesList() {
                         </Link>
                         <DeleteOutline
                             className={classes.productListDelete}
-                            onClick={() => handleDelete(params.row.id)}
+                            onClick={() => handleDelete(params)}
                         />
                     </>
                 );

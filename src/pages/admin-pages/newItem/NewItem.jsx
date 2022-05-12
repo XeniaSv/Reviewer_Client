@@ -19,7 +19,7 @@ import Paper from "@mui/material/Paper";
 import {TextField} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import {PhotoCamera} from "@material-ui/icons";
-import {useLocation} from "react-router-dom";
+import {useHistory, useLocation} from "react-router-dom";
 
 const Item = styled(Paper)(({theme}) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff', ...theme.typography.body2,
@@ -33,7 +33,6 @@ const Input = styled('input')({
 });
 
 export default function NewItem() {
-
     const {search} = useLocation();
     const type = new URLSearchParams(search).get('type');
 
@@ -41,19 +40,28 @@ export default function NewItem() {
     const [item, setItem] = useState(null);
     const [img, setImg] = useState(null);
     const [imgSm, setImgSm] = useState(null);
+    const history = useHistory();
 
     const {dispatch: dispatchMovie} = useContext(MovieContext);
     const {dispatch: dispatchSeries} = useContext(SeriesContext);
     const {dispatch: dispatchBook} = useContext(BookContext);
 
     const [uploaded, setUploaded] = useState(0);
+    const [isDisableUpload, setIsDisableUpload] = useState(false);
 
     const handleChange = (e) => {
         const value = e.target.value;
-        setItem({...item, [e.target.name]: value});
+        if (value !== "")
+            setItem({...item, [e.target.name]: value});
+        else {
+            delete item[e.target.name];
+            setItem({...item});
+        }
     };
 
     const upload = (items) => {
+        setIsDisableUpload(true);
+
         items.forEach((item) => {
             const fileName = new Date().getTime() + item.label + item.file.name;
             const uploadTask = storage.ref(`/items/${fileName}`).put(item.file);
@@ -84,7 +92,11 @@ export default function NewItem() {
     const handleUpload = (e) => {
         try {
             e.preventDefault();
-            upload([{file: img, label: "img"}, {file: imgSm, label: "imgSm"}]);
+            if (img !== null && imgSm !== null)
+                upload([{file: img, label: "img"}, {file: imgSm, label: "imgSm"}]);
+            else {
+                alert('You need to choose two images');
+            }
         } catch (e) {
             alert('You need to choose two images');
         }
@@ -96,6 +108,8 @@ export default function NewItem() {
         if (typeof item.genre === "string") {
             item.genre = item.genre.split(',').filter(Boolean).map((text) => text.trim());
         }
+
+        console.log(Object.keys(item).length)
 
         let res;
         switch (type) {
@@ -116,11 +130,11 @@ export default function NewItem() {
                 break;
         }
 
-        if (res.status === 400) {
-            alert(res.data.message);
+        if (res.status === 201) {
+            history.goBack();
             return;
         }
-        alert(res.statusText);
+        alert(res.data.message);
     };
 
     return (
@@ -345,12 +359,20 @@ export default function NewItem() {
 
                                 <Grid>
                                     {uploaded === 2 ? (
-                                        <Button className={classes.addProductButton}
-                                                onClick={handleSubmit}>Создать</Button>
+                                        <Button
+                                            disabled={type !== 'book' ? Object.keys(item).length !== 10 : Object.keys(item).length !== 9}
+                                            className={classes.addProductButton}
+                                            onClick={handleSubmit}>
+                                            Создать
+                                        </Button>
 
                                     ) : (
-                                        <Button className={classes.addProductButton}
-                                                onClick={handleUpload}>Загрузить</Button>
+                                        <Button
+                                            className={classes.addProductButton}
+                                            onClick={handleUpload}
+                                            disabled={isDisableUpload}>
+                                            Загрузить
+                                        </Button>
                                     )}
                                 </Grid>
 

@@ -7,7 +7,7 @@ import Paper from "@mui/material/Paper";
 import useStyles from './stylesUpdateItem';
 import TextField from "@mui/material/TextField";
 import Button from "@material-ui/core/Button";
-import {useLocation} from "react-router-dom";
+import {useHistory, useLocation} from "react-router-dom";
 import {getMovie, updateMovie} from "../../../context/movieContext/apiCalls";
 import {getOneSeries, updateSeries} from "../../../context/seriesContext/apiCalls";
 import {getBook, updateBook} from "../../../context/bookContext/apiCalls";
@@ -24,6 +24,7 @@ function UpdateItem() {
     const {search} = useLocation();
     const type = new URLSearchParams(search).get('type');
     const itemId = new URLSearchParams(search).get('id');
+    const history = useHistory();
 
     const [item, setItem] = useState({});
 
@@ -53,7 +54,12 @@ function UpdateItem() {
 
     const handleChange = (e) => {
         const value = e.target.value;
-        setItem({...item, [e.target.name]: value});
+        if (value !== "")
+            setItem({...item, [e.target.name]: value});
+        else {
+            delete item[e.target.name];
+            setItem({...item});
+        }
     };
 
     const handleUpdate = async (e) => {
@@ -82,11 +88,11 @@ function UpdateItem() {
                 break;
         }
 
-        if (res.status === 400) {
-            alert(res.data.message);
+        if (res.status === 200) {
+            history.goBack();
             return;
         }
-        alert('Item has been updated');
+        alert(res.data.message);
     }
 
     return (
@@ -272,8 +278,12 @@ function UpdateItem() {
                                 </Grid>
 
                                 <Grid>
-                                    <Button className={classes.updateProductButton}
-                                            onClick={handleUpdate}>Изменить</Button>
+                                    <Button
+                                        disabled={type !== 'book' ? Object.keys(item).length !== 11 : Object.keys(item).length !== 10}
+                                        className={classes.updateProductButton}
+                                        onClick={handleUpdate}>
+                                        Изменить
+                                    </Button>
                                 </Grid>
 
                             </Grid>

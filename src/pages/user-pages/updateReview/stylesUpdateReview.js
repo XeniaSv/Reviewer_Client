@@ -128,7 +128,10 @@ const useStyles = makeStyles({
                 backgroundColor: 'rgba(130, 141, 191)',
             },
             "&:disabled": {
-                backgroundColor: 'rgba(130, 141, 191)'
+                backgroundColor: 'lightgrey',
+                opacity:0.6,
+                color:'grey',
+                border: '1px solid lightgrey',
             }
         }
     },

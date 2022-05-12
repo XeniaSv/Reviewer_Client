@@ -70,8 +70,17 @@ const useStyles = makeStyles({
             border: '1px solid rgba(130, 141, 191)',
             backgroundColor: 'rgba(144, 156, 209)',
             marginLeft: '10px',
+            "@media (max-width: 340px)": {
+                width: '200px',
+            },
             "&:hover": {
                 backgroundColor: 'rgba(130, 141, 191)',
+            },
+            "&:disabled": {
+                backgroundColor: 'lightgrey',
+                opacity:0.6,
+                color:'grey',
+                border: '1px solid lightgrey',
             }
         }
     },
