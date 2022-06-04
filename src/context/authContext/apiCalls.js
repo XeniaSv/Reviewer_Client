@@ -1,5 +1,5 @@
 import $api from "../../http";
-import {loginFailure, loginStart, loginSuccess} from "./AuthActions";
+import {loginFailure, loginStart, loginSuccess, logout} from "./AuthActions";
 
 export const login = async (user, dispatch) => {
     dispatch(loginStart());
@@ -18,5 +18,14 @@ export const register = async (user) => {
         return await $api.post("/auth/register", user);
     } catch (e) {
         return e.response;
+    }
+}
+
+export const logoutFunc = async (dispatch) => {
+    try {
+        await $api.post("/auth/logout");
+        dispatch(logout());
+    } catch (e) {
+        console.log(e.message);
     }
 }

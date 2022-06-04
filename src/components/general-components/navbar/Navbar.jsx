@@ -13,7 +13,7 @@ import {Search} from "@mui/icons-material";
 import {Link, useHistory} from 'react-router-dom';
 import {Autocomplete, Grid, TextField} from "@mui/material";
 import {AuthContext} from "../../../context/authContext/AuthContext";
-import {logout} from "../../../context/authContext/AuthActions";
+import {logoutFunc} from "../../../context/authContext/apiCalls";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ClearIcon from '@mui/icons-material/Clear';
 import {alpha, styled} from '@mui/material/styles';
@@ -119,7 +119,7 @@ const Navbar = () => {
 
     const handleLogout = () => {
         handleCloseUserMenu();
-        dispatch(logout());
+        logoutFunc(dispatch);
     }
 
     const handleClick = (event) => {

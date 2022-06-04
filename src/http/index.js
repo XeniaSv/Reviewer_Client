@@ -13,4 +13,22 @@ $api.interceptors.request.use((config) => {
     return config;
 });
 
+$api.interceptors.response.use((config) => {
+   return config;
+}, async (error) => {
+    const originalRequest = error.config;
+    if (error.response.status === 401 && error.config && !error.config._isRetry) {
+        originalRequest._isRetry = true;
+        try {
+            const res = await $api.get("/auth/refresh", {withCredentials: true});
+            localStorage.setItem("user", JSON.stringify(res.data));
+            originalRequest.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem("user")).accessToken}`;
+            return $api.request(originalRequest);
+        } catch (e) {
+            console.log(e.message);
+        }
+    }
+    throw error;
+});
+
 export default $api;
