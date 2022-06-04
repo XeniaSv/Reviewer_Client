@@ -22,7 +22,9 @@ $api.interceptors.response.use((config) => {
         try {
             const res = await $api.get("/auth/refresh", {withCredentials: true});
             localStorage.setItem("user", JSON.stringify(res.data));
-            originalRequest.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem("user")).accessToken}`;
+            console.log(originalRequest._isRetry);
+            console.log(res.data.accessToken);
+            originalRequest.headers.Authorization = `Bearer ${res.data.accessToken}`;
             return $api.request(originalRequest);
         } catch (e) {
             console.log(e.message);
