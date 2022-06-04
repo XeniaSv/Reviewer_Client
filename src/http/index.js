@@ -20,11 +20,9 @@ $api.interceptors.response.use((config) => {
     if (error.response.status === 401 && error.config && !error.config._isRetry) {
         originalRequest._isRetry = true;
         try {
-            const res = await $api.get("/auth/refresh", {withCredentials: true});
+            const res = await $api.get("/auth/refresh");
             localStorage.setItem("user", JSON.stringify(res.data));
-            console.log(originalRequest._isRetry);
-            console.log(res.data.accessToken);
-            originalRequest.headers.Authorization = `Bearer ${res.data.accessToken}`;
+            originalRequest.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem("user")).accessToken}`;
             return $api.request(originalRequest);
         } catch (e) {
             console.log(e.message);
